@@ -2,11 +2,11 @@ package main
 
 import (
 	// Uncomment this to pass the first stage
-
 	"bytes"
 	"fmt"
 	"io"
 	"os"
+	"unicode"
 	"unicode/utf8"
 )
 
@@ -42,7 +42,15 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	if utf8.RuneCountInString(pattern) != 1 {
 		return false, fmt.Errorf("unsupported pattern: %q", pattern)
 	}
+	if pattern == "\\d" {
+		for _, r := range string(line) {
+			if unicode.IsDigit(r) {
+				return true, nil
+			}
+		}
+		return false, nil
 
+	}
 	var ok bool
 
 	// You can use print statements as follows for debugging, they'll be visible when running tests.
