@@ -61,16 +61,12 @@ func matchLine(line []byte, pattern string) (bool, error) {
 			}
 		}
 	} else if isPosCharacterGroup(pattern) {
-		after, found := strings.CutPrefix(pattern, "[")
-		if found {
-			after1, found1 := strings.CutPrefix(after, "^")
+		before, after, found := strings.Cut(pattern, "[^")
+		if found && before == "" {
+			after1, found1 := strings.CutSuffix(after, "]")
 			if found1 {
-				after2, found2 := strings.CutSuffix(after1, "]")
-				if found2 {
-					ok = bytes.ContainsAny(line, after2)
-				}
+				ok = bytes.ContainsAny(line, after1)
 			}
-
 		}
 	} else {
 		ok = bytes.ContainsAny(line, pattern)
@@ -89,3 +85,8 @@ func isPosCharacterGroup(pattern string) bool {
 	return false
 
 }
+
+//TEST IN GIT COPY AND PASTE
+// git add .
+// git commit --allow-empty -m 'pass 1st stage'
+// git push origin master
