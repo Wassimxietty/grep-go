@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 	"unicode/utf8"
 )
 
@@ -51,8 +52,25 @@ func matchLine(line []byte, pattern string) (bool, error) {
 		ok = bytes.ContainsAny(line, "0123456789")
 	} else if pattern == "\\w" {
 		ok = bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
+	} else if isPosCharacterGroup(pattern) {
+		after, found := strings.CutPrefix(pattern, "[")
+		after1, found1 := strings.CutSuffix(after, "]")
+
+		ok = bytes.ContainsAny(line, after1)
 	} else {
 		ok = bytes.ContainsAny(line, pattern)
 	}
 	return ok, nil
+}
+
+func isPosCharacterGroup(pattern string) bool {
+	// Check if the pattern length is at least 2 (to contain at least "[]")
+	if len(pattern) < 2 {
+		return false
+	}
+	if pattern[0] == '[' && pattern[len(pattern)-1] == ']' {
+		return true
+	}
+	return false
+
 }
