@@ -52,7 +52,7 @@ func matchLine(line []byte, pattern string) (bool, error) {
 		ok = bytes.ContainsAny(line, "0123456789")
 	} else if pattern == "\\w" {
 		ok = bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
-	} else if isPosCharacterGroup(pattern) {
+	} else if isPosCharacterGroup(pattern) == "positive" {
 		//pattern : [abc] : matches every letter in the brackers
 		after, found := strings.CutPrefix(pattern, "[")
 		if found {
@@ -61,7 +61,7 @@ func matchLine(line []byte, pattern string) (bool, error) {
 				ok = bytes.ContainsAny(line, after1)
 			}
 		}
-	} else if isPosCharacterGroup(pattern) {
+	} else if isPosCharacterGroup(pattern) == "negative" {
 		//pattern : [^abc] : matches every letter except the ones in the brackers
 		before, after, found := strings.Cut(pattern, "[^")
 		if found && before == "" {
@@ -76,15 +76,19 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	return ok, nil
 }
 
-func isPosCharacterGroup(pattern string) bool {
+func isPosCharacterGroup(pattern string) string {
 	// Check if the pattern length is at least 2 (to contain at least "[]")
 	if len(pattern) < 2 {
-		return false
+		return "none"
 	}
 	if pattern[0] == '[' && pattern[len(pattern)-1] == ']' {
-		return true
+		if pattern[1] == '^' {
+			return "negative"
+		} else {
+			return "positive"
+		}
 	}
-	return false
+	return "none"
 
 }
 
