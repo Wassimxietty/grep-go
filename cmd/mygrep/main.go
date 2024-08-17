@@ -58,7 +58,7 @@ func matchLine(line []byte, pattern string) (bool, error) {
 		if found {
 			after1, found1 := strings.CutSuffix(after, "]")
 			if found1 {
-				ok = !bytes.ContainsAny(line, after1)
+				ok = bytes.ContainsAny(line, after1)
 			}
 		}
 	} else if isPosCharacterGroup(pattern) {
