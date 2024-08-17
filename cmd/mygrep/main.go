@@ -54,9 +54,13 @@ func matchLine(line []byte, pattern string) (bool, error) {
 		ok = bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
 	} else if isPosCharacterGroup(pattern) {
 		after, found := strings.CutPrefix(pattern, "[")
-		after1, found1 := strings.CutSuffix(after, "]")
+		if found {
+			after1, found1 := strings.CutSuffix(after, "]")
+			if found1 {
+				ok = bytes.ContainsAny(line, after1)
+			}
+		}
 
-		ok = bytes.ContainsAny(line, after1)
 	} else {
 		ok = bytes.ContainsAny(line, pattern)
 	}
