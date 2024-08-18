@@ -73,22 +73,21 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	fmt.Println("counterW :", counterW)
 	fmt.Println("wPattern length and wPattern:", len(wPattern), wPattern)
 
-	ok1 := (counterD*2 - 1) == len(dPattern)
-
-	fmt.Println("OK1 (IF IT ENTERS THE OK1 CONDITION) :", ok1)
+	fmt.Println("subslice length :", len(subslice))
 
 	if strings.Contains(pattern, "\\d") {
 		ok1 := (counterD*2 - 1) == len(dPattern)
 		if ok1 {
-			subslice := []byte(wordPattern1)
 			ok = bytes.Contains(line, subslice)
 		}
 	} else if strings.Contains(pattern, "\\w") {
 		ok1 := (counterW*2 - 1) == len(wPattern)
 		// ok1 := bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
-		if ok1 {
-			subslice := []byte(wordPattern1)
-			ok = bytes.Contains(line, subslice) || bytes.ContainsAny(line, wordPattern1)
+		if ok1 && len(subslice) == 1 {
+			ok = bytes.ContainsAny(line, wordPattern1)
+		}
+		if ok1 && len(subslice) > 1 {
+			ok = bytes.Contains(line, subslice)
 		}
 	} else if isPosCharacterGroup(pattern) == "positive" {
 		//pattern : [abc] : matches every letter in the brackers
