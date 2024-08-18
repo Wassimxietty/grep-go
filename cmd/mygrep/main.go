@@ -48,21 +48,21 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	fmt.Println("Logs from your program will appear here!")
 	fmt.Println(pattern)
 	wordPattern := strings.Trim(pattern, "\\d")
-	wordPattern = strings.Trim(wordPattern, "\\w")
-	subslice := []byte(wordPattern)
-	fmt.Println(wordPattern)
+	wordPattern1 := strings.Trim(wordPattern, "\\w")
+	subslice := []byte(wordPattern1)
+	fmt.Println(wordPattern1)
 	fmt.Println("IF IT CONTAINS THE WORD PATTERN: ", bytes.Contains(line, subslice))
 	fmt.Println("Sublice length: ", len(subslice))
-	fmt.Println("IF IT CONTAINS THE LETTER PATTERN: ", bytes.ContainsAny(line, wordPattern))
+	fmt.Println("IF IT CONTAINS THE LETTER PATTERN: ", bytes.ContainsAny(line, wordPattern1))
 	ok1 := bytes.ContainsAny(line, "0123456789")
 	fmt.Println("OK1 (IF IT ENTERS THE OK1 CONDITION) :", ok1)
 	// dPattern : string of \d
-	dPattern := strings.Trim(pattern, wordPattern)
+	dPattern := strings.Trim(pattern, wordPattern1)
 	dPattern = strings.Trim(dPattern, "\\w")
 	// counterD of \d
 	counterD := strings.Count(pattern, "\\d")
 	// wPattern : string of \w
-	wPattern := strings.Trim(pattern, wordPattern)
+	wPattern := strings.Trim(pattern, wordPattern1)
 	wPattern = strings.Trim(wPattern, "\\d")
 	// counterW of \d
 	counterW := strings.Count(pattern, "\\w")
@@ -70,15 +70,15 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	if strings.Contains(pattern, "\\d") {
 		ok1 := (counterD*2 - 1) == len(dPattern)
 		if ok1 {
-			subslice := []byte(wordPattern)
+			subslice := []byte(wordPattern1)
 			ok = bytes.Contains(line, subslice)
 		}
 	} else if strings.Contains(pattern, "\\w") {
 		ok1 := (counterW*2 - 1) == len(wPattern)
 		// ok1 := bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
 		if ok1 {
-			subslice := []byte(wordPattern)
-			ok = bytes.Contains(line, subslice) || bytes.ContainsAny(line, wordPattern)
+			subslice := []byte(wordPattern1)
+			ok = bytes.Contains(line, subslice) || bytes.ContainsAny(line, wordPattern1)
 		}
 	} else if isPosCharacterGroup(pattern) == "positive" {
 		//pattern : [abc] : matches every letter in the brackers
