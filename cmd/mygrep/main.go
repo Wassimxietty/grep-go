@@ -53,13 +53,16 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	// sally has 1 orange
 	for i := 0; i < len(pattern); i++ {
 		if pattern[i] == '\\' {
-			if pattern[i+1] == 'd' {
+			i++
+			if pattern[i] == 'd' {
 				ok = bytes.ContainsAny(line, "0123456789")
-			} else if pattern[i+1] == 'w' {
+			} else if pattern[i] == 'w' {
 				ok = bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
 			}
 		} else {
-			ok = bytes.ContainsAny(line, string(pattern[i]))
+			wordPattern := strings.Trim(pattern, "\\d")
+			wordPattern = strings.Trim(wordPattern, "\\w")
+			ok = strings.Contains(string(line), wordPattern)
 		}
 	}
 	// if pattern == "\\d" {
