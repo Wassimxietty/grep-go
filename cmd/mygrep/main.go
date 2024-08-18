@@ -55,20 +55,20 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	fmt.Println("IF IT CONTAINS THE LETTER PATTERN: ", bytes.ContainsAny(line, wordPattern1))
 
 	// dPattern : string of \d
-	dPattern := strings.ReplaceAll(pattern, wordPattern1, "")
-	dPattern = strings.ReplaceAll(dPattern, "\\w", "")
+	dPattern := strings.Trim(pattern, wordPattern1)
+	dPattern = strings.Trim(dPattern, "\\w")
 	// counterD of \d
 	counterD := strings.Count(pattern, "\\d")
 	fmt.Println("counterD :", counterD)
 	fmt.Println("dPattern length :", len(dPattern))
 
 	// wPattern : string of \w
-	wPattern := strings.ReplaceAll(pattern, wordPattern1, "")
-	wPattern = strings.ReplaceAll(wPattern, "\\d", "")
+	wPattern := strings.Trim(pattern, wordPattern1)
+	wPattern = strings.Trim(wPattern, "\\d")
 	// counterW of \d
 	counterW := strings.Count(pattern, "\\w")
-	fmt.Println("counterD :", counterW)
-	fmt.Println("dPattern length :", len(wPattern))
+	fmt.Println("counterW :", counterW)
+	fmt.Println("wPattern length :", len(wPattern))
 
 	ok1 := (counterD*2 - 1) == len(dPattern)
 
