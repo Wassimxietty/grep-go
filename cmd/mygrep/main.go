@@ -55,23 +55,18 @@ func matchLine(line []byte, pattern string) (bool, error) {
 
 	// \d apple
 	// sally has 1 orange
-	for i := 0; i < len(pattern); i++ {
-		if pattern[i] == '\\' && pattern[i+1] == 'd' {
-			ok = bytes.ContainsAny(line, "0123456789")
-		} else if pattern[i] == '\\' && pattern[i] == 'w' {
-			ok = bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
-		} else {
-			wordPattern := strings.Trim(pattern, "\\d")
-			wordPattern = strings.Trim(wordPattern, "\\w")
-			ok = strings.Contains(string(line), wordPattern)
-		}
-	}
-	// if pattern == "\\d" {
-	// 	ok = bytes.ContainsAny(line, "0123456789")
-	// } else if pattern == "\\w" {
-	// 	ok = bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
-	// } else
-	if isPosCharacterGroup(pattern) == "positive" {
+
+	if pattern == "\\d" {
+		ok = bytes.ContainsAny(line, "0123456789")
+		wordPattern := strings.Trim(pattern, "\\d")
+		wordPattern = strings.Trim(wordPattern, "\\w")
+		ok = strings.Contains(string(line), wordPattern)
+	} else if pattern == "\\w" {
+		ok = bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
+		wordPattern := strings.Trim(pattern, "\\d")
+		wordPattern = strings.Trim(wordPattern, "\\w")
+		ok = strings.Contains(string(line), wordPattern)
+	} else if isPosCharacterGroup(pattern) == "positive" {
 		//pattern : [abc] : matches every letter in the brackers
 		after, found := strings.CutPrefix(pattern, "[")
 		if found {
