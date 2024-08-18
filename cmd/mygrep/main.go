@@ -47,8 +47,8 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	// You can use print statements as follows for debugging, they'll be visible when running tests.
 	fmt.Println("Logs from your program will appear here!")
 	fmt.Println(pattern)
-	wordPattern := strings.Trim(pattern, "\\d")
-	wordPattern1 := strings.Trim(wordPattern, "\\w")
+	wordPattern := strings.ReplaceAll(pattern, "\\d", "")
+	wordPattern1 := strings.ReplaceAll(wordPattern, "\\w", "")
 	subslice := []byte(wordPattern1)
 	fmt.Println(wordPattern1)
 	fmt.Println("IF IT CONTAINS THE WORD PATTERN: ", bytes.Contains(line, subslice))
@@ -57,13 +57,13 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	ok1 := bytes.ContainsAny(line, "0123456789")
 	fmt.Println("OK1 (IF IT ENTERS THE OK1 CONDITION) :", ok1)
 	// dPattern : string of \d
-	dPattern := strings.Trim(pattern, wordPattern1)
-	dPattern = strings.Trim(dPattern, "\\w")
+	dPattern := strings.ReplaceAll(pattern, wordPattern1, "")
+	dPattern = strings.ReplaceAll(dPattern, "\\w", "")
 	// counterD of \d
 	counterD := strings.Count(pattern, "\\d")
 	// wPattern : string of \w
-	wPattern := strings.Trim(pattern, wordPattern1)
-	wPattern = strings.Trim(wPattern, "\\d")
+	wPattern := strings.ReplaceAll(pattern, wordPattern1, "")
+	wPattern = strings.ReplaceAll(wPattern, "\\d", "")
 	// counterW of \d
 	counterW := strings.Count(pattern, "\\w")
 
