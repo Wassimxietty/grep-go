@@ -52,6 +52,8 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	subslice := []byte(wordPattern)
 	fmt.Println(subslice)
 	fmt.Println(bytes.Contains(line, subslice))
+	ok1 := bytes.ContainsAny(line, "0123456789")
+	fmt.Println(ok1)
 
 	// \d apple
 	// sally has 1 orange
@@ -65,8 +67,8 @@ func matchLine(line []byte, pattern string) (bool, error) {
 			ok = bytes.Contains(line, subslice)
 		}
 	} else if pattern == "\\w" {
-		ok = bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
-		if ok {
+		ok1 := bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
+		if ok1 {
 			wordPattern := strings.Trim(pattern, "\\d")
 			wordPattern = strings.Trim(wordPattern, "\\w")
 			subslice := []byte(wordPattern)
