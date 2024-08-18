@@ -59,13 +59,19 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	dPattern = strings.ReplaceAll(dPattern, "\\w", "")
 	// counterD of \d
 	counterD := strings.Count(pattern, "\\d")
+	fmt.Println("counterD :", counterD)
+	fmt.Println("dPattern length :", len(dPattern))
+
 	// wPattern : string of \w
 	wPattern := strings.ReplaceAll(pattern, wordPattern1, "")
 	wPattern = strings.ReplaceAll(wPattern, "\\d", "")
 	// counterW of \d
 	counterW := strings.Count(pattern, "\\w")
+	fmt.Println("counterD :", counterW)
+	fmt.Println("dPattern length :", len(wPattern))
 
 	ok1 := (counterD*2 - 1) == len(dPattern)
+
 	fmt.Println("OK1 (IF IT ENTERS THE OK1 CONDITION) :", ok1)
 
 	if strings.Contains(pattern, "\\d") {
