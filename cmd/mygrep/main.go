@@ -58,6 +58,8 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	dPattern = strings.Trim(dPattern, "\\w")
 	counter := strings.Count(pattern, "\\d")
 	ok1 = counter == len(dPattern)*2
+	fmt.Println("counter =", counter)
+	fmt.Println("dpattern * 2  =", len(dPattern)*2)
 	fmt.Println("counter == length of dPattern : ", ok1)
 
 	// \d apple
