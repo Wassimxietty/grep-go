@@ -57,8 +57,8 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	dPattern := strings.Trim(pattern, wordPattern)
 	dPattern = strings.Trim(dPattern, "\\w")
 	counter := strings.Count(pattern, "\\d")
-	ok1 = (counter) == len(dPattern)
-	fmt.Println("counter =", counter)
+	ok1 = (counter*2 - 1) == len(dPattern)
+	fmt.Println("counter =", (counter*2 - 1))
 	fmt.Println("dpattern =", len(dPattern))
 	fmt.Println("counter == length of dPattern : ", ok1)
 
@@ -72,7 +72,7 @@ func matchLine(line []byte, pattern string) (bool, error) {
 		dPattern = strings.Trim(dPattern, "\\w")
 		counter := strings.Count(pattern, "\\d")
 
-		ok1 := counter == len(dPattern)
+		ok1 := (counter*2 - 1) == len(dPattern)
 		if ok1 {
 			subslice := []byte(wordPattern)
 			ok = bytes.Contains(line, subslice)
