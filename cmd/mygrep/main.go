@@ -84,9 +84,6 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	} else if strings.Contains(pattern, "\\w") {
 		ok1 := (counterW*2 - 1) == len(wPattern)
 		// ok1 := bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
-		if ok1 && len(subslice) == 1 {
-			ok = bytes.ContainsAny(line, wordPattern1)
-		}
 		if ok1 && len(subslice) > 1 {
 			ok = bytes.Contains(line, subslice)
 		}
