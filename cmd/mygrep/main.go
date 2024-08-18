@@ -49,6 +49,7 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	fmt.Println(pattern)
 	wordPattern := strings.ReplaceAll(pattern, "\\d", "")
 	wordPattern1 := strings.ReplaceAll(wordPattern, "\\w", "")
+	wordPattern1 = strings.TrimSpace(wordPattern)
 	subslice := []byte(wordPattern1)
 	fmt.Println(wordPattern1)
 	fmt.Println("IF IT CONTAINS THE WORD PATTERN: ", bytes.Contains(line, subslice))
