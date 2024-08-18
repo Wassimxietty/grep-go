@@ -60,14 +60,16 @@ func matchLine(line []byte, pattern string) (bool, error) {
 		if ok1 {
 			wordPattern := strings.Trim(pattern, "\\d")
 			wordPattern = strings.Trim(wordPattern, "\\w")
-			ok = strings.Contains(string(line), wordPattern)
+			subslice := []byte(wordPattern)
+			ok = bytes.Contains(line, subslice)
 		}
 	} else if pattern == "\\w" {
 		ok = bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
 		if ok {
 			wordPattern := strings.Trim(pattern, "\\d")
 			wordPattern = strings.Trim(wordPattern, "\\w")
-			ok = strings.Contains(string(line), wordPattern)
+			subslice := []byte(wordPattern)
+			ok = bytes.Contains(line, subslice)
 		}
 	} else if isPosCharacterGroup(pattern) == "positive" {
 		//pattern : [abc] : matches every letter in the brackers
