@@ -54,34 +54,29 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	fmt.Println("IF IT CONTAINS THE WORD PATTERN: ", bytes.Contains(line, subslice))
 	ok1 := bytes.ContainsAny(line, "0123456789")
 	fmt.Println("OK1 (IF IT ENTERS THE OK1 CONDITION) :", ok1)
+	// dPattern : string of \d
 	dPattern := strings.Trim(pattern, wordPattern)
 	dPattern = strings.Trim(dPattern, "\\w")
-	counter := strings.Count(pattern, "\\d")
-	ok1 = (counter*2 - 1) == len(dPattern)
-	fmt.Println("counter =", (counter*2 - 1))
-	fmt.Println("dpattern =", len(dPattern))
-	fmt.Println("counter == length of dPattern : ", ok1)
-
+	// counterD of \d
+	counterD := strings.Count(pattern, "\\d")
+	// wPattern : string of \w
+	wPattern := strings.Trim(pattern, wordPattern)
+	wPattern = strings.Trim(wPattern, "\\d")
+	// counterW of \d
+	counterW := strings.Count(pattern, "\\w")
 	// \d apple
 	// sally has 1 orange
 
 	if strings.Contains(pattern, "\\d") {
-		wordPattern := strings.Trim(pattern, "\\d")
-		wordPattern = strings.Trim(wordPattern, "\\w")
-		dPattern := strings.Trim(pattern, wordPattern)
-		dPattern = strings.Trim(dPattern, "\\w")
-		counter := strings.Count(pattern, "\\d")
-
-		ok1 := (counter*2 - 1) == len(dPattern)
+		ok1 := (counterD*2 - 1) == len(dPattern)
 		if ok1 {
 			subslice := []byte(wordPattern)
 			ok = bytes.Contains(line, subslice)
 		}
 	} else if strings.Contains(pattern, "\\w") {
-		ok1 := bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
+		ok1 := (counterW*2 - 1) == len(wPattern)
+		// ok1 := bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
 		if ok1 {
-			wordPattern := strings.Trim(pattern, "\\d")
-			wordPattern = strings.Trim(wordPattern, "\\w")
 			subslice := []byte(wordPattern)
 			ok = bytes.Contains(line, subslice)
 		}
