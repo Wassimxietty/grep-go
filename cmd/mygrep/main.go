@@ -68,7 +68,7 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	// counterW of \d
 	counterW := strings.Count(pattern, "\\w")
 	fmt.Println("counterW :", counterW)
-	fmt.Println("wPattern length :", len(wPattern))
+	fmt.Println("wPattern length and wPattern:", len(wPattern), wPattern)
 
 	ok1 := (counterD*2 - 1) == len(dPattern)
 
