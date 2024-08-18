@@ -47,8 +47,6 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	// You can use print statements as follows for debugging, they'll be visible when running tests.
 	fmt.Println("Logs from your program will appear here!")
 	fmt.Println(pattern)
-	fmt.Println(strings.Count(pattern, "\\d"))
-	fmt.Println(strings.IndexAny(string(line), "0123456789"))
 	wordPattern := strings.Trim(pattern, "\\d")
 	wordPattern = strings.Trim(wordPattern, "\\w")
 	fmt.Println(wordPattern)
@@ -58,10 +56,12 @@ func matchLine(line []byte, pattern string) (bool, error) {
 
 	if pattern == "\\d" {
 		ok = bytes.ContainsAny(line, "0123456789")
+		fmt.Println("first ok: ", ok)
 		if ok {
 			wordPattern := strings.Trim(pattern, "\\d")
 			wordPattern = strings.Trim(wordPattern, "\\w")
 			ok = strings.Contains(string(line), wordPattern)
+			fmt.Println("second ok: ", ok)
 		}
 	} else if pattern == "\\w" {
 		ok = bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
@@ -91,6 +91,7 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	} else {
 		ok = bytes.ContainsAny(line, pattern)
 	}
+
 	return ok, nil
 }
 
