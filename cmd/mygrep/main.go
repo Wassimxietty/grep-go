@@ -95,7 +95,7 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	} else {
 		ok = bytes.ContainsAny(line, pattern)
 	}
-
+	fmt.Println(ok, nil)
 	return ok, nil
 }
 
