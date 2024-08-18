@@ -52,6 +52,7 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	subslice := []byte(wordPattern)
 	fmt.Println(wordPattern)
 	fmt.Println("IF IT CONTAINS THE WORD PATTERN: ", bytes.Contains(line, subslice))
+	fmt.Println("IF IT CONTAINS THE LETTER PATTERN: ", bytes.ContainsAny(line, wordPattern))
 	ok1 := bytes.ContainsAny(line, "0123456789")
 	fmt.Println("OK1 (IF IT ENTERS THE OK1 CONDITION) :", ok1)
 	// dPattern : string of \d
