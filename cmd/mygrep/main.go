@@ -46,8 +46,11 @@ func matchLine(line []byte, pattern string) (bool, error) {
 
 	// You can use print statements as follows for debugging, they'll be visible when running tests.
 	fmt.Println("Logs from your program will appear here!")
+	fmt.Println(pattern)
+	fmt.Println(line)
 
-	// Uncomment this to pass the first stage
+	// \d \w\w\ws
+	// 5 abcs
 	if pattern == "\\d" {
 		ok = bytes.ContainsAny(line, "0123456789")
 	} else if pattern == "\\w" {
