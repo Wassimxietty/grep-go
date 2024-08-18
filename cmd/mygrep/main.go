@@ -131,26 +131,31 @@ func matchPattern(line string, pattern string, pos int) bool {
 			} else {
 				i++
 			}
+		} else {
+			if line[j] != pattern[i] {
+				return false
+			}
 		}
+		j++
 	}
 	return true
 }
 
-func isPosCharacterGroup(pattern string) string {
-	// Check if the pattern length is at least 2 (to contain at least "[]")
-	if len(pattern) < 2 {
-		return "none"
-	}
-	if pattern[0] == '[' && pattern[len(pattern)-1] == ']' {
-		if pattern[1] == '^' {
-			return "negative"
-		} else {
-			return "positive"
-		}
-	}
-	return "none"
+// func isPosCharacterGroup(pattern string) string {
+// 	// Check if the pattern length is at least 2 (to contain at least "[]")
+// 	if len(pattern) < 2 {
+// 		return "none"
+// 	}
+// 	if pattern[0] == '[' && pattern[len(pattern)-1] == ']' {
+// 		if pattern[1] == '^' {
+// 			return "negative"
+// 		} else {
+// 			return "positive"
+// 		}
+// 	}
+// 	return "none"
 
-}
+// }
 
 //TEST IN GIT COPY AND PASTE
 // git add .
