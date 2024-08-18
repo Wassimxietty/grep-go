@@ -48,8 +48,9 @@ func matchLine(line []byte, pattern string) (bool, error) {
 	fmt.Println("Logs from your program will appear here!")
 	fmt.Println(pattern)
 	fmt.Println(strings.Count(pattern, "\\d"))
-	// \d \w\w\ws
-	// 5 abcs
+	fmt.Println(strings.IndexAny(string(line), "0123456789"))
+	// \d apple
+	// sally has 1 orange
 	for i := 0; i < len(pattern); i++ {
 		if pattern[i] == '\\' {
 			if pattern[i+1] == 'd' {
