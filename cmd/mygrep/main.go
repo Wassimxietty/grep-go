@@ -49,14 +49,12 @@ func matchLine(line string, pattern string) (bool, error) {
 		}
 
 	}
+
+	// You can use print statements as follows for debugging, they'll be visible when running tests.
+	fmt.Println("Logs from your program will appear here!")
 	endPos := strings.Index(pattern[0:], "$")
 	matchAnyPattern := pattern[0 : endPos-1]
 	fmt.Println("matchAnyParent : ", matchAnyPattern)
-
-	return false, nil
-	// // You can use print statements as follows for debugging, they'll be visible when running tests.
-	// fmt.Println("Logs from your program will appear here!")
-
 	// fmt.Println(pattern)
 	// wordPattern := strings.ReplaceAll(pattern, "\\d", "")
 	// wordPattern1 := strings.ReplaceAll(wordPattern, "\\w", "")
@@ -121,6 +119,7 @@ func matchLine(line string, pattern string) (bool, error) {
 	// }
 	// fmt.Println("LAST OK :", ok, nil)
 	// return ok, nil
+	return false, nil
 }
 func matchPattern(line string, pattern string, pos int) bool {
 	n := len(pattern)
