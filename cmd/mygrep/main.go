@@ -182,8 +182,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 			}
 			i = endPos
 		} else if pattern[i] == '+' && i != 0 {
-			precedingChar := pattern[i-1]
-			for j < len(line) && rune(line[j]) == rune(precedingChar) {
+			letterPlus := rune(pattern[i-1])
+			for i < len(line) && letterPlus == rune(line[j]) {
 				j++
 			}
 			continue
