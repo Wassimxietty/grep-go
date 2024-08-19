@@ -156,10 +156,14 @@ func matchPattern(line string, pattern string, pos int) bool {
 				}
 			}
 		} else if strings.Contains(pattern, "$") {
-			// endPos := strings.Index(pattern[i:], "$")
-			if pattern[i] != line[j] {
-				return false
+			endPos := strings.Index(pattern[i:], "$")
+			for i := 0; i < endPos; i++ {
+				if pattern[i] != line[j] {
+					return false
+				}
+				j++
 			}
+			return true
 		} else {
 			if line[j] != pattern[i] {
 				return false
