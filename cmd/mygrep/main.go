@@ -182,14 +182,11 @@ func matchPattern(line string, pattern string, pos int) bool {
 			}
 			i = endPos
 		} else if pattern[i] == '+' && i != 0 {
-			plusIndex := strings.Index(pattern, "+")
-			letterPlus := string(pattern[plusIndex])
-			for i := 0; i < len(line); i++ {
-				if letterPlus != string(line[j]) {
-					break
-				}
+			precedingChar := pattern[i-1]
+			for j < len(line) && rune(line[j]) == rune(precedingChar) {
 				j++
 			}
+			continue
 		} else {
 			if line[j] != pattern[i] {
 				return false
