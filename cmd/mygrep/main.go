@@ -146,6 +146,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 				return false
 			}
 			i = endPos
+		} else if pattern[i] == '^' && i+1 < n && j == 0 {
+			j++
 		} else {
 			if line[j] != pattern[i] {
 				return false
