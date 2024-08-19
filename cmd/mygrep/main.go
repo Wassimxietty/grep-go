@@ -43,18 +43,18 @@ func matchLine(line string, pattern string) (bool, error) {
 	// 	return false, fmt.Errorf("unsupported pattern: %q", pattern)
 	// }
 	// var ok bool
+	// You can use print statements as follows for debugging, they'll be visible when running tests.
+	fmt.Println("Logs from your program will appear here!")
+	endPos := strings.Index(pattern[0:], "$")
+	matchAnyPattern := pattern[0 : endPos-1]
+	fmt.Println("matchAnyParent : ", matchAnyPattern)
+
 	for i := 0; i <= len(line); i++ {
 		if matchPattern(line, pattern, i) {
 			return true, nil
 		}
 
 	}
-
-	// You can use print statements as follows for debugging, they'll be visible when running tests.
-	fmt.Println("Logs from your program will appear here!")
-	endPos := strings.Index(pattern[0:], "$")
-	matchAnyPattern := pattern[0 : endPos-1]
-	fmt.Println("matchAnyParent : ", matchAnyPattern)
 	// fmt.Println(pattern)
 	// wordPattern := strings.ReplaceAll(pattern, "\\d", "")
 	// wordPattern1 := strings.ReplaceAll(wordPattern, "\\w", "")
