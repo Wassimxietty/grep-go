@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 	"unicode"
 )
 
@@ -131,6 +132,20 @@ func matchPattern(line string, pattern string, pos int) bool {
 			} else {
 				i++
 			}
+		} else if pattern[i] == '[' && i+1 < n && pattern[i+1] == '^' {
+			endPos := strings.Index(pattern[i:], "]")
+			matchAnyPattern := pattern[i+1 : endPos]
+			if strings.ContainsAny(matchAnyPattern, string(line[j])) {
+				return false
+			}
+			i = endPos
+		} else if pattern[i] == '[' && i+1 < n {
+			endPos := strings.Index(pattern[i:], "]")
+			matchAnyPattern := pattern[i+1 : endPos]
+			if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
+				return false
+			}
+			i = endPos
 		} else {
 			if line[j] != pattern[i] {
 				return false
