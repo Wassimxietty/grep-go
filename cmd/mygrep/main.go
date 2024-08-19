@@ -187,6 +187,12 @@ func matchPattern(line string, pattern string, pos int) bool {
 				j++
 			}
 			continue
+		} else if pattern[i] == '?' && i != 0 {
+			letterPlus := rune(pattern[i-1])
+			if i < len(line) && letterPlus == rune(line[j]) {
+				j++
+			}
+			continue
 		} else {
 			if line[j] != pattern[i] {
 				return false
