@@ -175,6 +175,14 @@ func matchPattern(line string, pattern string, pos int) bool {
 				return false
 			}
 			i = endPos
+		} else if pattern[i] == '+' && i != 0 {
+			letterPlus := pattern[i-1]
+			for i := 0; i < len(pattern); i++ {
+				if letterPlus != line[j] {
+					break
+				}
+				j++
+			}
 		} else {
 			if line[j] != pattern[i] {
 				return false
