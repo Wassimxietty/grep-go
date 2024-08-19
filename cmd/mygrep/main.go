@@ -48,6 +48,7 @@ func matchLine(line string, pattern string) (bool, error) {
 	endPos := strings.Index(pattern[0:], "$")
 	matchAnyPattern := pattern[0:endPos]
 	fmt.Println("matchAnyParent : ", matchAnyPattern)
+	fmt.Println("endPos : ", endPos)
 
 	for i := 0; i <= len(line); i++ {
 		if matchPattern(line, pattern, i) {
@@ -162,7 +163,13 @@ func matchPattern(line string, pattern string, pos int) bool {
 		} else if strings.Contains(pattern, "$") {
 			endPos := strings.Index(pattern[i:], "$")
 			matchAnyPattern := pattern[i:endPos]
-			if !strings.Contains(pattern, matchAnyPattern) {
+			for i := 0; i < endPos; i++ {
+				if matchAnyPattern[i] != line[j] {
+					return false
+				}
+				j++
+			}
+			if j != len(line) {
 				return false
 			}
 			i = endPos
