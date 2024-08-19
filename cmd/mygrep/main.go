@@ -182,9 +182,10 @@ func matchPattern(line string, pattern string, pos int) bool {
 			}
 			i = endPos
 		} else if pattern[i] == '+' && i != 0 {
-			letterPlus := pattern[i-1]
+			plusIndex := strings.Index("ca+ts", "+") - 1
+			letterPlus := string(pattern[plusIndex])
 			for i := 0; i < len(line); i++ {
-				if letterPlus != line[j] {
+				if letterPlus != string(line[j]) {
 					break
 				}
 				j++
