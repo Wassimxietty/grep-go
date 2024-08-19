@@ -53,7 +53,7 @@ func matchLine(line string, pattern string) (bool, error) {
 	}
 	if strings.ContainsAny(pattern, "+") {
 		plusIndex := strings.Index("ca+ts", "+") - 1
-		letterPlus := pattern[plusIndex-1]
+		letterPlus := pattern[plusIndex]
 		fmt.Println("plusIndex : ", plusIndex)
 		fmt.Println("letterPlus : ", letterPlus)
 	}
