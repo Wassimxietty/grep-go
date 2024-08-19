@@ -155,7 +155,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 			if j != 0 {
 				return false
 			}
-		} else if strings.Contains(pattern, "$") {
+		} else if pattern[i] == '$' {
 			if j != len(line) {
 				return false
 			}
