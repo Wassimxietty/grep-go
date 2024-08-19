@@ -155,7 +155,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 					return false
 				}
 			}
-		} else if !(strings.LastIndex(pattern, "$") == -1) {
+		} else if strings.Contains(pattern, "$") {
 			endPos := strings.Index(pattern[i:], "$")
 			matchAnyPattern := pattern[i : endPos-1]
 			for i := 0; i < endPos-1; i++ {
