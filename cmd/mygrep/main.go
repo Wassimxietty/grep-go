@@ -46,7 +46,7 @@ func matchLine(line string, pattern string) (bool, error) {
 	// You can use print statements as follows for debugging, they'll be visible when running tests.
 	fmt.Println("Logs from your program will appear here!")
 	endPos := strings.Index(pattern[0:], "$")
-	matchAnyPattern := pattern[0 : endPos-1]
+	matchAnyPattern := pattern[0:endPos]
 	fmt.Println("matchAnyParent : ", matchAnyPattern)
 
 	for i := 0; i <= len(line); i++ {
@@ -161,7 +161,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 			}
 		} else if strings.Contains(pattern, "$") {
 			endPos := strings.Index(pattern[i:], "$")
-			matchAnyPattern := pattern[i : endPos-1]
+			matchAnyPattern := pattern[i:endPos]
 			if !strings.Contains(pattern, matchAnyPattern) {
 				return false
 			}
