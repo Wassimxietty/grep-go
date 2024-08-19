@@ -149,6 +149,11 @@ func matchPattern(line string, pattern string, pos int) bool {
 		} else if pattern[i] == '^' && i+1 < n {
 			if !(j == 0) {
 				return false
+			} else {
+				i++
+				if line[j] != pattern[i] {
+					return false
+				}
 			}
 		} else {
 			if line[j] != pattern[i] {
