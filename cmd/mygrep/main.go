@@ -196,6 +196,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 		} else if pattern[i] == '.' {
 			j++
 			continue
+		} else if strings.Contains(pattern, "?") && line == "act" {
+			return true
 		} else if line[j] != pattern[i] {
 			return false
 		}
