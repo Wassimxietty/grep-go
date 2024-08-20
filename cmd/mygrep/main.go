@@ -59,7 +59,7 @@ func matchLine(line string, pattern string) (bool, error) {
 	}
 	if strings.Contains(pattern, "?") {
 		questIndex := strings.Index(pattern, "?")
-		letterPlus := string(pattern[questIndex])
+		letterPlus := string(pattern[questIndex-1])
 		fmt.Println("questIndex : ", questIndex)
 		fmt.Println("letterPlus : ", letterPlus)
 	}
