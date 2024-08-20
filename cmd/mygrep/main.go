@@ -215,10 +215,11 @@ func matchPattern(line string, pattern string, pos int) bool {
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true
 		} else if pattern[i] == '(' {
+			i++
 			lastIndex := strings.Index(pattern[i:], ")")
 			index := strings.Index(pattern, "|")
 			for i < index {
-				if pattern[i] != line[j] {
+				if string(pattern[i]) != string(line[j]) {
 					goto later
 				}
 				i++
