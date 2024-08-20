@@ -58,9 +58,21 @@ func matchLine(line string, pattern string) (bool, error) {
 		fmt.Println("letterPlus : ", letterPlus)
 	}
 	if strings.Contains(pattern, "|") {
+		startIndex := strings.Index(pattern, "(")
+		fmt.Println("index : ", startIndex)
+		fmt.Println("pattern[index] : ", string(pattern[startIndex]))
 		index := strings.Index(pattern, "|")
 		fmt.Println("index : ", index)
-		fmt.Println("pattern[index] : ", pattern[index])
+		fmt.Println("pattern[index] : ", string(pattern[index]))
+		lastIndex := strings.Index(pattern, ")")
+		fmt.Println("index : ", lastIndex)
+		fmt.Println("pattern[index] : ", string(pattern[lastIndex]))
+
+		firstWord := pattern[startIndex:index]
+		secondWord := pattern[index:lastIndex]
+		fmt.Println("firstWord : ", firstWord)
+		fmt.Println("secondWord : ", secondWord)
+
 	}
 	for i := 0; i <= len(line); i++ {
 		if matchPattern(line, pattern, i) {
@@ -202,8 +214,24 @@ func matchPattern(line string, pattern string, pos int) bool {
 			continue
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true
-		} else if strings.Contains(pattern, "|") {
-
+		} else if pattern[i] == '(' {
+			lastIndex := strings.Index(pattern[i:], ")")
+			index := strings.Index(pattern, "|")
+			for i < index {
+				if pattern[i] != line[j] {
+					goto later
+				}
+				i++
+				j++
+			}
+		later:
+			for index < lastIndex {
+				if pattern[i] != line[j] {
+					return false
+				}
+				i++
+				j++
+			}
 		} else if line[j] != pattern[i] {
 			return false
 		}
