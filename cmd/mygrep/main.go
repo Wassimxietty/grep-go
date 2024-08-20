@@ -73,6 +73,9 @@ func matchLine(line string, pattern string) (bool, error) {
 		fmt.Println("firstWord : ", firstWord)
 		fmt.Println("secondWord : ", secondWord)
 
+		matchAnyPattern := pattern[startIndex : index-1]
+		fmt.Println("matchAnyPattern : ", matchAnyPattern)
+
 	}
 	for i := 0; i <= len(line); i++ {
 		if matchPattern(line, pattern, i) {
