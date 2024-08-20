@@ -219,7 +219,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 			return true
 		} else if pattern[i] == '(' {
 			i++
-			if rune(pattern[i]) != rune(line[j]) {
+			if rune(pattern[i]) != rune(line[j]) && i < len(line) {
 				return true
 			}
 			j++
