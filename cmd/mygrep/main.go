@@ -222,12 +222,11 @@ func matchPattern(line string, pattern string, pos int) bool {
 			lastIndex := strings.Index(pattern[i:], ")")
 			index := strings.Index(pattern, "|")
 			matchAnyPattern := pattern[i:index]
-			for i < index {
+			for i := 0; i < index; i++ {
 				if matchAnyPattern[i] == line[j] {
 					return true
 				}
 				// return true
-				i++
 				j++
 			}
 			i = lastIndex
