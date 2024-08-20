@@ -188,18 +188,17 @@ func matchPattern(line string, pattern string, pos int) bool {
 			}
 			continue
 		} else if pattern[i] == '?' && i != 0 {
-			if i > 0 && j > 0 && pattern[i-1] == line[j-1] {
-				// If the previous character matches, the current character (optional) can be skipped
-				continue
+			letterOptional := rune(pattern[i-1])
+			if i < len(line) && letterOptional == rune(line[j]) {
+				j++
 			}
-			i++
-			j--
+			continue
 		} else if line[j] != pattern[i] {
 			return false
 		}
 		j++
 	}
-	return true
+	return j == len(line)
 }
 
 // func isPosCharacterGroup(pattern string) string {
