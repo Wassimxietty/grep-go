@@ -195,7 +195,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 			continue
 		} else if strings.Contains(pattern, "?") {
 			questIndex := strings.Index(pattern, "?")
-			letterPlus := rune(pattern[questIndex])
+			letterPlus := rune(pattern[questIndex-1])
 			if i < len(line) && letterPlus == rune(line[j]) {
 				j++
 			}
