@@ -57,7 +57,11 @@ func matchLine(line string, pattern string) (bool, error) {
 		fmt.Println("plusIndex : ", plusIndex)
 		fmt.Println("letterPlus : ", letterPlus)
 	}
-
+	if strings.Contains(pattern, "|") {
+		index := strings.Index(pattern, "|")
+		fmt.Println("index : ", index)
+		fmt.Println("pattern[index] : ", pattern[index])
+	}
 	for i := 0; i <= len(line); i++ {
 		if matchPattern(line, pattern, i) {
 			return true, nil
@@ -198,6 +202,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 			continue
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true
+		} else if strings.Contains(pattern, "|") {
+
 		} else if line[j] != pattern[i] {
 			return false
 		}
