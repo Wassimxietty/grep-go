@@ -218,12 +218,15 @@ func matchPattern(line string, pattern string, pos int) bool {
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true
 		} else if pattern[i] == '(' {
-			index := strings.Index(pattern, "|")
 			i++
-			if rune(pattern[i]) != rune(line[j]) && !(i < len(line) && i < index) {
-				return false
+			index := strings.Index(pattern, "|")
+			PatternMatch := pattern[i:index]
+			for i := 0; i < index; i++ {
+				if rune(PatternMatch[i]) != rune(line[j]) && i < len(line) {
+					return false
+				}
+				j++
 			}
-			j++
 			continue
 		} else if line[j] != pattern[i] {
 			return false
