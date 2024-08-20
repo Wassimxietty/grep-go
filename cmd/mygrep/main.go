@@ -222,6 +222,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 				if string(pattern[i]) != string(line[j]) {
 					return true
 				}
+				return true
 				i++
 				j++
 			}
