@@ -220,21 +220,21 @@ func matchPattern(line string, pattern string, pos int) bool {
 			index := strings.Index(pattern, "|")
 			for i < index {
 				if string(pattern[i]) != string(line[j]) {
-					goto later
+					return false
 				}
 				i++
 				j++
 			}
 			j--
 			i = lastIndex
-		later:
-			for index+1 < lastIndex {
-				if pattern[i] != line[j] {
-					return false
-				}
-				i++
-				j++
-			}
+			// later:
+			// 	for index+1 < lastIndex {
+			// 		if pattern[i] != line[j] {
+			// 			return false
+			// 		}
+			// 		i++
+			// 		j++
+			// 	}
 		} else if line[j] != pattern[i] {
 			return false
 		}
