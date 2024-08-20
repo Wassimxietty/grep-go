@@ -219,10 +219,10 @@ func matchPattern(line string, pattern string, pos int) bool {
 			lastIndex := strings.Index(pattern[i:], ")")
 			index := strings.Index(pattern, "|")
 			for i < index {
-				if string(pattern[i]) != string(line[j]) {
+				if rune(pattern[i]) != rune(line[j]) {
 					return true
 				}
-				return true
+				// return true
 				i++
 				j++
 			}
