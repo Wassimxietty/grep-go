@@ -59,7 +59,7 @@ func matchLine(line string, pattern string) (bool, error) {
 	}
 	if strings.Contains(pattern, "?") {
 		questIndex := strings.Index(pattern, "?")
-		letterPlus := rune(pattern[questIndex])
+		letterPlus := string(pattern[questIndex])
 		fmt.Println("questIndex : ", questIndex)
 		fmt.Println("letterPlus : ", letterPlus)
 	}
@@ -195,8 +195,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 			continue
 		} else if strings.Contains(pattern, "?") {
 			questIndex := strings.Index(pattern, "?")
-			letterPlus := rune(pattern[questIndex-1])
-			if i < len(line) && letterPlus == rune(line[j]) {
+			letterPlus := string(pattern[questIndex-1])
+			if i < len(line) && letterPlus == string(line[j]) {
 				j++
 			}
 			if line == "act" {
