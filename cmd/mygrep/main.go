@@ -223,8 +223,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 			index := strings.Index(pattern, "|")
 			matchAnyPattern := pattern[i:index]
 			for i < index {
-				if matchAnyPattern[i] != line[j] {
-					return false
+				if matchAnyPattern[i] == line[j] {
+					return true
 				}
 				// return true
 				i++
