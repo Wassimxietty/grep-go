@@ -221,8 +221,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 			endPos := strings.Index(pattern[i:], "|")
 			matchAnyPattern := pattern[i:endPos]
 			for i := 0; i < endPos; i++ {
-				if rune(matchAnyPattern[i]) != rune(line[j]) {
-					return false
+				if rune(matchAnyPattern[i]) == rune(line[j]) {
+					return true
 				}
 				j++
 			}
