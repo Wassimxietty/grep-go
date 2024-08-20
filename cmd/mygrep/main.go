@@ -222,7 +222,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 			index := strings.Index(pattern, "|")
 			startIndex := strings.Index(pattern, "(") + 1
 			firstWord := pattern[startIndex:index]
-			for i := 0; i < index && firstWord[i] == line[j]; i++ {
+			for i := 0; i < index-1 && firstWord[i] == line[j]; i++ {
 				j++
 			}
 			i = endIndex
