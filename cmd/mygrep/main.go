@@ -219,8 +219,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 			return true
 		} else if pattern[i] == '(' {
 			i++
-			if pattern[i] != line[j] {
-				return false
+			if pattern[i] == line[j] {
+				return true
 			}
 			j++
 			continue
