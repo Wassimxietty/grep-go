@@ -222,7 +222,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 			matchAnyPattern := pattern[i:endPos]
 			for i := 0; i < endPos; i++ {
 				if rune(matchAnyPattern[i]) == rune(line[j]) {
-					return true
+					return false
 				}
 				j++
 			}
