@@ -230,7 +230,6 @@ func matchPattern(line string, pattern string, pos int) bool {
 				i++
 				j++
 			}
-			j--
 			i = lastIndex
 			// later:
 			// 	for index+1 < lastIndex {
