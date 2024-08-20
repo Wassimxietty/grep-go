@@ -182,8 +182,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 			}
 			i = endPos
 		} else if pattern[i] == '+' && i != 0 {
-			letterPlus := rune(pattern[i-1])
-			for i < len(line) && letterPlus == rune(line[j]) {
+			letterPlus := pattern[i-1]
+			for i < len(line) && letterPlus == line[j] {
 				j++
 			}
 			continue
@@ -198,7 +198,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 		}
 		j++
 	}
-	return j == len(line)
+	return true
 }
 
 // func isPosCharacterGroup(pattern string) string {
