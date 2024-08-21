@@ -57,27 +57,27 @@ func matchLine(line string, pattern string) (bool, error) {
 		fmt.Println("plusIndex : ", plusIndex)
 		fmt.Println("letterPlus : ", letterPlus)
 	}
-	if strings.Contains(pattern, "(") {
-		startIndex := strings.Index(pattern, "(") + 1
-		fmt.Println("startIndex : ", startIndex)
-		fmt.Println("pattern[index] : ", string(pattern[startIndex]))
-		index := strings.Index(pattern, "|")
-		lastIndex := strings.Index(pattern, ")")
-		fmt.Println("lastIndex : ", lastIndex)
-		fmt.Println("pattern[index] : ", string(pattern[lastIndex]))
-		if index == -1 {
-			index = lastIndex
-		}
-		fmt.Println("index : ", index)
-		fmt.Println("pattern[index] : ", string(pattern[index]))
+	// if strings.Contains(pattern, "(") {
+	// 	startIndex := strings.Index(pattern, "(") + 1
+	// 	fmt.Println("startIndex : ", startIndex)
+	// 	fmt.Println("pattern[index] : ", string(pattern[startIndex]))
+	// 	index := strings.Index(pattern, "|")
+	// 	lastIndex := strings.Index(pattern, ")")
+	// 	fmt.Println("lastIndex : ", lastIndex)
+	// 	fmt.Println("pattern[index] : ", string(pattern[lastIndex]))
+	// 	if index == -1 {
+	// 		index = lastIndex
+	// 	}
+	// 	fmt.Println("index : ", index)
+	// 	fmt.Println("pattern[index] : ", string(pattern[index]))
 
-		firstWord := pattern[startIndex:index]
-		fmt.Println("firstWord : ", firstWord)
+	// 	firstWord := pattern[startIndex:index]
+	// 	fmt.Println("firstWord : ", firstWord)
 
-	}
+	// }
 	patternArray := strings.Split(pattern, " ")
-
-	fmt.Println("rune(pattern[i+1]):  ", string(pattern[11]))
+	number := int(pattern[11]-'0') - 1
+	fmt.Println("number:  ", number)
 	fmt.Println("patternArray[0]: ", patternArray[0])
 	for i := 0; i <= len(line); i++ {
 		if matchPattern(line, pattern, i) {
@@ -173,8 +173,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 				if unicode.IsDigit(rune(pattern[i+1])) {
 					number := int(pattern[i+1]-'0') - 1
 					patternMatch := patternArray[number]
-					if matchPattern(line, patternMatch, 0) {
-						return true
+					if !matchPattern(line, patternMatch, 0) {
+						return false
 					}
 				} else {
 					i++
