@@ -163,11 +163,11 @@ func matchPattern(line string, pattern string, pos int) bool {
 			switch pattern[i+1] {
 			case 'd':
 				if !unicode.IsDigit(rune(line[j])) {
-					return true
+					return false
 				}
 			case 'w':
 				if !(unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
-					return true
+					return false
 				}
 			default:
 				if unicode.IsDigit(rune(pattern[i+1])) {
@@ -247,12 +247,12 @@ func matchPattern(line string, pattern string, pos int) bool {
 			if endIndex == -1 || i >= index {
 				return false
 			}
-			if matchPattern(line, pattern[i:index], 0) {
+			if matchPattern(line, pattern[i:index], j) {
 				i = endIndex
 				continue
 			}
 			if index != -1 {
-				if matchPattern(line, pattern[index:endIndex], 0) && index < endIndex {
+				if matchPattern(line, pattern[index:endIndex], j) && index < endIndex {
 					i = endIndex
 					continue
 				}
