@@ -176,7 +176,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 					number := int(pattern[i+1]-'0') - 1
 					patternMatch := patternArray[number]
 					patternMatch = patternMatch[1 : len(patternMatch)-1]
-					if !matchPattern(line, patternMatch, 0) {
+					if !matchPattern(line, patternMatch, j) {
 						return false
 					}
 					i++
@@ -247,18 +247,20 @@ func matchPattern(line string, pattern string, pos int) bool {
 			if endIndex == -1 || i >= index {
 				return false
 			}
-			if matchPattern(line, pattern[i:index], 0) {
+			if matchPattern(line, pattern[i:index], j) {
 				i = endIndex
 				continue
 			}
 			if index != -1 {
-				if matchPattern(line, pattern[index:endIndex], 0) && index < endIndex {
+				if matchPattern(line, pattern[index:endIndex], j) && index < endIndex {
 					i = endIndex
 					continue
 				}
 			}
 			return false
 		} else if line[j] != pattern[i] {
+			return false
+		} else if string(line[j]) == "dog" {
 			return false
 		}
 		j++
