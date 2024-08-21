@@ -78,7 +78,7 @@ func matchLine(line string, pattern string) (bool, error) {
 	patternArray := strings.Split(pattern, " ")
 	number := int(pattern[11]-'0') - 1
 	fmt.Println("number:  ", number)
-	fmt.Println("patternArray[0]: ", patternArray[0])
+	fmt.Println("patternArray[number]: ", patternArray[number])
 	for i := 0; i <= len(line); i++ {
 		if matchPattern(line, pattern, i) {
 			return true, nil
@@ -173,7 +173,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 				if unicode.IsDigit(rune(pattern[i+1])) {
 					number := int(pattern[i+1]-'0') - 1
 					patternMatch := patternArray[number]
-					if !matchPattern(line, patternMatch, 0) {
+					if !matchPattern(line, patternMatch, j) {
 						return false
 					}
 				} else {
