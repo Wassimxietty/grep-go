@@ -166,7 +166,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 				return false
 			} else if pattern[i+1] == 'w' && !(unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
 				return false
-			} else if unicode.IsDigit(rune(pattern[i+1])) {
+			} else if pattern[i+1] == '1' {
 				number := int(pattern[i+1]) - 1
 				patternMatch := patternArray[number]
 				return true
