@@ -243,13 +243,15 @@ func matchPattern(line string, pattern string, pos int) bool {
 			if endIndex == -1 || i >= index {
 				return false
 			}
-			if matchPattern(line[j:], pattern[i:index], 0) {
+			if matchPattern(line[j:], pattern[i:index], j) {
 				i = endIndex
 				continue
 			}
-			if matchPattern(line[j:], pattern[index:endIndex], 0) && index < endIndex {
-				i = endIndex
-				continue
+			if index != -1 {
+				if matchPattern(line[j:], pattern[index:endIndex], 0) && index < endIndex {
+					i = endIndex
+					continue
+				}
 			}
 			return false
 		} else if line[j] != pattern[i] {
