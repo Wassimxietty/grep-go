@@ -77,7 +77,7 @@ func matchLine(line string, pattern string) (bool, error) {
 		fmt.Println("matchAnyPattern : ", matchAnyPattern)
 	}
 	patternArray := strings.Split(pattern, " ")
-	fmt.Println("patternArray: ", patternArray)
+	fmt.Println("patternArray[0]: ", patternArray[0])
 	for i := 0; i <= len(line); i++ {
 		if matchPattern(line, pattern, i) {
 			return true, nil
