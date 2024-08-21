@@ -248,6 +248,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 				return false
 			}
 			if matchPattern(line, pattern[i:index], 0) {
+				return true
 				i = endIndex
 				continue
 			}
