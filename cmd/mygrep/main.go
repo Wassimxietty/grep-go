@@ -59,24 +59,22 @@ func matchLine(line string, pattern string) (bool, error) {
 	}
 	if strings.Contains(pattern, "(") {
 		startIndex := strings.Index(pattern, "(") + 1
-		fmt.Println("index : ", startIndex)
+		fmt.Println("startIndex : ", startIndex)
 		fmt.Println("pattern[index] : ", string(pattern[startIndex]))
 		index := strings.Index(pattern, "|")
-		fmt.Println("index : ", index)
-		fmt.Println("pattern[index] : ", string(pattern[index]))
 		lastIndex := strings.Index(pattern, ")")
-		fmt.Println("index : ", lastIndex)
+		fmt.Println("lastIndex : ", lastIndex)
 		fmt.Println("pattern[index] : ", string(pattern[lastIndex]))
 		if index == -1 {
 			index = lastIndex
 		}
+		fmt.Println("index : ", index)
+		fmt.Println("pattern[index] : ", string(pattern[index]))
 		firstWord := pattern[startIndex:index]
 		secondWord := pattern[index+1 : lastIndex]
 		fmt.Println("firstWord : ", firstWord)
 		fmt.Println("secondWord : ", secondWord)
 
-		matchAnyPattern := pattern[startIndex:index]
-		fmt.Println("matchAnyPattern : ", matchAnyPattern)
 	}
 	patternArray := strings.Split(pattern, " ")
 
