@@ -235,34 +235,27 @@ func matchPattern(line string, pattern string, pos int) bool {
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true
 		} else if pattern[i] == '(' {
-			endIndex := strings.Index(pattern, ")")
-			index := strings.Index(pattern, "|")
+			endIndex := strings.Index(pattern[i:], ")")
+			index := strings.Index(pattern[i:], "|")
 			startIndex := i + 1
 
-			if endIndex == -1 || index == -1 || startIndex >= index {
+			if endIndex == -1 || startIndex >= index {
 				return false
 			}
-
-			firstWord := pattern[startIndex:index]
-
-			for i := 0; i < len(firstWord) && i < index && j < len(line); i++ {
-				if firstWord[i] == line[j] {
-					j++
-				} else {
-					goto later
-				}
+			if index == -1 {
+				index += i
+			} else {
+				index = endIndex
 			}
-		later:
-			secondWord := pattern[index+1 : endIndex]
-			for i := 0; i < len(secondWord) && i < index && j < len(line); i++ {
-				if secondWord[i] == line[j] {
-					j++
-				} else {
-					return false
-				}
+			if matchPattern(line[j:], pattern[startIndex:index], 0) {
+				i = endIndex
+				continue
 			}
-
-			i = endIndex
+			if matchPattern(line[j:], pattern[index+1:endIndex], 0) && index < endIndex {
+				i = endIndex
+				continue
+			}
+			return false
 		} else if line[j] != pattern[i] {
 			return false
 		}
