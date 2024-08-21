@@ -228,10 +228,23 @@ func matchPattern(line string, pattern string, pos int) bool {
 
 			firstWord := pattern[startIndex:index]
 
-			for i := 0; i < len(firstWord) && i < index && j < len(line) && firstWord[i] == line[j]; i++ {
-				j++
+			for i := 0; i < len(firstWord) && i < index && j < len(line); i++ {
+				if firstWord[i] == line[j] {
+					j++
+				} else {
+					goto later
+				}
 			}
-
+		later:
+			secondWord := pattern[index+1 : endIndex]
+			for i := 0; i < len(secondWord) && i < index && j < len(line); i++ {
+				if secondWord[i] == line[j] {
+					j++
+				} else {
+					return false
+				}
+			}
+			i = endIndex
 		} else if line[j] != pattern[i] {
 			return false
 		}
