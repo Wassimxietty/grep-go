@@ -177,7 +177,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 						patternMatch = patternMatch[1:]
 					}
 					if !matchPattern(line, patternMatch, j) {
-						return true
+						return false
 					}
 					i++
 				} else {
