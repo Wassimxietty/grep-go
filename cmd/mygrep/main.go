@@ -165,7 +165,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 				return false
 			} else if unicode.IsDigit(rune(pattern[i+1])) && int(pattern[i+1]) < len(patternArray) {
 				number := pattern[i+1] - 1
-				patternMatch := patternArray[number]
+				patternMatch := patternArray[0]
 				matchPattern(line[j:], patternMatch, j)
 			} else {
 				i++
