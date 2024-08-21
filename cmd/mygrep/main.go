@@ -161,7 +161,6 @@ func matchPattern(line string, pattern string, pos int) bool {
 			return false
 		}
 		if pattern[i] == '\\' && i+1 < n {
-			return true
 			switch pattern[i+1] {
 			case 'd':
 				if !unicode.IsDigit(rune(line[j])) {
@@ -179,7 +178,6 @@ func matchPattern(line string, pattern string, pos int) bool {
 					// patternMatch := patternArray[number]
 					// matchPattern(line[j:], patternMatch, j)
 				} else {
-					return true
 					i++
 				}
 			}
@@ -263,6 +261,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 					return false
 				}
 			}
+
 			i = endIndex
 		} else if line[j] != pattern[i] {
 			return false
