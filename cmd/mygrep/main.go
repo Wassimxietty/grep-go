@@ -173,7 +173,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 				if unicode.IsDigit(rune(pattern[i+1])) {
 					number := int(pattern[i+1]-'0') - 1
 					patternMatch := patternArray[number]
-					if !matchPattern(line, patternMatch, j) {
+					if !matchPattern(line, patternMatch, 0) {
 						return false
 					}
 					i++
@@ -244,7 +244,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 			if endIndex == -1 || i >= index {
 				return false
 			}
-			if matchPattern(line, "cat", 0) {
+			if matchPattern(line, pattern[i:index], 0) {
 				i = endIndex
 				continue
 			}
