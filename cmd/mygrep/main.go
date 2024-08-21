@@ -222,15 +222,12 @@ func matchPattern(line string, pattern string, pos int) bool {
 			index := strings.Index(pattern, "|")
 			startIndex := strings.Index(pattern, "(") + 1
 
-			// Ensure valid indices
 			if endIndex == -1 || index == -1 || startIndex >= index {
-				// Handle error or invalid case
-				panic("Invalid pattern format")
+				return false
 			}
 
 			firstWord := pattern[startIndex:index]
 
-			// Ensure the length of firstWord and the comparison with line[j]
 			for i := 0; i < len(firstWord) && i < index-1 && j < len(line) && firstWord[i] == line[j]; i++ {
 				j++
 			}
