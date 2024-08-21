@@ -243,7 +243,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 			if endIndex == -1 || i >= index {
 				return false
 			}
-			if matchPattern(line[j:], "cat", 0) {
+			if matchPattern("cat", "cat", 0) {
 				i = endIndex
 				continue
 			}
