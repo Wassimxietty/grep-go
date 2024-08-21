@@ -174,7 +174,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 					number := int(pattern[i+1]-'0') - 1
 					patternMatch := patternArray[number]
 					if matchPattern(line, patternMatch, 0) {
-						return true
+						return false
 					}
 					i++
 				} else {
