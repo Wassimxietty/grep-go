@@ -75,12 +75,12 @@ func matchLine(line string, pattern string) (bool, error) {
 	// 	fmt.Println("firstWord : ", firstWord)
 
 	// }
-	patternArray := strings.Split(pattern, " ")
-	number := int(pattern[11]-'0') - 1
-	patternMatch := patternArray[number]
-	patternMatch = patternMatch[1 : len(patternMatch)-1]
-	fmt.Println("number:  ", number)
-	fmt.Println("patternMatch: ", patternMatch)
+	// patternArray := strings.Split(pattern, " ")
+	// number := int(pattern[11]-'0') - 1
+	// patternMatch := patternArray[number]
+	// patternMatch = patternMatch[1 : len(patternMatch)-1]
+	// fmt.Println("number:  ", number)
+	// fmt.Println("patternMatch: ", patternMatch)
 	for i := 0; i <= len(line); i++ {
 		if matchPattern(line, pattern, i) {
 			return true, nil
