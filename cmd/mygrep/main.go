@@ -160,6 +160,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 		if j >= len(line) {
 			return false
 		}
+		return true
 		if pattern[i] == '\\' && i+1 < n {
 			switch pattern[i+1] {
 			case 'd':
@@ -171,7 +172,6 @@ func matchPattern(line string, pattern string, pos int) bool {
 					return false
 				}
 			default:
-				fmt.Printf("pattern[i]: %c, pattern[i+1]: %c\n", pattern[i], pattern[i+1])
 				if pattern[i+1] == '1' {
 					return true
 					// number := int(pattern[i+1]) - 1
