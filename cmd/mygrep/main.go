@@ -247,12 +247,12 @@ func matchPattern(line string, pattern string, pos int) bool {
 			if endIndex == -1 || i >= index {
 				return false
 			}
-			if matchPattern(line, pattern[i:index], j) {
+			if matchPattern(line, pattern[i:index], 0) {
 				i = endIndex
 				continue
 			}
 			if index != -1 {
-				if matchPattern(line, pattern[index:endIndex], j) && index < endIndex {
+				if matchPattern(line, pattern[index:endIndex], 0) && index < endIndex {
 					i = endIndex
 					continue
 				}
