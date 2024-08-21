@@ -258,9 +258,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 				}
 			}
 			return false
-		} else if line[j] != pattern[i] {
-			return false
-		} else if string(line[j]) == "dog" {
+		} else if string(line[j]) != string(pattern[i]) {
 			return false
 		}
 		j++
