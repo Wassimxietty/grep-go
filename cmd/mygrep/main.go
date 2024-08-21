@@ -220,7 +220,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 		} else if pattern[i] == '(' {
 			endIndex := strings.Index(pattern, ")")
 			index := strings.Index(pattern, "|")
-			startIndex := strings.Index(pattern, "(") + 1
+			startIndex := i + 1
 
 			if endIndex == -1 || index == -1 || startIndex >= index {
 				return false
@@ -228,7 +228,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 
 			firstWord := pattern[startIndex:index]
 
-			for i := 0; i < len(firstWord) && i < index-1 && j < len(line) && firstWord[i] == line[j]; i++ {
+			for i := 0; i < len(firstWord) && i < index && j < len(line) && firstWord[i] == line[j]; i++ {
 				j++
 			}
 
