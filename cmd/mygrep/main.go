@@ -251,7 +251,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 				i = endIndex
 				continue
 			}
-			return true
+			return false
 		} else if line[j] != pattern[i] {
 			return false
 		}
