@@ -67,7 +67,9 @@ func matchLine(line string, pattern string) (bool, error) {
 		lastIndex := strings.Index(pattern, ")")
 		fmt.Println("index : ", lastIndex)
 		fmt.Println("pattern[index] : ", string(pattern[lastIndex]))
-
+		if index == -1 {
+			index = lastIndex
+		}
 		firstWord := pattern[startIndex:index]
 		secondWord := pattern[index+1 : lastIndex]
 		fmt.Println("firstWord : ", firstWord)
