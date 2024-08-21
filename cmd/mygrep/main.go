@@ -71,9 +71,7 @@ func matchLine(line string, pattern string) (bool, error) {
 		fmt.Println("index : ", index)
 		fmt.Println("pattern[index] : ", string(pattern[index]))
 		firstWord := pattern[startIndex:index]
-		secondWord := pattern[index+1 : lastIndex]
 		fmt.Println("firstWord : ", firstWord)
-		fmt.Println("secondWord : ", secondWord)
 
 	}
 	patternArray := strings.Split(pattern, " ")
