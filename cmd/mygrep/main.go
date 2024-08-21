@@ -178,6 +178,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 					// patternMatch := patternArray[number]
 					// matchPattern(line[j:], patternMatch, j)
 				} else {
+					return true
 					i++
 				}
 			}
