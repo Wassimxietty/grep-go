@@ -180,8 +180,6 @@ func matchPattern(line string, pattern string, pos int) bool {
 					i++
 				}
 			}
-		} else if strings.Contains(pattern, "\\") {
-			return true
 		} else if pattern[i] == '[' && i+1 < n && pattern[i+1] == '^' {
 			endPos := strings.Index(pattern[i:], "]")
 			matchAnyPattern := pattern[i+1 : endPos]
@@ -242,6 +240,9 @@ func matchPattern(line string, pattern string, pos int) bool {
 
 			if endIndex == -1 || startIndex >= index {
 				return false
+			}
+			if index == -1 {
+				index = endIndex
 			}
 			if matchPattern(line[j:], pattern[startIndex:index], 0) {
 				i = endIndex
