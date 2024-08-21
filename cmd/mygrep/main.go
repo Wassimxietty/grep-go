@@ -160,8 +160,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 		if j >= len(line) {
 			return false
 		}
-		return true
 		if pattern[i] == '\\' && i+1 < n {
+			return true
 			switch pattern[i+1] {
 			case 'd':
 				if !unicode.IsDigit(rune(line[j])) {
