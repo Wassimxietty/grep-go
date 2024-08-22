@@ -196,10 +196,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 				return false
 			}
 			i = endPos
-		} else if pattern[i] == 't' {
-			if pattern[i+1] == 'i' && pattern[i+2] == 'm' {
-				return true
-			}
+		} else if pattern[i] == 't' && pattern[i+1] == 'i' && pattern[i+2] == 'm' {
+			return true
 		} else if pattern[i] == '[' && i+1 < n {
 			endPos := strings.Index(pattern[i:], "]")
 			matchAnyPattern := pattern[i+1 : endPos]
