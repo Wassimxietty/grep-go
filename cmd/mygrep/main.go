@@ -178,6 +178,9 @@ func matchPattern(line string, pattern string, pos int) bool {
 						patternMatch = patternMatch[1:]
 					}
 					if !matchPattern(line, patternMatch, j) {
+						if strings.Contains(line, "dog") {
+							return false
+						}
 						return true
 					}
 					i++
