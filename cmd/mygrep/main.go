@@ -153,7 +153,7 @@ func matchLine(line string, pattern string) (bool, error) {
 	return false, nil
 }
 func matchPattern(line string, pattern string, pos int) bool {
-	patternArray := strings.Split(pattern, ")")
+	patternArray := strings.Split(pattern, " ")
 	n := len(pattern)
 	j := pos
 	for i := 0; i < n; i++ {
