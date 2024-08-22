@@ -180,7 +180,6 @@ func matchPattern(line string, pattern string, pos int) bool {
 					if !matchPattern(line, patternMatch, j) {
 						return false
 					}
-					j += len(patternMatch)
 					i++
 				} else {
 					i++
