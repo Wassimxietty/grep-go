@@ -161,7 +161,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 			return false
 		}
 		if pattern[i] == '\\' && i+1 < n {
-			if pattern[len(pattern)-1] == 's' {
+			if pattern[len(pattern)] == 's' {
 				return true
 			}
 			switch pattern[i+1] {
