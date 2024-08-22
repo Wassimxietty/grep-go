@@ -78,6 +78,7 @@ func matchLine(line string, pattern string) (bool, error) {
 	patternArray := strings.Split(pattern, ")")
 	patternMatch := string(patternArray[0])
 	patternMatch = patternMatch[1:]
+	fmt.Println("patternArray: ", patternArray)
 	fmt.Println("patternMatch: ", patternMatch)
 	for i := 0; i <= len(line); i++ {
 		if matchPattern(line, pattern, i) {
@@ -176,10 +177,11 @@ func matchPattern(line string, pattern string, pos int) bool {
 					if string(patternMatch[0]) == "(" {
 						patternMatch = patternMatch[1:]
 					}
-					if !matchPattern(line, patternMatch, j) {
+					if !matchPattern(line[j:], patternMatch, 0) {
 						return false
 					}
-					i++
+					j += len(patternMatch)
+
 				} else {
 					i++
 				}
@@ -247,17 +249,23 @@ func matchPattern(line string, pattern string, pos int) bool {
 			if endIndex == -1 || i >= index {
 				return false
 			}
-			if matchPattern(line, pattern[i:index], 0) {
+			subPattern := pattern[i:index]
+			if matchPattern(line[j:], subPattern, 0) {
 				i = endIndex
+				j += len(subPattern) // Move j forward by the length of the matched group
 				continue
 			}
 			if index != -1 {
-				if matchPattern(line, pattern[index:endIndex], 0) && index < endIndex {
+				subPattern = pattern[index+1 : endIndex]
+				if matchPattern(line[j:], subPattern, 0) && index < endIndex {
 					i = endIndex
+					j += len(subPattern) // Move j forward by the length of the matched group
 					continue
 				}
 			}
 			return false
+		} else if pattern[i] == ')' {
+			i++
 		} else if string(line[j]) != string(pattern[i]) {
 			return false
 		}
