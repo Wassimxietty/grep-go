@@ -13,7 +13,6 @@ import (
 // Usage: echo <input_text> | your_program.sh -E <pattern>
 func main() {
 	if len(os.Args) < 3 || os.Args[1] != "-E" {
-		fmt.Fprintf(os.Stderr, "usage: mygrep -E <pattern>\n")
 		os.Exit(2) // 1 means no lines were selected, >1 means error
 	}
 
@@ -181,7 +180,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true
 		} else if pattern[i] == '(' {
-			fmt.Fprintf(os.Stderr, "usage: mygrep -E <pattern>\n")
+			fmt.Print(i)
 			endIndex := strings.Index(pattern[i:], ")")
 			index := strings.Index(pattern[i:], "|")
 			i++
