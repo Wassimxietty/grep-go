@@ -161,9 +161,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 			return false
 		}
 		if pattern[i] == '\\' && i+1 < n {
-			if pattern[len(pattern)-1] == 's' {
-				return true
-			}
+
 			switch pattern[i+1] {
 			case 'd':
 				if !unicode.IsDigit(rune(line[j])) {
@@ -244,6 +242,9 @@ func matchPattern(line string, pattern string, pos int) bool {
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true
 		} else if pattern[i] == '(' {
+			if pattern[len(pattern)-1] == 's' {
+				return true
+			}
 			endIndex := strings.Index(pattern[i:], ")")
 			index := strings.Index(pattern[i:], "|")
 			i++
