@@ -80,12 +80,15 @@ func matchLine(line string, pattern string) (bool, error) {
 	fmt.Println("patternArray: ", patternArray)
 	fmt.Println("patternMatch: ", patternMatch)
 
-	for i := 0; i <= len(line); i++ {
-		if matchPattern(line, pattern, i) {
-			return true, nil
-		}
-
+	if matchPattern(line, pattern, 0) {
+		return true, nil
 	}
+	// for i := 0; i <= len(line); i++ {
+	// 	if matchPattern(line, pattern, i) {
+	// 		return true, nil
+	// 	}
+
+	// }
 	return false, nil
 }
 func matchPattern(line string, pattern string, pos int) bool {
