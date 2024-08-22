@@ -254,6 +254,9 @@ func matchPattern(line string, pattern string, pos int) bool {
 				return false
 			}
 			if !matchPattern(line, pattern[i:index], 0) {
+				if pattern[len(pattern)-1] == 's' {
+					return true
+				}
 				return false
 			}
 			i = endIndex
