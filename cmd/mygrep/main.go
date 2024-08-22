@@ -249,21 +249,10 @@ func matchPattern(line string, pattern string, pos int) bool {
 			if endIndex == -1 || i >= index {
 				return false
 			}
-			subPattern := pattern[i:index]
-			if matchPattern(line[j:], subPattern, 0) {
-				i = endIndex
-				j += len(subPattern) // Move j forward by the length of the matched group
-				continue
+			if !matchPattern(line, pattern[i:index], j) {
+				return false
 			}
-			if index != -1 {
-				subPattern = pattern[index+1 : endIndex]
-				if matchPattern(line[j:], subPattern, 0) && index < endIndex {
-					i = endIndex
-					j += len(subPattern) // Move j forward by the length of the matched group
-					continue
-				}
-			}
-			return false
+			i = endIndex
 		} else if pattern[i] == ')' {
 			i++
 		} else if string(line[j]) != string(pattern[i]) {
