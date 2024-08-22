@@ -191,9 +191,10 @@ func matchPattern(line string, pattern string, pos int) bool {
 			if endIndex == -1 || i >= index {
 				return false
 			}
+			subPattern := pattern[i:index]
 			// fmt.Println("matchPattern(line, pattern[i:index], 0);: ", matchPattern(line, pattern[i:index], 0))
-			fmt.Println("pattern[i] == '\\' && i+1 < n : ", pattern[i] == '\\')
-			if matchPattern(line, pattern[i:index], 0) {
+			fmt.Println("pattern[i] == '\\' && i+1 < n : ", subPattern == string('\\'), "subPattern[i] : ", subPattern[i])
+			if matchPattern(line, subPattern, 0) {
 				i = endIndex
 				continue
 			}
