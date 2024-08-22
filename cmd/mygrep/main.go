@@ -248,17 +248,24 @@ func matchPattern(line string, pattern string, pos int) bool {
 			if endIndex == -1 || i >= index {
 				return false
 			}
-			if !matchPattern(line, pattern[i:index], j) {
-				return false
+			if matchPattern(line, pattern[i:index], 0) {
+				i = endIndex
+				continue
 			}
-			i = endIndex
+			if index != -1 {
+				if matchPattern(line, pattern[index:endIndex], 0) && index < endIndex {
+					i = endIndex
+					continue
+				}
+			}
+
+			return false
 		} else if string(line[j]) != string(pattern[i]) {
 			return false
 		}
 		j++
 	}
 	return true
-
 }
 
 // func isPosCharacterGroup(pattern string) string {
