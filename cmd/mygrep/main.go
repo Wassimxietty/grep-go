@@ -246,7 +246,6 @@ func matchPattern(line string, pattern string, pos int) bool {
 		} else if pattern[i] == '(' {
 			endIndex := strings.Index(pattern[i:], ")")
 			index := strings.Index(pattern[i:], "|")
-			i++
 			if index == -1 {
 				index = endIndex
 			}
@@ -254,7 +253,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 				return false
 			}
 			if !matchPattern(line, pattern[i:index], 0) {
-
+				// it's accessing this if condition
+				// which means matchpattern() is returning false
 				return false
 			}
 			i = endIndex
