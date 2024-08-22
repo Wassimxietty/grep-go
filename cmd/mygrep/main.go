@@ -181,7 +181,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 						return false
 					}
 					j += len(patternMatch)
-
+					i++
 				} else {
 					i++
 				}
