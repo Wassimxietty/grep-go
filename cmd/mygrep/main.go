@@ -191,17 +191,13 @@ func matchPattern(line string, pattern string, pos int) bool {
 			if endIndex == -1 || i >= index {
 				return false
 			}
+			fmt.Println("pattern[i:index]", pattern[i:index])
+			fmt.Println("line", line)
 
 			if matchPattern(line, pattern[i:index], 0) {
 				i = endIndex
 				fmt.Println("endIndex :", endIndex, "index : ", index, "i: ", i)
 				continue
-			}
-			if index != -1 {
-				if matchPattern(line, pattern[index:endIndex], 0) && index < endIndex {
-					i = endIndex
-					continue
-				}
 			}
 			return false
 		} else if string(line[j]) != string(pattern[i]) {
