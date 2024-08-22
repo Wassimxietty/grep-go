@@ -185,20 +185,25 @@ func matchPattern(line string, pattern string, pos int) bool {
 			endIndex := strings.Index(pattern[i:], ")")
 			index := strings.Index(pattern[i:], "|")
 			i++
-			fmt.Println("endIndex :", endIndex)
-
+			// fmt.Println("endIndex :", endIndex)
 			if index == -1 {
 				index = endIndex
 			}
 			if endIndex == -1 || i >= index {
 				return false
 			}
-			if !matchPattern(line, pattern[i:index], 0) {
-				// it's accessing this if condition
-				// which means matchpattern() is returning false
-				return false
+			if matchPattern(line, pattern[i:index], 0) {
+				i = endIndex
+				continue
 			}
-			i = endIndex
+			if index != -1 {
+				if matchPattern(line, pattern[index:endIndex], 0) && index < endIndex {
+					i = endIndex
+					continue
+				}
+			}
+
+			return false
 		} else if string(line[j]) != string(pattern[i]) {
 			return false
 		}
