@@ -180,11 +180,12 @@ func matchPattern(line string, pattern string, pos int) bool {
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true
 		} else if pattern[i] == '(' {
-			fmt.Println(int(i))
 			endIndex := strings.Index(pattern[i:], ")")
-			fmt.Println("endIndex :", endIndex)
 			index := strings.Index(pattern[i:], "|")
 			i++
+			fmt.Println(int(i))
+			fmt.Println("endIndex :", endIndex)
+
 			if index == -1 {
 				index = endIndex
 			}
