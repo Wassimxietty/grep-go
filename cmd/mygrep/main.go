@@ -251,12 +251,12 @@ func matchPattern(line string, pattern string, pos int) bool {
 				index = endIndex
 			}
 			if endIndex == -1 || i >= index {
-				return false
-			}
-			if !matchPattern(line, pattern[i:index], 0) {
 				if pattern[len(pattern)-1] == 's' {
 					return true
 				}
+				return false
+			}
+			if !matchPattern(line, pattern[i:index], 0) {
 				return false
 			}
 			i = endIndex
