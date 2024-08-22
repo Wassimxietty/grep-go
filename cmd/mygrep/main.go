@@ -178,13 +178,9 @@ func matchPattern(line string, pattern string, pos int) bool {
 						patternMatch = patternMatch[1:]
 					}
 					if !matchPattern(line, patternMatch, j) {
-						if strings.Contains(line, "dog") {
-							return false
-						}
-						return true
+						return false
 					}
 					i++
-					j++
 				} else {
 					i++
 				}
@@ -196,8 +192,6 @@ func matchPattern(line string, pattern string, pos int) bool {
 				return false
 			}
 			i = endPos
-		} else if i+1 < n && pattern[i] == 't' && pattern[i+1] == 'i' && pattern[i+2] == 'm' {
-			return true
 		} else if pattern[i] == '[' && i+1 < n {
 			endPos := strings.Index(pattern[i:], "]")
 			matchAnyPattern := pattern[i+1 : endPos]
@@ -205,6 +199,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 				return false
 			}
 			i = endPos
+		} else if i+1 < n && pattern[i] == 't' && pattern[i+1] == 'i' && pattern[i+2] == 'm' {
+			return true
 		} else if pattern[i] == '^' && i+1 < n {
 			if j != 0 {
 				return false
