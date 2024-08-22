@@ -80,76 +80,13 @@ func matchLine(line string, pattern string) (bool, error) {
 	patternMatch = patternMatch[1:]
 	fmt.Println("patternArray: ", patternArray)
 	fmt.Println("patternMatch: ", patternMatch)
+
 	for i := 0; i <= len(line); i++ {
 		if matchPattern(line, pattern, i) {
 			return true, nil
 		}
 
 	}
-	// fmt.Println(pattern)
-	// wordPattern := strings.ReplaceAll(pattern, "\\d", "")
-	// wordPattern1 := strings.ReplaceAll(wordPattern, "\\w", "")
-	// wordPattern1 = strings.TrimSpace(wordPattern1)
-	// subslice := []byte(wordPattern1)
-	// fmt.Println(wordPattern1)
-	// fmt.Println("IF IT CONTAINS THE WORD PATTERN: ", bytes.Contains(line, subslice))
-	// fmt.Println("IF IT CONTAINS THE LETTER PATTERN: ", bytes.ContainsAny(line, wordPattern1))
-
-	// // dPattern : string of \d
-	// dPattern := strings.Trim(pattern, wordPattern1)
-	// dPattern = strings.Trim(dPattern, "\\w")
-	// dPattern = strings.TrimSpace(dPattern)
-
-	// // counterD of \d
-	// counterD := strings.Count(pattern, "\\d")
-	// fmt.Println("counterD :", counterD)
-	// fmt.Println("dPattern length :", len(dPattern))
-
-	// // wPattern : string of \w
-	// wPattern := strings.Trim(pattern, wordPattern1)
-	// wPattern = strings.Trim(wPattern, "\\d")
-	// wPattern = strings.TrimSpace(wPattern)
-	// // counterW of \d
-	// counterW := strings.Count(pattern, "\\w")
-	// fmt.Println("counterW :", counterW)
-	// fmt.Println("wPattern length and wPattern:", len(wPattern), wPattern)
-
-	// fmt.Println("subslice length :", len(subslice))
-
-	// if strings.Contains(pattern, "\\d") {
-	// 	ok1 := (counterD*2 - 1) == len(dPattern)
-	// 	if ok1 {
-	// 		ok = bytes.Contains(line, subslice)
-	// 	}
-	// } else if strings.Contains(pattern, "\\w") {
-	// 	ok1 := (counterW*2 - 1) == len(wPattern)
-	// 	// ok1 := bytes.ContainsAny(line, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_")
-	// 	if ok1 && len(subslice) > 1 {
-	// 		ok = bytes.Contains(line, subslice)
-	// 	}
-	// } else if isPosCharacterGroup(pattern) == "positive" {
-	// 	//pattern : [abc] : matches every letter in the brackers
-	// 	after, found := strings.CutPrefix(pattern, "[")
-	// 	if found {
-	// 		after1, found1 := strings.CutSuffix(after, "]")
-	// 		if found1 {
-	// 			ok = bytes.ContainsAny(line, after1)
-	// 		}
-	// 	}
-	// } else if isPosCharacterGroup(pattern) == "negative" {
-	// 	//pattern : [^abc] : matches every letter except the ones in the brackers
-	// 	before, after, found := strings.Cut(pattern, "[^")
-	// 	if found && before == "" {
-	// 		after1, found1 := strings.CutSuffix(after, "]")
-	// 		if found1 {
-	// 			ok = !bytes.ContainsAny(line, after1)
-	// 		}
-	// 	}
-	// } else {
-	// 	ok = bytes.ContainsAny(line, pattern)
-	// }
-	// fmt.Println("LAST OK :", ok, nil)
-	// return ok, nil
 	return false, nil
 }
 func matchPattern(line string, pattern string, pos int) bool {
@@ -244,8 +181,10 @@ func matchPattern(line string, pattern string, pos int) bool {
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true
 		} else if pattern[i] == '(' {
+			fmt.Fprintf(os.Stderr, "usage: mygrep -E <pattern>\n")
 			endIndex := strings.Index(pattern[i:], ")")
 			index := strings.Index(pattern[i:], "|")
+			i++
 			if index == -1 {
 				index = endIndex
 			}
@@ -265,24 +204,3 @@ func matchPattern(line string, pattern string, pos int) bool {
 	}
 	return true
 }
-
-// func isPosCharacterGroup(pattern string) string {
-// 	// Check if the pattern length is at least 2 (to contain at least "[]")
-// 	if len(pattern) < 2 {
-// 		return "none"
-// 	}
-// 	if pattern[0] == '[' && pattern[len(pattern)-1] == ']' {
-// 		if pattern[1] == '^' {
-// 			return "negative"
-// 		} else {
-// 			return "positive"
-// 		}
-// 	}
-// 	return "none"
-
-// }
-
-//TEST IN GIT COPY AND PASTE
-// git add .
-// git commit --allow-empty -m 'pass 1st stage'
-// git push origin master
