@@ -180,6 +180,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 		} else if pattern[i] == '+' && i != 0 {
 			if pattern[i-1] == ']' {
 				fmt.Println("] spotted")
+				return false
 			}
 			letterPlus := pattern[i-1]
 			for i < len(line) && letterPlus == line[j] && letterPlus != ']' {
