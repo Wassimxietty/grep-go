@@ -130,7 +130,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					okay, jPose := matchPattern(line, patternMatch, j)
 					if okay {
 						j = jPose
-						i += 1
+						i += 2
 						continue
 					}
 
