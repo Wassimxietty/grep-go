@@ -124,6 +124,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 					if string(patternMatch[0]) == "(" {
 						patternMatch = patternMatch[1:]
 					}
+					fmt.Println("i: ", i)
 					if !matchPattern(line, patternMatch, j) {
 						return false
 					}
