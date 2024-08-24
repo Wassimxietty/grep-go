@@ -51,10 +51,8 @@ func matchLine(line string, pattern string) (bool, error) {
 		fmt.Println("endPos : ", endPos)
 	}
 	if strings.ContainsAny(pattern, "+") {
-		plusIndex := strings.Index("ca+ts", "+")
-		letterPlus := string(pattern[plusIndex])
-		fmt.Println("plusIndex : ", plusIndex)
-		fmt.Println("letterPlus : ", letterPlus)
+		plusArray := strings.Split(pattern, "+")
+		fmt.Println("plusArray : ", plusArray)
 	}
 	// if strings.Contains(pattern, "(") {
 	// 	startIndex := strings.Index(pattern, "(") + 1
@@ -182,6 +180,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if pattern[i] == '+' && i != 0 {
 			if pattern[i-1] == ']' {
 				fmt.Println("] spotted")
+
 				return false, j
 			}
 			letterPlus := pattern[i-1]
