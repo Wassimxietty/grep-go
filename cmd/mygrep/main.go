@@ -210,6 +210,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				return false, j
 			}
 			okay, jj := matchPattern(line, pattern[i:index], 0)
+			fmt.Println("pattern[i]: ", string(pattern[i]))
 			if !okay {
 				return false, jj
 			}
