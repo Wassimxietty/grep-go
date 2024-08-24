@@ -104,13 +104,13 @@ func matchPattern(line string, pattern string, pos int) bool {
 			// }
 			switch pattern[i+1] {
 			case 'd':
-				fmt.Println("d")
+				// fmt.Println("d")
 
 				if !unicode.IsDigit(rune(line[j])) {
 					return false
 				}
 			case 'w':
-				fmt.Println("w")
+				// fmt.Println("w")
 
 				if !(unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
 					return false
@@ -127,6 +127,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 					}
 				}
 			}
+			fmt.Println("i: ", i)
 			i++
 		} else if pattern[i] == '[' && i+1 < n && pattern[i+1] == '^' {
 			endPos := strings.Index(pattern[i:], "]")
