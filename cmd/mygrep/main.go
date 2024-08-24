@@ -168,7 +168,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 			i = endPos
 		} else if pattern[i] == '+' && i != 0 {
 			letterPlus := pattern[i-1]
-			for i < len(line) && letterPlus == line[j] {
+			for i < len(line) && letterPlus == line[j] && letterPlus != ']' {
 				j++
 			}
 			continue
