@@ -125,7 +125,13 @@ func matchPattern(line string, pattern string, pos int) bool {
 					if !matchPattern(line, patternMatch, j) {
 						return false
 					}
+				} else {
+					if string(line[j]) != string(pattern[i+1]) {
+						return false
+					}
+					j++ // Move to the next character in the line
 				}
+
 			}
 			fmt.Println("i: ", i)
 			i++
