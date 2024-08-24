@@ -110,9 +110,9 @@ func matchPattern(line string, pattern string, pos int) bool {
 					return false
 				}
 			case 'w':
-				fmt.Println("rani hna")
+				fmt.Println("rani hna: ", !unicode.IsLetter(rune(line[j])) || (unicode.IsDigit(rune(line[j])) && line[j] == '_'))
 				if !(unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
-					return true
+					return false
 				}
 			default:
 				if unicode.IsDigit(rune(pattern[i+1])) {
