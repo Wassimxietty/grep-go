@@ -110,10 +110,14 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				if !unicode.IsDigit(rune(line[j])) {
 					return false, j
 				}
+				i++
+
 			case 'w':
 				if !(unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
 					return false, j
 				}
+				i++
+
 			default:
 				if unicode.IsDigit(rune(pattern[i+1])) {
 					number := int(pattern[i+1]-'0') - 1
@@ -139,7 +143,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					j++ // Move to the next character in the line
 				}
 			}
-			i++
 		} else if pattern[i] == '[' && i+1 < n && pattern[i+1] == '^' {
 			endPos := strings.Index(pattern[i:], "]")
 			matchAnyPattern := pattern[i+1 : endPos]
