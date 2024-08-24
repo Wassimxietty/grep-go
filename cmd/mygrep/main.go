@@ -126,10 +126,10 @@ func matchPattern(line string, pattern string, pos int) bool {
 					if string(patternMatch[0]) == "(" {
 						patternMatch = patternMatch[1:]
 					}
-					// if matchPattern(line, patternMatch, j) {
-					// 	i++
-					// 	j=
-					// }
+					if matchPattern(line, patternMatch, j) {
+						i++
+						j++
+					}
 				} else {
 					if string(line[j]) != string(pattern[i+1]) {
 						return false
