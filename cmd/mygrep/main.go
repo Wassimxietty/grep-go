@@ -114,7 +114,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 				if !(unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
 					return false
 				}
-				i++
+				j++
 			default:
 				if unicode.IsDigit(rune(pattern[i+1])) {
 					number := int(pattern[i+1]-'0') - 1
