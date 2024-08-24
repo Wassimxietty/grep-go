@@ -124,7 +124,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 					if !matchPattern(line, patternMatch, j) {
 						return false
 					}
-					fmt.Println("i: ", i, "pattern[i] = ", string(pattern[i]), "i+1: ", i+1, "pattern[i+1] = ", string(pattern[i+1]))
+					fmt.Println("i: ", i, "pattern[i] = ", string(pattern[i]), "i+1: ", i+1, "pattern[i+1] = ", string(pattern[i+1]), "line[j] = ", string(line[j]))
 				} else {
 					if string(line[j]) != string(pattern[i+1]) {
 						return false
