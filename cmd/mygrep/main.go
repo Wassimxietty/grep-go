@@ -93,7 +93,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 	n := len(pattern)
 	j := pos
 	for i := 0; i < n; i++ {
-		// fmt.Println("pattern[", i, "] : ", string(pattern[i]))
+		fmt.Println("i: ", i, "pattern[i] = ", string(pattern[i]))
 		// fmt.Println("j : ", j)
 		if j >= len(line) {
 			return false
@@ -133,7 +133,6 @@ func matchPattern(line string, pattern string, pos int) bool {
 				}
 			}
 			i++
-			fmt.Println("i: ", i, "pattern[i] = ", string(pattern[i]))
 		} else if pattern[i] == '[' && i+1 < n && pattern[i+1] == '^' {
 			endPos := strings.Index(pattern[i:], "]")
 			matchAnyPattern := pattern[i+1 : endPos]
