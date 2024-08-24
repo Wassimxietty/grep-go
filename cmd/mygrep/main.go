@@ -173,7 +173,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 			i = endPos
 		} else if pattern[i] == '+' && i != 0 {
 			if pattern[i-1] == ']' {
-
+				fmt.Println("] spotted")
 			}
 			letterPlus := pattern[i-1]
 			for i < len(line) && letterPlus == line[j] && letterPlus != ']' {
@@ -202,9 +202,9 @@ func matchPattern(line string, pattern string, pos int) bool {
 			if endIndex == -1 || i >= index {
 				return false
 			}
-			if !matchPattern(line, pattern[i:index], 0) {
-				return false
-			}
+			// if !matchPattern(line, pattern[i:index], 0) {
+			// 	return false
+			// }
 			i = endIndex
 		} else if string(line[j]) != string(pattern[i]) {
 			return false
