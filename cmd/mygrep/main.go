@@ -92,7 +92,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 	n := len(pattern)
 	j := pos
 	for i := 0; i < n; i++ {
-		fmt.Println("pattern[", i, "]: ", string(pattern[i]))
+		fmt.Println("pattern [", i, "]: ", string(pattern[i]))
 		if j >= len(line) {
 			return false
 		}
@@ -210,7 +210,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 		} else if string(line[j]) != string(pattern[i]) {
 			return false
 		}
-		fmt.Println("line[", j, "]: ", string(line[j]))
+		// fmt.Println("line[", j, "]: ", string(line[j]))
 		j++
 	}
 	return true
