@@ -204,9 +204,9 @@ func matchPattern(line string, pattern string, pos int) bool {
 			if endIndex == -1 || i >= index {
 				return false
 			}
-			if !matchPattern(line, pattern[i:index], 0) {
-				return false
-			}
+			// if !matchPattern(line, pattern[i:index], 0) {
+			// 	return false
+			// }
 			i = endIndex
 		} else if string(line[j]) != string(pattern[i]) {
 			return false
