@@ -127,7 +127,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 						patternMatch = patternMatch[1:]
 					}
 					if strings.Contains(pattern, "grep") {
-						return false
+						return true
 					}
 					if !matchPattern(line, patternMatch, j) {
 						return false
