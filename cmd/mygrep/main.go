@@ -126,6 +126,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 					}
 					fmt.Println("i: ", i)
 					if matchPattern(line, patternMatch, j) {
+						i++
 						continue
 					}
 
