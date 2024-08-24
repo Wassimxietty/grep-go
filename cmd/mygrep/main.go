@@ -91,7 +91,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 	patternArray := strings.Split(pattern, ")")
 	n := len(pattern)
 	j := pos
-	for i := 0; i < n; i++ {
+	i := 0
+	for i < n {
 		fmt.Println("pattern [", i, "]: ", string(pattern[i]))
 		if j >= len(line) {
 			return false
@@ -212,6 +213,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 		}
 		// fmt.Println("line[", j, "]: ", string(line[j]))
 		j++
+		i++
 	}
 	return true
 }
