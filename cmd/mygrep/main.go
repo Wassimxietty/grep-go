@@ -126,7 +126,6 @@ func matchPattern(line string, pattern string, pos int) bool {
 					}
 					if matchPattern(line, patternMatch, j) {
 						i++
-						j++
 						continue
 					}
 					if !matchPattern(line, patternMatch, j) {
