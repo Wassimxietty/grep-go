@@ -94,6 +94,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 	j := pos
 	for i := 0; i < n; i++ {
 		// fmt.Println("j : ", j)
+		fmt.Println("what it should print: ", matchPattern(line, pattern, j))
 		if j >= len(line) {
 			return false
 		}
