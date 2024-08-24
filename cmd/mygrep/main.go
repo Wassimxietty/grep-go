@@ -111,7 +111,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					return false, j
 				}
 			case 'w':
-				fmt.Println("w: i:", i, " j : ", j)
+				fmt.Println("w: ", !(unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_'))
 				if !(unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
 					return false, j
 				}
