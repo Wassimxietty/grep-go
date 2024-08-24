@@ -92,12 +92,11 @@ func matchPattern(line string, pattern string, pos int) bool {
 	n := len(pattern)
 	j := pos
 	for i := 0; i < n; i++ {
-		// fmt.Println("j : ", j)
+		fmt.Println("pattern[", i, "]: ", string(pattern[i]))
 		if j >= len(line) {
 			return false
 		}
 		if pattern[i] == '\\' && i+1 < n {
-			fmt.Println("pattern[", i, "]: ", string(pattern[i]))
 
 			// if pattern[len(pattern)-1] == 's' {
 			// 	return true
