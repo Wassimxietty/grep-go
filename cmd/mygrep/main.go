@@ -140,8 +140,6 @@ func matchPattern(line string, pattern string, pos int) bool {
 				return false
 			}
 			i = endPos
-		} else if i+1 < n && pattern[i] == 't' && pattern[i+1] == 'i' && pattern[i+2] == 'm' {
-			return true
 		} else if pattern[i] == '^' && i+1 < n {
 			if j != 0 {
 				return false
@@ -165,10 +163,14 @@ func matchPattern(line string, pattern string, pos int) bool {
 			}
 			i = endPos
 		} else if pattern[i] == '+' && i != 0 {
+			if pattern[i-1] == ']' {
+				fmt.Println("wow")
+			}
 			letterPlus := pattern[i-1]
 			for i < len(line) && letterPlus == line[j] && letterPlus != ']' {
 				j++
 			}
+
 			continue
 		} else if pattern[i] == '?' && i != 0 {
 			letterOptional := rune(pattern[i-1])
