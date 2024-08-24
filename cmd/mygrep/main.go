@@ -81,10 +81,11 @@ func matchLine(line string, pattern string) (bool, error) {
 	fmt.Println("patternMatch: ", patternMatch)
 
 	for i := 0; i <= len(line); i++ {
+		fmt.Println("i: ", i, " : ", matchPattern(line, pattern, i))
 		if matchPattern(line, pattern, i) {
 			return true, nil
 		}
-		fmt.Println("i: ", i, " : ", matchPattern(line, pattern, i))
+
 	}
 	return false, nil
 }
