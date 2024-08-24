@@ -82,7 +82,7 @@ func matchLine(line string, pattern string) (bool, error) {
 
 	for i := 0; i <= len(line); i++ {
 		okay, j := matchPattern(line, pattern, i)
-		fmt.Println("returned j: ", j)
+		fmt.Print("returned j: ", j)
 		if okay {
 			return true, nil
 		}
