@@ -134,6 +134,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 
 			}
 			fmt.Println("i: ", i)
+			fmt.Println("j: ", j)
 			i++
 		} else if pattern[i] == '[' && i+1 < n && pattern[i+1] == '^' {
 			endPos := strings.Index(pattern[i:], "]")
