@@ -93,7 +93,7 @@ func matchPattern(line string, pattern string, pos int) bool {
 	j := pos
 	i := 0
 	for i < n {
-		fmt.Println("pattern [", i, "]: ", string(pattern[i]))
+		// fmt.Println("pattern [", i, "]: ", string(pattern[i]))
 		if j >= len(line) {
 			return false
 		}
@@ -104,13 +104,13 @@ func matchPattern(line string, pattern string, pos int) bool {
 			// }
 			switch pattern[i+1] {
 			case 'd':
-				// fmt.Println("d")
+				fmt.Println("d")
 
 				if !unicode.IsDigit(rune(line[j])) {
 					return false
 				}
 			case 'w':
-				// fmt.Println("w")
+				fmt.Println("w")
 
 				if !(unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
 					return false
