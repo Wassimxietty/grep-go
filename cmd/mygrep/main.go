@@ -129,6 +129,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 					if matchPattern(line, patternMatch, j) {
 						i++
 						j++
+					} else {
+						return false
 					}
 				} else {
 					if string(line[j]) != string(pattern[i+1]) {
