@@ -137,7 +137,6 @@ func matchPattern(line string, pattern string, pos int) bool {
 					j++ // Move to the next character in the line
 				}
 			}
-			i++
 		} else if pattern[i] == '[' && i+1 < n && pattern[i+1] == '^' {
 			endPos := strings.Index(pattern[i:], "]")
 			matchAnyPattern := pattern[i+1 : endPos]
