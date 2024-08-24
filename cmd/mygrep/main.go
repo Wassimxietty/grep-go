@@ -211,5 +211,5 @@ func matchPattern(line string, pattern string, pos int) bool {
 		fmt.Println("j: ", j, "line[j] = ", string(line[j]))
 		j++
 	}
-	return true
+	return j == len(line)
 }
