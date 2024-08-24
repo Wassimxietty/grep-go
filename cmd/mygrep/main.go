@@ -204,8 +204,8 @@ func matchPattern(line string, pattern string, pos int) bool {
 			if !matchPattern(line, pattern[i:index], 0) {
 				return false
 			}
-			i = endIndex
 			fmt.Println("i: ", i, "pattern[i] = ", string(pattern[i]))
+			i = endIndex
 			fmt.Println("j: ", j, "line[j] = ", string(line[j]))
 		} else if string(line[j]) != string(pattern[i]) {
 			return false
