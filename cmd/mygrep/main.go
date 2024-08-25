@@ -163,6 +163,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 				//it's somehow putting my j with a plus 2?
 				j -= 2
+				fmt.Println("j: ", j)
+
 			} else if strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
