@@ -170,7 +170,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				return false, j
 			}
 			i = endPos
-			fmt.Println("i: ", i)
+			fmt.Println("len(pattern): ", len(pattern))
 
 		} else if pattern[i] == '[' && i+1 < n {
 			endPos := strings.Index(pattern[i:], "]")
