@@ -101,7 +101,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 	j := pos
 	i := 0
 	for i < n {
-		fmt.Println("maybe ?")
 
 		if j >= len(line) {
 			fmt.Println("j is equal or more to len(line)", j)
@@ -242,6 +241,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 			}
 		} else if strings.Contains(pattern, "$") {
+			fmt.Println("maybe ?")
+
 			endPos := strings.Index(pattern[i:], "$")
 			matchAnyPattern := pattern[i:endPos]
 			for i := 0; i < endPos; i++ {
