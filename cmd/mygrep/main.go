@@ -165,12 +165,12 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			endPos := strings.Index(pattern[i:], "]")
 			matchAnyPattern := pattern[i+1 : endPos]
 			fmt.Println("matchAnyPattern: ", matchAnyPattern)
-
+			if pattern[i+1] == '^' {
+				fmt.Println("^ was found ")
+			}
 			if pattern[endPos+1] == '+' {
 				fmt.Println("+ was found")
-				if pattern[i+1] == '^' {
-					fmt.Println("^ was found ")
-				}
+
 				// matchAnyPattern : abcd ; technically, we're saying : if line[j] == part of matchAnyPattern which is abcd, it can keep writing because it's a +
 				// it stops when either i goes out of bounds of the line; or line[j] != part of matchAnyPatern
 				for i < len(line) && strings.ContainsAny(matchAnyPattern, string(line[j])) {
