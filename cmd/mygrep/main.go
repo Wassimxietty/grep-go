@@ -150,6 +150,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 			}
 		} else if pattern[i] == '[' && i+1 < n && pattern[i+1] == '^' {
+			fmt.Println("^ was found 2")
 			endPos := strings.Index(pattern[i:], "]")
 			matchAnyPattern := pattern[i+1 : endPos]
 			if strings.ContainsAny(matchAnyPattern, string(line[j])) {
@@ -179,16 +180,14 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			} else if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
-			i = endPos + 2
+			i = endPos
 
 		} else if pattern[i] == '^' && i+1 < n {
 			if j != 0 {
-				fmt.Println("^ was found 2")
 				return false, j
 			} else {
 				i++
 				if line[j] != pattern[i] {
-					fmt.Println("^ was found 3")
 					return false, j
 				}
 			}
