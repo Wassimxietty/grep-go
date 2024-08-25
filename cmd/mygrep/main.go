@@ -149,9 +149,12 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						return false, j
 					}
 					patternMatch := patternArray[number]
-					// if string(patternMatch[0]) == "(" {
-					// 	patternMatch = patternMatch[1:]
-					// }
+					if string(patternMatch[0]) == "(" {
+						patternMatch = patternMatch[1:]
+					}
+					if string(patternMatch[1]) == "(" {
+						patternMatch = patternMatch[2:]
+					}
 					okay, jPose := matchPattern(line, patternMatch, j)
 					fmt.Println("okay:", okay, "JPOSE : ", jPose)
 
