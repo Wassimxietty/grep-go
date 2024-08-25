@@ -230,7 +230,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						return false, jj
 					} else {
 						j = jj
-						// i = endPos
+						i = endPos
 						// fmt.Println("i: ", i)
 					}
 				}
@@ -288,8 +288,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if string(line[j]) != string(pattern[i]) {
 			return false, j
 		}
-		fmt.Println("line[", j, "]: ", string(line[j]))
-		fmt.Println(string(pattern[i]))
+		// fmt.Println("line[", j, "]: ", string(line[j]))
+		// fmt.Println(string(pattern[i]))
 		j++
 		i++
 	}
