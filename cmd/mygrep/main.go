@@ -163,13 +163,17 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			//or create new handling which you need to do for this problem
 			//goodluck, tomorrow me
 			endPos := strings.Index(pattern[i:], "]")
-			if pattern[endPos+1] == '+' {
-				fmt.Println("+ was found")
-			}
 			matchAnyPattern := pattern[i+1 : endPos]
 			fmt.Println("matchAnyPattern: ", matchAnyPattern)
 
-			if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
+			if pattern[endPos+1] == '+' {
+				fmt.Println("+ was found")
+				// matchAnyPattern : abcd ; technically, we're saying : if line[j] == part of matchAnyPattern which is abcd, it can keep writing because it's a +
+				// it stops when either i goes out of bounds of the line; or line[j] != part of matchAnyPatern
+				for i < len(line) && strings.ContainsAny(matchAnyPattern, string(line[j])) {
+					j++
+				}
+			} else if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
 			i = endPos
@@ -197,10 +201,13 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			i = endPos
 		} else if pattern[i] == '+' && i != 0 {
 			letterPlus := pattern[i-1]
-			for i < len(line) && letterPlus == line[j] && letterPlus != ']' {
+			if letterPlus != ']' {
+				i++
+				continue
+			}
+			for i < len(line) && letterPlus == line[j] {
 				j++
 			}
-
 			continue
 		} else if pattern[i] == '?' && i != 0 {
 			letterOptional := rune(pattern[i-1])
