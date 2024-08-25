@@ -151,7 +151,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			}
 		} else if pattern[i] == '[' && i+1 < n && pattern[i+1] == '^' {
 			fmt.Println("^ was found 2")
-			endPos := strings.Index(pattern[i:], "]") + i - 1
+			endPos := strings.Index(pattern[i:], "]")
 			fmt.Println("endPos : ", string(pattern[endPos]), "i+1 : ", i+1)
 			matchAnyPattern := pattern[i : endPos+1]
 			fmt.Println("matchAnyPattern: ", matchAnyPattern)
@@ -163,7 +163,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 				//it's somehow putting my j with a plus 2?
 				fmt.Println("j: ", j)
-
 			} else if strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
@@ -185,7 +184,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				return false, j
 			}
 			i = endPos
-
 		} else if pattern[i] == '^' && i+1 < n {
 			if j != 0 {
 				return false, j
