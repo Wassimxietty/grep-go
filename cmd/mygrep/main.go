@@ -159,7 +159,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				fmt.Println("i: ", i, "len(line) : ", len(line))
 				// matchAnyPattern : abcd ; technically, we're saying : if line[j] == part of matchAnyPattern which is abcd, it can keep writing because it's a +
 				// it stops when either i goes out of bounds of the line; or line[j] != part of matchAnyPatern
-				for i < len(line) && !strings.ContainsAny(matchAnyPattern, string(line[j])) {
+				for j < len(line) && !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 					fmt.Println("line[j]: ", string(line[j]))
 					j++
 				}
