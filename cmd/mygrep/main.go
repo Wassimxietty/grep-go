@@ -202,13 +202,14 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if pattern[i] == '+' && i != 0 {
 			letterPlus := pattern[i-1]
 			if letterPlus != ']' {
+				fmt.Println("+ was found in the + handling")
 				i++
 				continue
 			}
 			for i < len(line) && letterPlus == line[j] {
 				j++
 			}
-			continue
+			// continue
 		} else if pattern[i] == '?' && i != 0 {
 			letterOptional := rune(pattern[i-1])
 			if i < len(line) && letterOptional == rune(line[j]) {
