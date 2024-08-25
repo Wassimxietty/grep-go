@@ -278,10 +278,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			for endIndex < n && pattern[endIndex] != ')' {
 				endIndex++
 			}
-			index := i + 1
-			for index < n && pattern[index] != '|' {
-				index++
-			}
+			index := strings.Index(pattern[i:], "|")
 			i++
 			if index == -1 {
 				index = endIndex
@@ -290,21 +287,12 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				return false, j
 			}
 			fmt.Println("pattern[i:index]: ", pattern[i:index])
-			if strings.Contains(line, "once") {
-				okay, jj := matchPattern(line, pattern[i:index], j)
-				fmt.Println("jj: ", jj, "okay ? ", okay)
-				if !okay {
-					return false, jj
-				}
-				i = endIndex
-			} else {
-				okay, jj := matchPattern(line, pattern[i:index], 0)
-				fmt.Println("jj: ", jj, "okay ? ", okay)
-				if !okay {
-					return false, jj
-				}
-				i = endIndex
+			okay, jj := matchPattern(line, pattern[i:index], 0)
+			fmt.Println("jj: ", jj, "okay ? ", okay)
+			if !okay {
+				return false, jj
 			}
+			i = endIndex
 
 		} else if string(line[j]) != string(pattern[i]) {
 			fmt.Println("string(line[j]) :", string(line[j]), "string(pattern[i]): ", string(pattern[i]))
