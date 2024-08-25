@@ -168,6 +168,9 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 
 			if pattern[endPos+1] == '+' {
 				fmt.Println("+ was found")
+				if matchAnyPattern[0] == '^' {
+					fmt.Println("^ was found ")
+				}
 				// matchAnyPattern : abcd ; technically, we're saying : if line[j] == part of matchAnyPattern which is abcd, it can keep writing because it's a +
 				// it stops when either i goes out of bounds of the line; or line[j] != part of matchAnyPatern
 				for i < len(line) && strings.ContainsAny(matchAnyPattern, string(line[j])) {
