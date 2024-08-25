@@ -149,6 +149,11 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			}
 			i = endPos
 		} else if pattern[i] == '[' && i+1 < n {
+			//for this next problem, look here instead of the + handling
+			//if you work on the + handling, you'll have to work backwards and make the work extra difficult for no reason
+			//meanwhile you can detect the + at the end after ] here and that will help you decide whether you deal with it the old way
+			//or create new handling which you need to do for this problem
+			//goodluck, tomorrow me
 			endPos := strings.Index(pattern[i:], "]")
 			matchAnyPattern := pattern[i+1 : endPos]
 			if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
@@ -178,27 +183,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			}
 			i = endPos
 		} else if pattern[i] == '+' && i != 0 {
-			if pattern[i-1] == ']' {
-				// fmt.Println("] spotted")
-				for ii := i - 2; ii < 0; ii-- {
-					if pattern[ii] == '[' {
-						bracketIndex := ii
-						plusPattern := pattern[bracketIndex : i+1]
-						okay, jj := matchPattern(line, plusPattern, j)
-						if okay {
-							fmt.Println("jj : ", jj)
-							j = jj
-							i++
-							continue
-						} else {
-							fmt.Println("jj : ", jj)
-						}
-					}
-				}
-				return false, j
-			}
 			letterPlus := pattern[i-1]
-			for i < len(line) && letterPlus == line[j] {
+			for i < len(line) && letterPlus == line[j] && letterPlus != ']' {
 				j++
 			}
 
