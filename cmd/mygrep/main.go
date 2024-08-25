@@ -229,7 +229,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					if !okay {
 						return false, jj
 					}
-					j = 3
+					j = jj
+					fmt.Println("j: ", j)
 					i = endPos
 				}
 				if line[j] != pattern[i] {
