@@ -226,10 +226,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			if j < len(line) && letterOptional == rune(line[j]) {
 				j++
 			}
-			continue
 		} else if pattern[i] == '.' {
 			j++
-			continue
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true, j
 		} else if pattern[i] == '(' {
