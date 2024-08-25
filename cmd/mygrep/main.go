@@ -160,7 +160,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			matchAnyPattern := pattern[i:endPos]
 			fmt.Println("matchAnyPattern: ", matchAnyPattern)
 			if pattern[endPos+1] == '+' {
-				fmt.Println("i: ", i, "len(line) : ", len(line))
+				fmt.Println("strings.ContainsAny(matchAnyPattern, string(line[j])): ", strings.ContainsAny(matchAnyPattern, string(line[j])))
 				for j < len(line) && !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 					fmt.Println("line[j]: ", string(line[j]))
 					j++
@@ -168,8 +168,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				//it's somehow putting my j with a plus 2?
 				j -= 2
 				fmt.Println("j: ", j)
-			}
-			if strings.ContainsAny(matchAnyPattern, string(line[j])) {
+			} else if strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
 			i = endPos
@@ -187,8 +186,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 				//it's somehow putting my j with a plus 2?
 				j -= 2
-			}
-			if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
+			} else if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
 			fmt.Println("i: ", i)
