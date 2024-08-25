@@ -133,7 +133,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 							j++
 						}
 						j--
-						fmt.Println("j: ", j)
+						i++
+						fmt.Println("j inside w Handling for +: ", j, "line[j]: ", string(line[j]))
 						return true, j
 					}
 				}
