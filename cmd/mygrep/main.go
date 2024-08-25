@@ -216,12 +216,12 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			i = endPos
 		} else if pattern[i] == '+' && i != 0 {
 			letterPlus := pattern[i-1]
-			if letterPlus == ']' {
-				i++
+			if letterPlus != ']' {
+				for j < len(line) && letterPlus == line[j] {
+					j++
+				}
 			}
-			for j < len(line) && letterPlus == line[j] && letterPlus != ']' {
-				j++
-			}
+
 		} else if pattern[i] == '?' && i != 0 {
 			letterOptional := rune(pattern[i-1])
 			if j < len(line) && letterOptional == rune(line[j]) {
@@ -241,7 +241,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			if endIndex == -1 || i >= index {
 				return false, j
 			}
-			okay, jj := matchPattern(line, pattern[i:index], j)
+			okay, jj := matchPattern(line, pattern[i:index], 0)
 			fmt.Println("jj: ", jj)
 			if !okay {
 				return false, jj
