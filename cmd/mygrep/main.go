@@ -133,7 +133,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 							j++
 						}
 						j--
-						fmt.Println("j: ", j)
 					}
 				}
 
@@ -223,15 +222,16 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					for endPos < n && pattern[endPos] != ')' {
 						endPos++
 					}
-					lineSplit := strings.Split(line, " ")
-					fmt.Println("lineSplit: ", lineSplit)
-
 					patternMatch := pattern[i+1 : endPos+1]
 					fmt.Println("patternMatch: ", patternMatch)
 					okay, jj := matchPattern(line, patternMatch, 0)
 					fmt.Println(okay, " ", jj, " ")
 					if !okay {
 						return false, jj
+					} else {
+						j = jj
+						i = endPos
+						fmt.Println("i: ", i)
 					}
 				}
 				if line[j] != pattern[i] {
