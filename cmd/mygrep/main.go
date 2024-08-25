@@ -166,7 +166,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			} else if strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
-			i = endPos + 1
+			i = endPos
 			fmt.Println("i: ", i)
 
 		} else if pattern[i] == '[' && i+1 < n {
