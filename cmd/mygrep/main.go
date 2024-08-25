@@ -163,7 +163,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			//or create new handling which you need to do for this problem
 			//goodluck, tomorrow me
 			endPos := strings.Index(pattern[i:], "]")
-			if pattern[endPos+3] == '+' {
+			if pattern[endPos+2] == '+' {
 				fmt.Println("+ was found")
 			}
 			matchAnyPattern := pattern[i+1 : endPos]
