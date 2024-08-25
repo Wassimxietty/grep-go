@@ -103,6 +103,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 	for i < n {
 		// fmt.Println("pattern [", i, "]: ", string(pattern[i]))
 		if j >= len(line) {
+			fmt.Println("j is equal or more to len(line)", j)
 			return false, j
 		}
 		if pattern[i] == '\\' && i+1 < n {
@@ -169,7 +170,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			} else if strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
-			i = endPos
+			i = endPos + 1
 			fmt.Println("len(pattern): ", len(pattern))
 
 		} else if pattern[i] == '[' && i+1 < n {
