@@ -164,8 +164,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			//goodluck, tomorrow me
 			endPos := strings.Index(pattern[i:], "]")
 			matchAnyPattern := pattern[i+1 : endPos]
-			fmt.Print(line[j])
-			fmt.Print(pattern[i])
+			fmt.Print(string(line[j]))
+			fmt.Print(string(pattern[i]))
 			if pattern[i+1] == '^' {
 				fmt.Println("^ was found ")
 			}
