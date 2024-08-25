@@ -288,7 +288,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				j = jj
 			}
 			if i-1 >= 0 {
-				fmt.Println("pattern[i-2] ", string(pattern[i-2]))
+				fmt.Println("pattern[i] ", string(pattern[i]))
 			}
 			// fmt.Println("i-1 > 0 && pattern[i-2] == '^'  : ", i-1 > 0 && pattern[i-2] == '^')
 			i = endIndex
