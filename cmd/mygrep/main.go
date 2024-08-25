@@ -185,11 +185,11 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					j++
 				}
 				//it's somehow putting my j with a plus 2?
-				j -= 1
+				j -= 2
 			} else if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
-			i = endPos
+			i = endPos + 1
 		} else if pattern[i] == '^' && i+1 < n {
 			if j != 0 {
 				return false, j
