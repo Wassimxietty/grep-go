@@ -225,13 +225,13 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					patternMatch := pattern[i+1 : endPos+1]
 					fmt.Println("patternMatch: ", patternMatch)
 					okay, jj := matchPattern(line, patternMatch, 0)
-					fmt.Println(okay, " ", jj, " ")
+					// fmt.Println(okay, " ", jj, " ")
 					if !okay {
 						return false, jj
 					} else {
 						j = jj
 						i = endPos
-						fmt.Println("i: ", i)
+						// fmt.Println("i: ", i)
 					}
 				}
 				if line[j] != pattern[i] {
@@ -288,8 +288,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if string(line[j]) != string(pattern[i]) {
 			return false, j
 		}
-		// fmt.Println("line[", j, "]: ", string(line[j]))
-		// fmt.Println(string(pattern[i]))
+		fmt.Println("line[", j, "]: ", string(line[j]))
+		fmt.Println(string(pattern[i]))
 		j++
 		i++
 	}
