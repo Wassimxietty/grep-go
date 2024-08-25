@@ -270,17 +270,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true, j
 		} else if pattern[i] == '(' {
-
-			endIndex := strings.Index(pattern[i:], ")")
-			index := strings.Index(pattern[i:], "|")
-			i++
-			if index == -1 {
-				index = endIndex
-			}
-			if endIndex == -1 || i >= index {
-				return false, j
-			}
-			if pattern[i-2] == '^' {
+			if pattern[i-1] == '^' {
 				endPos := i + 1
 				for endPos < n && pattern[endPos] != ')' {
 					endPos++
@@ -292,16 +282,27 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					return false, jj
 				}
 				j = jj
-				fmt.Println("you in bro?:  ", j)
+				// fmt.Println("j: ", j)
 				i = endPos
 
-			} else {
-				okay, jj := matchPattern(line, pattern[i:index], 0)
-				fmt.Println("jj: ", jj)
-				if !okay {
-					return false, jj
-				}
-				i = endIndex
+			}
+			endIndex := strings.Index(pattern[i:], ")")
+			index := strings.Index(pattern[i:], "|")
+			i++
+			if index == -1 {
+				index = endIndex
+			}
+			if endIndex == -1 || i >= index {
+				return false, j
+			}
+			okay, jj := matchPattern(line, pattern[i:index], 0)
+			fmt.Println("jj: ", jj)
+			if !okay {
+				return false, jj
+			}
+			i = endIndex
+			if condition {
+
 			}
 			fmt.Println("i in (): ", i)
 			fmt.Println("j in (): ", j)
