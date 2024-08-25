@@ -176,7 +176,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					fmt.Println("line[j]: ", string(line[j]))
 					j++
 				}
-				j--
+				j -= 2
 			} else if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
