@@ -257,6 +257,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		i++
 	ii:
 		i++
+		j++
 	}
 	return true, j
 }
