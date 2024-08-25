@@ -301,9 +301,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				return false, jj
 			}
 			i = endIndex
-			if condition {
 
-			}
 			fmt.Println("i in (): ", i)
 			fmt.Println("j in (): ", j)
 
