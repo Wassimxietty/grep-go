@@ -189,7 +189,9 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			} else if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
+			fmt.Println("i: ", i)
 			i = endPos + 1
+			fmt.Println("i: ", i)
 		} else if pattern[i] == '^' && i+1 < n {
 			if j != 0 {
 				return false, j
