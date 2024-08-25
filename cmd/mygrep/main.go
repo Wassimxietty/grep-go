@@ -44,12 +44,12 @@ func matchLine(line string, pattern string) (bool, error) {
 	// var ok bool
 	// You can use print statements as follows for debugging, they'll be visible when running tests.
 	fmt.Println("Logs from your program will appear here!")
-	if strings.ContainsAny(pattern, "$") {
-		endPos := strings.Index(pattern[0:], "$")
-		matchAnyPattern := pattern[0:endPos]
-		fmt.Println("matchAnyParent : ", matchAnyPattern)
-		fmt.Println("endPos : ", endPos)
-	}
+	// if strings.ContainsAny(pattern, "$") {
+	// 	endPos := strings.Index(pattern[0:], "$")
+	// 	matchAnyPattern := pattern[0:endPos]
+	// 	fmt.Println("matchAnyParent : ", matchAnyPattern)
+	// 	fmt.Println("endPos : ", endPos)
+	// }
 	// if strings.ContainsAny(pattern, "+") {
 	// 	plusArray := strings.Split(pattern, "+")
 	// 	fmt.Println("plusArray : ", plusArray)
@@ -113,13 +113,24 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			// }
 			switch pattern[i+1] {
 			case 'd':
-				// fmt.Println("d")
+				if pattern[i+2] == '+' {
+					for j < len(line) && unicode.IsDigit(rune(line[j])) {
+						j++
+					}
+					fmt.Println("j: ", j)
+
+				}
 				if !unicode.IsDigit(rune(line[j])) {
 					return false, j
 				}
 				i++
-
 			case 'w':
+				if pattern[i+2] == '+' {
+					for j < len(line) && unicode.IsDigit(rune(line[j])) {
+						j++
+					}
+					fmt.Println("j: ", j)
+				}
 				if !(unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
 					return false, j
 				}
