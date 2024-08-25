@@ -132,6 +132,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						for j < len(line) && (unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
 							j++
 						}
+						j--
 						fmt.Println("j: ", j)
 					}
 				}
