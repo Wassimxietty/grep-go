@@ -217,7 +217,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if pattern[i] == '+' && i != 0 {
 			letterPlus := pattern[i-1]
 			if letterPlus == ']' {
-				continue
+				goto ii
 			}
 			for j < len(line) && letterPlus == line[j] && letterPlus != ']' {
 				j++
@@ -254,6 +254,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		// fmt.Println("line[", j, "]: ", string(line[j]))
 		// fmt.Println(string(pattern[i]))
 		j++
+		i++
+	ii:
 		i++
 	}
 	return true, j
