@@ -179,13 +179,13 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			i = endPos
 		} else if pattern[i] == '+' && i != 0 {
 			if pattern[i-1] == ']' {
-				fmt.Println("] spotted")
 				for ii := i - 2; ii < 0; ii-- {
 					if pattern[ii] == '[' {
 						bracketIndex := ii
 						plusPattern := pattern[bracketIndex : i+1]
 						okay, jj := matchPattern(line, plusPattern, j)
 						if okay {
+							fmt.Println("jj : ", jj)
 							j = jj
 							continue
 						} else {
