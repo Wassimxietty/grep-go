@@ -213,24 +213,16 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			i = endPos
 		} else if pattern[i] == '+' && i != 0 {
 			letterPlus := pattern[i-1]
-			// if letterPlus == ']' {
-			// 	fmt.Println("+ was found in the + handling")
-			// 	i++
-			// 	fmt.Println("pattern[i++]: ", string(pattern[i]))
-			// }
 			for j < len(line) && letterPlus == line[j] && letterPlus != ']' {
 				j++
 			}
-			// continue
 		} else if pattern[i] == '?' && i != 0 {
 			letterOptional := rune(pattern[i-1])
 			if j < len(line) && letterOptional == rune(line[j]) {
 				j++
 			}
-			continue
 		} else if pattern[i] == '.' {
 			j++
-			continue
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true, j
 		} else if pattern[i] == '(' {
