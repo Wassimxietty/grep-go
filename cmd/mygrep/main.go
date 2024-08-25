@@ -292,7 +292,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		j++
 		i++
 		// fmt.Println("i: ", i)
-		// fmt.Println("j: ", j)
+		fmt.Println("j: ", j)
 
 	}
 	return true, j
