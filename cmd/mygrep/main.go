@@ -284,10 +284,10 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			if !okay {
 				return false, jj
 			}
-			i = endIndex
 			if i-1 > 0 && pattern[i-2] == '^' {
 				j = jj
 			}
+			i = endIndex
 			fmt.Println("i in (): ", i)
 			fmt.Println("j in (): ", j)
 
