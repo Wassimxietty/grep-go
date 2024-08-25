@@ -133,6 +133,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						}
 						j--
 						fmt.Println("j: ", j)
+						return true, j
 					}
 				}
 				if !(unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
