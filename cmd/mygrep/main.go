@@ -155,7 +155,9 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			fmt.Println("endPos : ", string(pattern[endPos]), "i+1 : ", i+1)
 			matchAnyPattern := pattern[i : endPos+1]
 			fmt.Println("matchAnyPattern: ", matchAnyPattern)
-			if pattern[endPos+1] == '+' {
+			if pattern[endPos+2] == '+' {
+				fmt.Println("+")
+
 				// matchAnyPattern : abcd ; technically, we're saying : if line[j] == part of matchAnyPattern which is abcd, it can keep writing because it's a +
 				// it stops when either i goes out of bounds of the line; or line[j] != part of matchAnyPatern
 				for i < len(line) && !strings.ContainsAny(matchAnyPattern, string(line[j])) {
@@ -163,7 +165,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					j++
 				}
 				//it's somehow putting my j with a plus 2?
-				j -= 2
+				// j -= 2
 			} else if strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
