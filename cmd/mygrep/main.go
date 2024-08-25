@@ -224,7 +224,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					patternMatch := pattern[i+1 : endPos+1]
 					fmt.Println("patternMatch: ", patternMatch)
 					okay, jj := matchPattern(line, patternMatch, 0)
-					// fmt.Println(okay, " ", jj, " ")
+					fmt.Println(okay, " ", jj, " ")
 					if !okay {
 						return false, jj
 					}
