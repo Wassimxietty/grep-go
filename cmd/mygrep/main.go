@@ -280,7 +280,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			if endIndex == -1 || i >= index {
 				return false, j
 			}
-			if pattern[i-1] == '^' {
+			if pattern[i-2] == '^' {
 				endPos := i + 1
 				for endPos < n && pattern[endPos] != ')' {
 					endPos++
