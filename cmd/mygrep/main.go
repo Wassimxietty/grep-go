@@ -213,6 +213,9 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			i = endPos
 		} else if pattern[i] == '+' && i != 0 {
 			letterPlus := pattern[i-1]
+			if letterPlus == ']' {
+				fmt.Println("t3eyi")
+			}
 			for j < len(line) && letterPlus == line[j] && letterPlus != ']' {
 				j++
 			}
