@@ -230,7 +230,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						return false, jj
 					} else {
 						j = jj
-						i = endPos
+						// i = endPos
 						// fmt.Println("i: ", i)
 					}
 				}
