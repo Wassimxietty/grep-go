@@ -206,7 +206,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					for endPos < n && pattern[endPos] != ')' {
 						endPos++
 					}
-					patternMatch := pattern[i+1 : endPos]
+					patternMatch := pattern[i+1 : endPos+1]
 					fmt.Println("patternMatch: ", patternMatch)
 					okay, jj := matchPattern(line, patternMatch, 0)
 					fmt.Println(okay, " ", jj, " ")
