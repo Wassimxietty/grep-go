@@ -152,6 +152,9 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if pattern[i] == '[' && i+1 < n && pattern[i+1] == '^' {
 			fmt.Println("^ was found 2")
 			endPos := strings.Index(pattern[i:], "]")
+			if endPos == -1 || i+endPos >= len(pattern) {
+				return false, j // or another appropriate action
+			}
 			matchAnyPattern := pattern[i:endPos]
 			fmt.Println("matchAnyPattern: ", string(matchAnyPattern))
 			if pattern[endPos+1] == '+' {
