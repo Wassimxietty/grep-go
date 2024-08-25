@@ -207,7 +207,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			letterPlus := pattern[i-1]
 			if letterPlus == ']' {
 				fmt.Println("+ was found in the + handling")
-				i += 2
+				i++
 				fmt.Println("pattern[i+2]: ", string(pattern[i]))
 
 				continue
