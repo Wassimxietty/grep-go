@@ -99,8 +99,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 	patternArray := strings.Split(pattern, ")")
 	n := len(pattern)
 	j := pos
-	i := 0
-	for i < n {
+	for i := 0; i < n; i++ {
 		// fmt.Println("pattern [", i, "]: ", string(pattern[i]))
 		if j >= len(line) {
 			fmt.Println("j is equal or more to len(line)", j)
@@ -217,7 +216,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if pattern[i] == '+' && i != 0 {
 			letterPlus := pattern[i-1]
 			if letterPlus == ']' {
-				i += 2
+				continue
 			}
 			for j < len(line) && letterPlus == line[j] && letterPlus != ']' {
 				j++
@@ -227,8 +226,10 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			if j < len(line) && letterOptional == rune(line[j]) {
 				j++
 			}
+			continue
 		} else if pattern[i] == '.' {
 			j++
+			continue
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true, j
 		} else if pattern[i] == '(' {
@@ -253,7 +254,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		}
 		// fmt.Println("line[", j, "]: ", string(line[j]))
 		// fmt.Println(string(pattern[i]))
-		j++
 		i++
 	}
 	return true, j
