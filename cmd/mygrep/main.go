@@ -214,11 +214,13 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if pattern[i] == '+' && i != 0 {
 			letterPlus := pattern[i-1]
 			if letterPlus == ']' {
-				fmt.Println("t3eyi")
+				fmt.Println("t3eyi : ", j)
 			}
 			for j < len(line) && letterPlus == line[j] && letterPlus != ']' {
 				j++
 			}
+			fmt.Println("t3eyi : ", j)
+
 		} else if pattern[i] == '?' && i != 0 {
 			letterOptional := rune(pattern[i-1])
 			if j < len(line) && letterOptional == rune(line[j]) {
@@ -239,7 +241,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				return false, j
 			}
 			okay, jj := matchPattern(line, pattern[i:index], 0)
-			// fmt.Println("jj: ", jj)
+			fmt.Println("jj: ", jj)
 			if !okay {
 				return false, jj
 			} else {
