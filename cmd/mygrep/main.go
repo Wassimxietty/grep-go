@@ -58,7 +58,7 @@ func matchLine(line string, pattern string) (bool, error) {
 		startPos := strings.Index(pattern, "[")
 		endPos := strings.Index(pattern[startPos:], "]")
 		fmt.Println("endPos: ", endPos)
-		matchAnyPattern := pattern[startPos+1 : endPos]
+		matchAnyPattern := pattern[startPos+1 : endPos+1]
 		fmt.Println("matchAnyPattern: ", matchAnyPattern)
 
 	}
@@ -80,11 +80,11 @@ func matchLine(line string, pattern string) (bool, error) {
 	// 	fmt.Println("firstWord : ", firstWord)
 
 	// }
-	patternArray := strings.Split(pattern, ")")
-	patternMatch := string(patternArray[0])
-	patternMatch = patternMatch[1:]
-	fmt.Println("patternArray: ", patternArray)
-	fmt.Println("patternMatch: ", patternMatch)
+	// patternArray := strings.Split(pattern, ")")
+	// patternMatch := string(patternArray[0])
+	// patternMatch = patternMatch[1:]
+	// fmt.Println("patternArray: ", patternArray)
+	// fmt.Println("patternMatch: ", patternMatch)
 
 	for i := 0; i <= len(line); i++ {
 		okay, j := matchPattern(line, pattern, i)
