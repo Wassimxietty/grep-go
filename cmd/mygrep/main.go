@@ -238,6 +238,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 			}
 		} else if strings.Contains(pattern, "$") {
+			fmt.Println("i: ", i)
+
 			endPos := strings.Index(pattern[i:], "$")
 			matchAnyPattern := pattern[i:endPos]
 			for i := 0; i < endPos; i++ {
@@ -285,7 +287,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				i = endIndex
 			}
 		} else if string(line[j]) != string(pattern[i]) {
-			fmt.Println("i: ", i)
 			return false, j
 		}
 		// fmt.Println("line[", j, "]: ", string(line[j]))
