@@ -166,6 +166,9 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			matchAnyPattern := pattern[i+1 : endPos]
 			fmt.Println(string(line[j]))
 			fmt.Println(string(pattern[i]))
+			fmt.Println(string(pattern[i+1]))
+			fmt.Println(string(pattern[i+2]))
+
 			if pattern[i+1] == '^' {
 				fmt.Println("^ was found ")
 			}
