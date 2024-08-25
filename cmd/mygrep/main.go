@@ -274,7 +274,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true, j
 		} else if pattern[i] == '(' {
-			fmt.Println("arwah")
 			endIndex := strings.Index(pattern[i:], ")")
 			index := strings.Index(pattern[i:], "|")
 			i++
@@ -284,6 +283,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			if endIndex == -1 || i >= index {
 				return false, j
 			}
+			fmt.Println("pattern[i:index]: ", pattern[i:index])
+
 			okay, jj := matchPattern(line, pattern[i:index], 0)
 			fmt.Println("jj: ", jj, "okay ? ", okay)
 			if !okay {
