@@ -157,8 +157,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			fmt.Println("matchAnyPattern: ", matchAnyPattern)
 			if pattern[endPos+2] == '+' {
 				fmt.Println("i: ", i, "len(line) : ", len(line))
-				// matchAnyPattern : abcd ; technically, we're saying : if line[j] == part of matchAnyPattern which is abcd, it can keep writing because it's a +
-				// it stops when either i goes out of bounds of the line; or line[j] != part of matchAnyPatern
 				for j < len(line) && !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 					fmt.Println("line[j]: ", string(line[j]))
 					j++
@@ -170,17 +168,12 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			}
 			i = endPos
 		} else if pattern[i] == '[' && i+1 < n {
-			//for this next problem, look here instead of the + handling
-			//if you work on the + handling, you'll have to work backwards and make the work extra difficult for no reason
-			//meanwhile you can detect the + at the end after ] here and that will help you decide whether you deal with it the old way
-			//or create new handling which you need to do for this problem
-			//goodluck, tomorrow me
 			endPos := strings.Index(pattern[i:], "]")
 			matchAnyPattern := pattern[i+1 : endPos]
 			if pattern[endPos+1] == '+' {
 				// matchAnyPattern : abcd ; technically, we're saying : if line[j] == part of matchAnyPattern which is abcd, it can keep writing because it's a +
 				// it stops when either i goes out of bounds of the line; or line[j] != part of matchAnyPatern
-				for i < len(line) && strings.ContainsAny(matchAnyPattern, string(line[j])) {
+				for j < len(line) && strings.ContainsAny(matchAnyPattern, string(line[j])) {
 					j++
 				}
 				//it's somehow putting my j with a plus 2?
@@ -188,7 +181,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			} else if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
-			i = endPos
+			i = endPos + 2
 
 		} else if pattern[i] == '^' && i+1 < n {
 			if j != 0 {
@@ -219,13 +212,13 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			// 	i++
 			// 	fmt.Println("pattern[i++]: ", string(pattern[i]))
 			// }
-			for i < len(line) && letterPlus == line[j] && letterPlus != ']' {
+			for j < len(line) && letterPlus == line[j] && letterPlus != ']' {
 				j++
 			}
 			// continue
 		} else if pattern[i] == '?' && i != 0 {
 			letterOptional := rune(pattern[i-1])
-			if i < len(line) && letterOptional == rune(line[j]) {
+			if j < len(line) && letterOptional == rune(line[j]) {
 				j++
 			}
 			continue
@@ -245,7 +238,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				return false, j
 			}
 			okay, jj := matchPattern(line, pattern[i:index], 0)
-			fmt.Println("jj: ", jj)
+			// fmt.Println("jj: ", jj)
 			if !okay {
 				return false, jj
 			} else {
