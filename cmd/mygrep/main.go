@@ -234,7 +234,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					j = jj
 					fmt.Println("j: ", j)
 					i = endPos
-					fmt.Println("j: ", j)
+					fmt.Println("i: ", i)
 				}
 				if line[j] != pattern[i] {
 					return false, j
