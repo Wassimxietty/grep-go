@@ -153,12 +153,13 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						patternMatch = patternMatch[1:]
 					}
 					okay, jPose := matchPattern(line, patternMatch, j)
+					fmt.Println("okay:", okay, "JPOSE : ", jPose)
+
 					if okay {
 						j = jPose
 						fmt.Println("i 1:", i)
 						i += 2
 					}
-					fmt.Println("i 2:", i)
 
 					if i+2 < len(pattern) {
 						if pattern[i+2] == '$' {
