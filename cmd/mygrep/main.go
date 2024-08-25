@@ -180,8 +180,15 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if pattern[i] == '+' && i != 0 {
 			if pattern[i-1] == ']' {
 				fmt.Println("] spotted")
-				j++
-
+				okay, jj := matchPattern(line, plusPattern, j)
+				if okay {
+					fmt.Println("jj : ", jj)
+					j = jj
+					i++
+					continue
+				} else {
+					fmt.Println("jj : ", jj)
+				}
 				// for ii := i - 2; ii < 0; ii-- {
 				// 	if pattern[ii] == '[' {
 				// 		bracketIndex := ii
