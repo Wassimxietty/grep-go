@@ -157,8 +157,10 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						j = jPose
 						i += 2
 					}
-					if pattern[i+2] == '$' {
-						fmt.Println("maybe fel $")
+					if i+2 < len(pattern) {
+						if pattern[i+2] == '$' {
+							fmt.Println("maybe fel $")
+						}
 					}
 
 				} else {
