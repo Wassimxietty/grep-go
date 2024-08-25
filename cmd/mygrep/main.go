@@ -241,6 +241,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 			}
 		} else if strings.Contains(pattern, "$") {
+			fmt.Println("maybe ? just maybe?")
 			endPos := strings.Index(pattern[i:], "$")
 			matchAnyPattern := pattern[i:endPos]
 			for i := 0; i < endPos; i++ {
