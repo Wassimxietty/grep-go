@@ -118,7 +118,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						for j < len(line) && unicode.IsDigit(rune(line[j])) {
 							j++
 						}
-						fmt.Println("j: ", j)
+						// fmt.Println("j: ", j)
 					}
 				}
 
