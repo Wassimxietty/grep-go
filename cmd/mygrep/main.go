@@ -278,7 +278,10 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			for endIndex < n && pattern[endIndex] != ')' {
 				endIndex++
 			}
-			index := strings.Index(pattern[i:], "|")
+			index := i + 1
+			for index < n && pattern[index] != '|' {
+				index++
+			}
 			i++
 			if index == -1 {
 				index = endIndex
