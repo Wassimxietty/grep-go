@@ -54,6 +54,14 @@ func matchLine(line string, pattern string) (bool, error) {
 		plusArray := strings.Split(pattern, "+")
 		fmt.Println("plusArray : ", plusArray)
 	}
+	if strings.ContainsAny(pattern, "[") {
+		startPos := strings.Index(pattern, "[")
+		endPos := strings.Index(pattern[startPos:], "]")
+		fmt.Println("endPos: ", endPos)
+		matchAnyPattern := pattern[startPos+1 : endPos]
+		fmt.Println("matchAnyPattern: ", matchAnyPattern)
+
+	}
 	// if strings.Contains(pattern, "(") {
 	// 	startIndex := strings.Index(pattern, "(") + 1
 	// 	fmt.Println("startIndex : ", startIndex)
@@ -155,6 +163,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			//or create new handling which you need to do for this problem
 			//goodluck, tomorrow me
 			endPos := strings.Index(pattern[i:], "]")
+
 			matchAnyPattern := pattern[i+1 : endPos]
 			if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
