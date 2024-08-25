@@ -153,7 +153,16 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			fmt.Println("^ was found 2")
 			endPos := strings.Index(pattern[i:], "]")
 			matchAnyPattern := pattern[i+1 : endPos]
-			if strings.ContainsAny(matchAnyPattern, string(line[j])) {
+			if pattern[endPos+1] == '+' {
+				// matchAnyPattern : abcd ; technically, we're saying : if line[j] == part of matchAnyPattern which is abcd, it can keep writing because it's a +
+				// it stops when either i goes out of bounds of the line; or line[j] != part of matchAnyPatern
+				for i < len(line) && !strings.ContainsAny(matchAnyPattern, string(line[j])) {
+					fmt.Println("line[j]: ", string(line[j]))
+					j++
+				}
+				//it's somehow putting my j with a plus 2?
+				j -= 2
+			} else if strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
 			i = endPos
@@ -167,9 +176,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			matchAnyPattern := pattern[i+1 : endPos]
 			fmt.Println("matchAnyPattern: ", string(matchAnyPattern))
 
-			if pattern[i+1] == '^' {
-				fmt.Println("^ was found ")
-			}
 			if pattern[endPos+1] == '+' {
 				// matchAnyPattern : abcd ; technically, we're saying : if line[j] == part of matchAnyPattern which is abcd, it can keep writing because it's a +
 				// it stops when either i goes out of bounds of the line; or line[j] != part of matchAnyPatern
@@ -177,6 +183,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					fmt.Println("line[j]: ", string(line[j]))
 					j++
 				}
+				//it's somehow putting my j with a plus 2?
 				j -= 2
 			} else if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
@@ -238,8 +245,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				return false, j
 			}
 			okay, jj := matchPattern(line, pattern[i:index], 0)
-			fmt.Println("okay : ", okay, " jj : ", jj)
-			fmt.Println("endIndex: ", endIndex)
 			// fmt.Println("pattern[i]: ", string(pattern[i]))
 			if !okay {
 				return false, jj
