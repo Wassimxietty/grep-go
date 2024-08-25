@@ -205,11 +205,11 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			i = endPos
 		} else if pattern[i] == '+' && i != 0 {
 			letterPlus := pattern[i-1]
-			if letterPlus == ']' {
-				fmt.Println("+ was found in the + handling")
-				i++
-				fmt.Println("pattern[i++]: ", string(pattern[i]))
-			}
+			// if letterPlus == ']' {
+			// 	fmt.Println("+ was found in the + handling")
+			// 	i++
+			// 	fmt.Println("pattern[i++]: ", string(pattern[i]))
+			// }
 			for i < len(line) && letterPlus == line[j] && letterPlus != ']' {
 				j++
 			}
@@ -236,6 +236,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				return false, j
 			}
 			okay, jj := matchPattern(line, pattern[i:index], 0)
+			fmt.Println("okay : ", okay, " jj : ", jj)
+
 			// fmt.Println("pattern[i]: ", string(pattern[i]))
 			if !okay {
 				return false, jj
@@ -246,7 +248,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			return false, j
 		}
 		// fmt.Println("line[", j, "]: ", string(line[j]))
-		fmt.Println(string(pattern[i]))
+		// fmt.Println(string(pattern[i]))
 		j++
 		i++
 	}
