@@ -113,13 +113,15 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			// }
 			switch pattern[i+1] {
 			case 'd':
-				if pattern[i+2] == '+' {
-					for j < len(line) && unicode.IsDigit(rune(line[j])) {
-						j++
+				if strings.Contains(pattern, "+") {
+					if pattern[i+2] == '+' {
+						for j < len(line) && unicode.IsDigit(rune(line[j])) {
+							j++
+						}
+						fmt.Println("j: ", j)
 					}
-					fmt.Println("j: ", j)
-
 				}
+
 				if !unicode.IsDigit(rune(line[j])) {
 					return false, j
 				}
