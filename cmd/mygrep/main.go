@@ -289,16 +289,15 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				return false, jj
 			}
 			i = endIndex
-			fmt.Println("line[", j, "]: ", string(line[j]))
-			fmt.Println(string(pattern[i]))
+
 		} else if string(line[j]) != string(pattern[i]) {
 			fmt.Println("aha.")
 
 			return false, j
 		}
 
-		// fmt.Println("line[", j, "]: ", string(line[j]))
-		// fmt.Println(string(pattern[i]))
+		fmt.Println("line[", j, "]: ", string(line[j]))
+		fmt.Println(string(pattern[i]))
 		j++
 		i++
 		fmt.Println("j outside (): ", j)
