@@ -254,8 +254,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			}
 			i = endPos
 		} else if pattern[i] == '+' && i != 0 {
-			fmt.Println("maybe ?")
-
 			letterPlus := pattern[i-1]
 			if letterPlus != ']' {
 				for j < len(line) && letterPlus == line[j] {
@@ -273,6 +271,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true, j
 		} else if pattern[i] == '(' {
+			fmt.Println("maybe ?")
 			endIndex := strings.Index(pattern[i:], ")")
 			index := strings.Index(pattern[i:], "|")
 			i++
