@@ -135,7 +135,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						fmt.Println("j: ", j)
 					}
 				}
-
 				if !(unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
 					return false, j
 				}
@@ -184,6 +183,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					//it's somehow putting my j with a plus 2?
 					j -= 2
 					fmt.Println("j: ", j)
+					return true, j
 				} else {
 					return false, j
 				}
