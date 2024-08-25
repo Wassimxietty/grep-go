@@ -213,28 +213,24 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			i = endPos
 			fmt.Println("i: ", i)
 		} else if pattern[i] == '^' && i == 0 {
-			if j != 0 {
+			if pattern[i+1] == '(' {
+				endPos := i + 1
+				for endPos < n && pattern[endPos] != ')' {
+					endPos++
+				}
+				patternMatch := pattern[i+1 : endPos+1]
+				fmt.Println("patternMatch: ", patternMatch)
+				okay, jj := matchPattern(line, patternMatch, 0)
+				// fmt.Println(okay, " ", jj, " ")
+				if !okay {
+					return false, jj
+				}
+				j = jj
+				i = endPos
+				fmt.Println("i after giving it endPos: ", i)
+			}
+			if line[j] != pattern[i] {
 				return false, j
-			} else {
-				if pattern[i+1] == '(' {
-					endPos := i + 1
-					for endPos < n && pattern[endPos] != ')' {
-						endPos++
-					}
-					patternMatch := pattern[i+1 : endPos+1]
-					fmt.Println("patternMatch: ", patternMatch)
-					okay, jj := matchPattern(line, patternMatch, 0)
-					// fmt.Println(okay, " ", jj, " ")
-					if !okay {
-						return false, jj
-					}
-					j = jj
-					i = endPos
-					fmt.Println("i after giving it endPos: ", i)
-				}
-				if line[j] != pattern[i] {
-					return false, j
-				}
 			}
 		} else if strings.Contains(pattern, "$") {
 			endPos := strings.Index(pattern[i:], "$")
