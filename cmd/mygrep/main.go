@@ -182,9 +182,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			i = endPos
 
 		} else if pattern[i] == '^' && i+1 < n {
-			fmt.Println(string(line[j]))
-			fmt.Println(string(pattern[i]))
-			fmt.Println(string(pattern[i+1]))
 			if j != 0 {
 				fmt.Println("^ was found 2")
 				return false, j
@@ -246,6 +243,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				return false, jj
 			}
 			i = endIndex
+			fmt.Println(string(line[j]))
+			fmt.Println(string(pattern[i]))
 		} else if string(line[j]) != string(pattern[i]) {
 			return false, j
 		}
