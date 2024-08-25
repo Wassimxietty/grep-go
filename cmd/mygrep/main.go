@@ -118,7 +118,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						for j < len(line) && unicode.IsDigit(rune(line[j])) {
 							j++
 						}
-						fmt.Println("be fr?", j)
+						// fmt.Println("j: ", j)
 					}
 				}
 
@@ -271,9 +271,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true, j
 		} else if pattern[i] == '(' {
-			fmt.Println("i: ", i)
-			fmt.Println("j: ", j)
-
 			endIndex := strings.Index(pattern[i:], ")")
 			index := strings.Index(pattern[i:], "|")
 			i++
@@ -289,6 +286,9 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			} else {
 				i = endIndex
 			}
+			fmt.Println("i: ", i)
+			fmt.Println("j: ", j)
+
 		} else if string(line[j]) != string(pattern[i]) {
 			return false, j
 		}
