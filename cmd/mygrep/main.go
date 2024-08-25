@@ -50,10 +50,10 @@ func matchLine(line string, pattern string) (bool, error) {
 		fmt.Println("matchAnyParent : ", matchAnyPattern)
 		fmt.Println("endPos : ", endPos)
 	}
-	if strings.ContainsAny(pattern, "+") {
-		plusArray := strings.Split(pattern, "+")
-		fmt.Println("plusArray : ", plusArray)
-	}
+	// if strings.ContainsAny(pattern, "+") {
+	// 	plusArray := strings.Split(pattern, "+")
+	// 	fmt.Println("plusArray : ", plusArray)
+	// }
 	// if strings.ContainsAny(pattern, "[") {
 	// 	startPos := strings.Index(pattern, "[")
 	// 	endPos := strings.Index(pattern[startPos:], "]")
@@ -129,7 +129,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				if unicode.IsDigit(rune(pattern[i+1])) {
 					number := int(pattern[i+1]-'0') - 1
 					if number == -1 {
-						fmt.Println("patternArray[number] is patternArray[-1]")
+						// fmt.Println("patternArray[number] is patternArray[-1]")
 						return false, j
 					}
 					patternMatch := patternArray[number]
@@ -168,7 +168,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				//it's somehow putting my j with a plus 2?
 				j -= 2
 				fmt.Println("j: ", j)
-			} else if strings.ContainsAny(matchAnyPattern, string(line[j])) {
+			}
+			if strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
 			i = endPos
@@ -186,7 +187,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 				//it's somehow putting my j with a plus 2?
 				j -= 2
-			} else if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
+			}
+			if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
 			fmt.Println("i: ", i)
@@ -242,7 +244,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				return false, j
 			}
 			okay, jj := matchPattern(line, pattern[i:index], 0)
-			fmt.Println("jj: ", jj)
+			// fmt.Println("jj: ", jj)
 			if !okay {
 				return false, jj
 			} else {
