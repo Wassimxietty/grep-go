@@ -227,11 +227,10 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					// fmt.Println(okay, " ", jj, " ")
 					if !okay {
 						return false, jj
-					} else {
-						j = jj
-						i = endPos
-						fmt.Println("i after giving it endPos: ", i)
 					}
+					j = jj
+					i = endPos
+					fmt.Println("i after giving it endPos: ", i)
 				}
 				if line[j] != pattern[i] {
 					return false, j
