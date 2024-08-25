@@ -158,7 +158,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					if okay {
 						j = jPose
 						i += 2
-						continue
 					}
 
 				} else {
@@ -288,9 +287,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		// fmt.Println(string(pattern[i]))
 		j++
 		i++
-		fmt.Println("i outside (): ", i)
-		fmt.Println("j outside (): ", j)
-
 	}
 	return true, j
 }
