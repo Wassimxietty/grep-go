@@ -163,13 +163,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						fmt.Println("i 1:", i)
 						i += 2
 					}
-
-					if i+2 < len(pattern) {
-						if pattern[i+2] == '$' {
-							fmt.Println("maybe fel $")
-							fmt.Println("len")
-						}
-					}
 				} else {
 					if string(line[j]) != string(pattern[i+1]) {
 						return false, j
@@ -273,7 +266,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					j++
 				}
 			}
-		} else if pattern[i] == '.' {
+		} else if pattern[i] == '.' && i < n {
 			j++
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true, j
