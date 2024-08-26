@@ -286,8 +286,15 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			if endIndex == -1 || i >= index {
 				return false, j
 			}
+			startPos := j // Default to starting from current position
+
+			if i == 0 || (pattern[i-1] == '|' || pattern[i-1] == '(') {
+				// If at the start of the pattern or following an alternation
+				startPos = 0
+			}
 			fmt.Println("pattern[i:index]: ", pattern[i:index])
-			okay, jj := matchPattern(line, pattern[i:index], 0)
+			// Call matchPattern with either 0 or j based on the logic above
+			okay, jj := matchPattern(line, pattern[i:index], startPos)
 			fmt.Println("jj: ", jj, "okay ? ", okay)
 			if !okay {
 				return false, jj
