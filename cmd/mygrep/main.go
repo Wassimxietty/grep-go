@@ -266,7 +266,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					j++
 				}
 			}
-		} else if i < n {
+		} else if i < n && pattern[i] == '.' {
 			if pattern[i] == '.' {
 				j++
 			}
