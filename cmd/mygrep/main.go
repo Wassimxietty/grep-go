@@ -264,6 +264,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					fmt.Println("line[j] : ", string(line[j]))
 					j++
 				}
+				j--
 			}
 		} else if pattern[i] == '?' && i != 0 {
 			letterOptional := rune(pattern[i-1])
