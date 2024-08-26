@@ -296,23 +296,13 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				return false, j
 			}
 			fmt.Println("pattern[i:index]: ", pattern[i:index])
-			if strings.Contains(line, "once") {
-				okay, jj := matchPattern(line, pattern[i:index], j)
-				fmt.Println("jj: ", jj, "okay ? ", okay)
-				if !okay {
-					return false, jj
-				}
-				i = endIndex
-				j = jj - 1
-			} else {
-				okay, jj := matchPattern(line, pattern[i:index], j)
-				fmt.Println("jj: ", jj, "okay ? ", okay)
-				if !okay {
-					return false, jj
-				}
-				i = endIndex
-				j = jj - 1
+			okay, jj := matchPattern(line, pattern[i:index], j)
+			fmt.Println("jj: ", jj, "okay ? ", okay)
+			if !okay {
+				return false, jj
 			}
+			i = endIndex
+			j = jj - 1
 
 		} else if string(line[j]) != string(pattern[i]) {
 			fmt.Println("pattern[i]: ", string(pattern[i]), " = ", string(line[j]))
