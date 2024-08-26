@@ -301,32 +301,11 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			okay, jj := matchPattern(line, pattern[i:index], j)
 			fmt.Println("jj: ", jj, "okay ? ", okay)
 			if !okay {
-				return false, jj
-			} else {
 				okay, jj := matchPattern(line, pattern[index:endIndex], j)
 				fmt.Println("the else ::: jj: ", jj, "okay ? ", okay)
 				if !okay {
 					return false, jj
 				}
-			}
-			i = endIndex
-			j = jj - 1
-
-		} else if pattern[i] == '(' {
-			endIndex := strings.Index(pattern, ")")
-			index := strings.Index(pattern[i:], "|")
-			i++
-			if index == -1 {
-				index = endIndex
-			}
-			if endIndex == -1 || i >= index {
-				return false, j
-			}
-			fmt.Println("pattern[i:index]: ", pattern[i:index])
-			okay, jj := matchPattern(line, pattern[i:index], j)
-			fmt.Println("jj: ", jj, "okay ? ", okay)
-			if !okay {
-				return false, jj
 			}
 			i = endIndex
 			j = jj - 1
