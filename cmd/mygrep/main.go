@@ -266,8 +266,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 				j--
 			}
-		} else if pattern[i] == '?' && i != 0 {
-			letterOptional := rune(pattern[i-1])
+		} else if pattern[i+1] == '?' && i != 0 {
+			letterOptional := rune(pattern[i])
 			if j < len(line) && letterOptional == rune(line[j]) {
 				j++
 			}
