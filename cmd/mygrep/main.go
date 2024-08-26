@@ -302,7 +302,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			}
 
 		} else if string(line[j]) != string(pattern[i]) {
-			fmt.Println("aha.")
+			fmt.Println("pattern[i]: ", string(pattern[i]))
 			return false, j
 		}
 		// if i < len(pattern) {
