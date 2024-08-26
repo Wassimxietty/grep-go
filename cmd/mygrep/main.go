@@ -288,8 +288,11 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			}
 			startPos := j // Default to starting from current position
 
-			if i == 0 {
-				// If at the start of the pattern or following an alternation
+			if i == 0 || strings.ContainsAny(string(pattern[i-1]), "|^") {
+				// If the group is an alternation, starts with ^, or is independent
+				startPos = 0
+			} else if pattern[i-1] == '(' && (i == 0 || pattern[i-2] == '^') {
+				// If the group is right after the start or part of an alternation
 				startPos = 0
 			}
 			fmt.Println("pattern[i:index]: ", pattern[i:index])
