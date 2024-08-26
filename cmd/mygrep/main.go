@@ -105,7 +105,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				k++
 			}
 			word := pattern[i+1 : k]
-			println("word : ", word)
 			patternArray = append(patternArray, word)
 		}
 	}
@@ -327,7 +326,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		// }
 		j++
 		i++
-		fmt.Println("j outside (): ", j)
+		// fmt.Println("j outside (): ", j)
 
 	}
 	return true, j
