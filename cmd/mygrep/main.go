@@ -324,8 +324,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		// 	fmt.Println("j: ", j, "line[j]: ", string(line[i]))
 
 		// }
-		j++
 		i++
+		j++
 		// fmt.Println("j outside (): ", j)
 
 	}
