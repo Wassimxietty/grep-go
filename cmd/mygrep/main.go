@@ -109,7 +109,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			patternArray = append(patternArray, word)
 		}
 	}
-	println("patternArray: ", patternArray)
+	println("patternArray: ", string(patternArray[0]))
 	j := pos
 	i := 0
 	for i < n {
