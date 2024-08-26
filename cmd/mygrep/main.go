@@ -80,10 +80,10 @@ func matchLine(line string, pattern string) (bool, error) {
 	// 	fmt.Println("firstWord : ", firstWord)
 
 	// }
-	patternArray := strings.Split(pattern, "()")
+	// patternArray := strings.Split(pattern, "()")
 	// patternMatch := string(patternArray[0])
 	// patternMatch = patternMatch[1:]
-	fmt.Println("patternArray: ", patternArray)
+	// fmt.Println("patternArray: ", patternArray)
 	// fmt.Println("patternMatch: ", patternMatch)
 
 	for i := 0; i <= len(line); i++ {
@@ -96,8 +96,20 @@ func matchLine(line string, pattern string) (bool, error) {
 	return false, nil
 }
 func matchPattern(line string, pattern string, pos int) (bool, int) {
-	patternArray := strings.Split(pattern, ")")
+	var patternArray []string
 	n := len(pattern)
+	for i := 0; i < n; i++ {
+		if pattern[i] == '(' {
+			k := i + 1
+			for k < n && pattern[k] != ')' {
+				k++
+			}
+			word := pattern[i : k+1]
+			println("word : ", word)
+			patternArray = append(patternArray, word)
+		}
+	}
+	println("patternArray: ", patternArray)
 	j := pos
 	i := 0
 	for i < n {
