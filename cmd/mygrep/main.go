@@ -303,6 +303,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				return false, jj
 			} else {
 				okay, jj := matchPattern(line, pattern[index:endIndex], j)
+				fmt.Println("the else ::: jj: ", jj, "okay ? ", okay)
 				if !okay {
 					return false, jj
 				}
@@ -342,7 +343,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		// }
 		i++
 		j++
-		fmt.Println("j outside (): ", j)
+		// fmt.Println("j outside (): ", j)
 
 	}
 	return true, j
