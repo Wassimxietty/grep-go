@@ -301,6 +301,11 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			fmt.Println("jj: ", jj, "okay ? ", okay)
 			if !okay {
 				return false, jj
+			} else {
+				okay, jj := matchPattern(line, pattern[index:endIndex], j)
+				if !okay {
+					return false, jj
+				}
 			}
 			i = endIndex
 			j = jj - 1
