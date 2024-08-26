@@ -311,6 +311,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					return false, jj
 				}
 				i = endIndex
+				j = jj - 1
 			}
 
 		} else if string(line[j]) != string(pattern[i]) {
