@@ -288,7 +288,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			}
 			startPos := j // Default to starting from current position
 
-			if i == 0 || (pattern[i-1] == '|' || pattern[i-1] == '(') {
+			if i == 0 {
 				// If at the start of the pattern or following an alternation
 				startPos = 0
 			}
