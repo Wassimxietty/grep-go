@@ -104,7 +104,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			for k < n && pattern[k] != ')' {
 				k++
 			}
-			word := pattern[i+1 : k]
+			word := pattern[i : k+1]
 			patternArray = append(patternArray, word)
 		}
 	}
