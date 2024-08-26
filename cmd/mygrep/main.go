@@ -286,14 +286,12 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			if endIndex == -1 || i >= index {
 				return false, j
 			}
-			startPos := j // Default to starting from current position
+			startPos := 0 // Start with 0 as the default position
 
-			if i == 0 || strings.ContainsAny(string(pattern[i-1]), "|^") {
-				// If the group is an alternation, starts with ^, or is independent
-				startPos = 0
-			} else if pattern[i-1] == '(' && (i == 0 || pattern[i-2] == '^') {
-				// If the group is right after the start or part of an alternation
-				startPos = 0
+			// Condition to switch to j
+			if i > 0 && (pattern[i-1] != '|' && pattern[i-1] != '(' && pattern[i-1] != '^') {
+				// If the previous character is not a part of alternation, group start, or start anchor (^)
+				startPos = j
 			}
 			fmt.Println("pattern[i:index]: ", pattern[i:index])
 			// Call matchPattern with either 0 or j based on the logic above
