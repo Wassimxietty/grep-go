@@ -274,10 +274,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if strings.Contains(pattern, "?") && line == "act" {
 			return true, j
 		} else if pattern[i] == '(' {
-			endIndex := i + 1
-			for endIndex < n && pattern[endIndex] != ')' {
-				endIndex++
-			}
+			endIndex := strings.Index(pattern[i:], ")")
 			index := strings.Index(pattern[i:], "|")
 			i++
 			if index == -1 {
@@ -286,16 +283,9 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			if endIndex == -1 || i >= index {
 				return false, j
 			}
-			startPos := 0 // Start with 0 as the default position
-
-			// Condition to switch to j
-			if i > 0 && (pattern[i-1] != '|' && pattern[i-1] != '(' && pattern[i-1] != '^') {
-				// If the previous character is not a part of alternation, group start, or start anchor (^)
-				startPos = j
-			}
 			fmt.Println("pattern[i:index]: ", pattern[i:index])
-			// Call matchPattern with either 0 or j based on the logic above
-			okay, jj := matchPattern(line, pattern[i:index], startPos)
+
+			okay, jj := matchPattern(line, pattern[i:index], 0)
 			fmt.Println("jj: ", jj, "okay ? ", okay)
 			if !okay {
 				return false, jj
@@ -303,7 +293,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			i = endIndex
 
 		} else if string(line[j]) != string(pattern[i]) {
-			fmt.Println("line[j] :", string(line[j]), "pattern[i]: ", string(pattern[i]))
+			fmt.Println("aha.")
 			return false, j
 		}
 		// if i < len(pattern) {
