@@ -262,7 +262,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			if letterPlus != ']' {
 				for j < len(line) && letterPlus == line[j] {
 					fmt.Println("line[j] : ", string(line[j]))
-
 					j++
 				}
 			}
@@ -315,7 +314,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		// }
 		j++
 		i++
-		fmt.Println("j outside (): ", j)
+		fmt.Println("i outside (): ", i)
 
 	}
 	return true, j
