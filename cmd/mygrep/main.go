@@ -191,7 +191,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						return false, j
 					}
 				} else {
-					if string(line[j]) != string(pattern[i+1]) {
+					if string(line[j]) != string(pattern[i-1]) {
 						return false, j
 					}
 					j++ // Move to the next character in the line
