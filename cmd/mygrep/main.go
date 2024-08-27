@@ -96,25 +96,25 @@ func matchLine(line string, pattern string) (bool, error) {
 	return false, nil
 }
 func matchPattern(line string, pattern string, pos int) (bool, int) {
-	var patternArray []string
+	// var patternArray []string
 	var lineArray []string
 
 	n := len(pattern)
-	for i := 0; i < n; i++ {
-		if pattern[i] == '(' {
-			k := i + 1
-			for k < n && pattern[k] != ')' {
-				k++
-			}
-			word := pattern[i : k+1]
-			// fmt.Println(word)
-			if !strings.Contains(word, "|") {
-				word = pattern[i+1 : k]
-				// fmt.Println(word)
-			}
-			patternArray = append(patternArray, word)
-		}
-	}
+	// for i := 0; i < n; i++ {
+	// 	if pattern[i] == '(' {
+	// 		k := i + 1
+	// 		for k < n && pattern[k] != ')' {
+	// 			k++
+	// 		}
+	// 		word := pattern[i : k+1]
+	// 		// fmt.Println(word)
+	// 		if !strings.Contains(word, "|") {
+	// 			word = pattern[i+1 : k]
+	// 			// fmt.Println(word)
+	// 		}
+	// 		patternArray = append(patternArray, word)
+	// 	}
+	// }
 	j := pos
 	i := 0
 	for i < n {
@@ -246,22 +246,23 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			if j != 0 {
 				return false, j
 			} else {
-				if pattern[i+1] == '(' {
-					endPos := i + 1
-					for endPos < n && pattern[endPos] != ')' {
-						endPos++
-					}
-					patternMatch := pattern[i+2 : endPos+1]
-					fmt.Println("patternMatch: ", patternMatch)
-					okay, jj := matchPattern(line, patternMatch, 0)
-					if !okay {
-						return false, jj
-					}
-					j = jj
-					i = endPos + 1
-				} else {
-					i++
-				}
+				i++
+				// if pattern[i+1] == '(' {
+				// 	endPos := i + 1
+				// 	for endPos < n && pattern[endPos] != ')' {
+				// 		endPos++
+				// 	}
+				// 	patternMatch := pattern[i+2 : endPos+1]
+				// 	fmt.Println("patternMatch: ", patternMatch)
+				// 	okay, jj := matchPattern(line, patternMatch, 0)
+				// 	if !okay {
+				// 		return false, jj
+				// 	}
+				// 	j = jj
+				// 	i = endPos + 1
+				// } else {
+				// 	i++
+				// }
 
 			}
 		} else if i+1 < n && pattern[i+1] == '$' {
