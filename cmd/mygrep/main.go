@@ -286,7 +286,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			fmt.Println("i: ", i)
 			if index == -1 {
 				index = endIndex
-			} else {
 				i++
 			}
 			fmt.Println("i 2: ", i)
