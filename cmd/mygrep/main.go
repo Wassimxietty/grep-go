@@ -189,7 +189,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						i += 2
 					}
 					if i < n && pattern[i] == '$' {
-						return len(line) == j, j
+						return len(line) == j+1, j
 					}
 
 				} else {
