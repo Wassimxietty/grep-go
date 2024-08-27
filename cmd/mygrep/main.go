@@ -172,7 +172,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					i++
 				}
 				// Check if the rest of the pattern matches after \w+ match
-				_, nextJ := matchPattern(line[j:], pattern[i+1:], 0)
+				_, nextJ := matchPattern(line[j:], pattern[i+1:], j)
 				if nextJ == len(line[start:]) {
 					return true, j
 				}
