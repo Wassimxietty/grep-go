@@ -333,7 +333,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			fmt.Println("pattern[i]: ", string(pattern[i]), " = ", string(line[j]))
 			return false, j
 		}
-		if i+1 < n && pattern[i+1] == '$' {
+		if i < n && pattern[i] == '$' {
 			return false, j
 
 		}
