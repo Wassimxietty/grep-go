@@ -248,7 +248,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					i = endPos + 1
 					fmt.Println("i: ", i)
 				} else {
-					j++
+					i++
 				}
 
 			}
