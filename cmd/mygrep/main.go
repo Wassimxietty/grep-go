@@ -120,16 +120,16 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 	for i < n {
 		// fmt.Println("j outsjde (): ", j)
 		// fmt.Println("i outside (): ", i)
-		if i+3 < n && pattern[i+3] == '$' {
-			return false, j
 
-		}
 		if j >= len(line) {
 			fmt.Println("j is equal or more to len(line)", j)
 			return false, j
 		}
 		if pattern[i] == '\\' && i+1 < n {
+			if i+2 < n && pattern[i+2] == '$' {
+				return false, j
 
+			}
 			// if pattern[len(pattern)-1] == 's' {
 			// 	return true
 			// }
