@@ -283,9 +283,11 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if pattern[i] == '(' {
 			endIndex := strings.Index(pattern, ")")
 			index := strings.Index(pattern[i:], "|")
-			i++
+
 			if index == -1 {
 				index = endIndex
+			} else {
+				i++
 			}
 			if endIndex == -1 || i >= index {
 				return false, j
