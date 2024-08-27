@@ -187,7 +187,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						fmt.Println("i 1:", i)
 						i += 2
 					}
-					if i < n && pattern[i] == '$' {
+					if i < n && pattern[i+1] == '$' {
 						return false, j
 					}
 				} else {
