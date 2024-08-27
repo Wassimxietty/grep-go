@@ -171,6 +171,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					return false, j
 				}
 				i++
+				fmt.Println("j: ", j)
 
 			default:
 				if unicode.IsDigit(rune(pattern[i+1])) {
@@ -332,17 +333,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			fmt.Println("pattern[i]: ", string(pattern[i]), " = ", string(line[j]))
 			return false, j
 		}
-
-		// if i < len(pattern) {
-		// 	fmt.Println("i: ", i, "pattern[i]: ", string(pattern[i]))
-		// }
-
 		i++
 		j++
-		if j < 10 {
-			fmt.Println("j: ", j, "line[j]: ", string(line[i]))
-
-		}
 	}
 	return true, j
 }
