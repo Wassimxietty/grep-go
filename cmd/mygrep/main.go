@@ -254,7 +254,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			}
 		} else if i+1 < n && pattern[i+1] == '$' {
 			k := i
-			for k < n && (i == 0 || pattern[k] != ' ') {
+			for k < n && (i == 0) {
 				k--
 			}
 			fmt.Println("maybe ? just maybe?")
