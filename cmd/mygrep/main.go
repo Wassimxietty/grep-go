@@ -253,7 +253,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 			}
 		} else if i+1 < n && pattern[i+1] == '$' {
-			fmt.Println("line[j] : ", string(line[j]))
+			return j == len(line), j
 
 		} else if pattern[i] == '+' && i != 0 {
 			letterPlus := pattern[i-1]
