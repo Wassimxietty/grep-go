@@ -225,9 +225,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			} else if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
 			}
-			fmt.Println("i: ", i)
 			i = endPos
-			fmt.Println("i: ", i)
 		} else if pattern[i] == '^' && i == 0 {
 			if j != 0 {
 				return false, j
@@ -244,9 +242,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						return false, jj
 					}
 					j = jj
-					fmt.Println("j: ", j)
 					i = endPos + 1
-					fmt.Println("i: ", i)
 				} else {
 					i++
 				}
@@ -290,7 +286,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			if index == -1 {
 				index = endIndex
 			}
-			fmt.Println(string(pattern[index]))
 			if endIndex == -1 || i >= index {
 				return false, j
 			}
@@ -321,9 +316,9 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		// 	fmt.Println("j: ", j, "line[j]: ", string(line[i]))
 
 		// }
+		fmt.Println("i outside (): ", i)
 		i++
 		j++
-		fmt.Println("i outside (): ", i)
 
 	}
 	return true, j
