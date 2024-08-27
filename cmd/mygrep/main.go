@@ -265,9 +265,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				// }
 
 			}
-		} else if i+1 < n && pattern[i+1] == '$' {
-			j++
-
 		} else if pattern[i] == '+' && i != 0 {
 			letterPlus := pattern[i-1]
 			fmt.Println("leterPlus : ", string(letterPlus))
