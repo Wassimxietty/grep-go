@@ -105,10 +105,10 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				k++
 			}
 			word := pattern[i : k+1]
-			fmt.Println(word)
+			// fmt.Println(word)
 			if !strings.Contains(word, "|") {
 				word = pattern[i+1 : k]
-				fmt.Println(word)
+				// fmt.Println(word)
 			}
 			patternArray = append(patternArray, word)
 		}
