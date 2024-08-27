@@ -293,7 +293,13 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			okay, jj := matchPattern(line, pattern[i:index], j)
 			fmt.Println("jj: ", jj, "okay ? ", okay)
 			if !okay {
-				return false, jj
+				if strings.Contains(pattern[i:], "|") {
+					okay, jj := matchPattern(line, pattern[index:endIndex], j)
+					fmt.Println("the else ::: jj: ", jj, "okay ? ", okay)
+					if !okay {
+						return false, jj
+					}
+				}
 			}
 			i = endIndex
 			j = jj - 1
