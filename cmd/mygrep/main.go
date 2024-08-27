@@ -273,7 +273,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			letterOptional := rune(pattern[i])
 			fmt.Println("letterOptional: ", string(letterOptional))
 			if j < len(line) && letterOptional == rune(line[j]) {
-				fmt.Println("line[j]: ", rune(line[j]))
+				fmt.Println("line[j]: ", string(line[j]))
 				j++
 			}
 			i += 2
