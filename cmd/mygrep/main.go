@@ -155,7 +155,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				i++
 			case 'w':
 				fmt.Println("entered \\w: ")
-
+				start := j
 				if strings.Contains(pattern, "+") {
 					if pattern[i+2] == '+' {
 						for j < len(line) && (unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
@@ -169,9 +169,14 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					if !(unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
 						return false, j
 					}
+					i++
 				}
-
-				i++
+				// Check if the rest of the pattern matches after \w+ match
+				_, nextJ := matchPattern(line[start:], pattern[i+1:], 0)
+				if nextJ == len(line[start:]) {
+					return true, j
+				}
+				return false, j
 			default:
 				if unicode.IsDigit(rune(pattern[i+1])) {
 					if pattern[len(pattern)-1] == '$' && strings.Contains(line, "pies") {
