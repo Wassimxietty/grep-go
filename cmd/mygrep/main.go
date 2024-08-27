@@ -179,9 +179,9 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						fmt.Println("patternArray[number] is patternArray[-1]")
 						return false, j
 					}
-					patternMatch := patternArray[number]
-					fmt.Println("patternMatch: ", patternMatch)
-					okay, jPose := matchPattern(line, patternMatch, j)
+					wordMatch := lineArray[number]
+					fmt.Println("patternMatch: ", wordMatch)
+					okay, jPose := matchPattern(line, wordMatch, j)
 					fmt.Println("okay:", okay, "JPOSE : ", jPose)
 
 					if okay {
