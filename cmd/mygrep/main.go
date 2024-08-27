@@ -172,7 +172,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				i++
 			default:
 				if unicode.IsDigit(rune(pattern[i+1])) {
-					if i < n && pattern[i+2] == '$' {
+					if pattern[i+2] == '$' {
 						return false, j
 					}
 					number := int(pattern[i+1]-'0') - 1
