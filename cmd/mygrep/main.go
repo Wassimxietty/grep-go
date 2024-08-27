@@ -173,6 +173,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				i++
 
 			default:
+				fmt.Println("entered \\w: ")
 				if unicode.IsDigit(rune(pattern[i+1])) {
 					number := int(pattern[i+1]-'0') - 1
 					if number == -1 {
@@ -189,11 +190,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						fmt.Println("i 1:", i)
 						i += 2
 					}
-					if pattern[i] == '$' {
-						if j == len(line) {
-							return false, j
-						}
-					}
+
 				} else {
 					if string(line[j]) != string(pattern[i+1]) {
 						return false, j
