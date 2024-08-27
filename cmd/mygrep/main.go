@@ -104,7 +104,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			for k < n && pattern[k] != ')' {
 				k++
 			}
-			word := pattern[i+1 : k]
+			word := pattern[i:k]
 			patternArray = append(patternArray, word)
 		}
 	}
@@ -302,7 +302,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 			}
 			i = endIndex
-			j = jj
+			j = jj - 1
 
 		} else if string(line[j]) != string(pattern[i]) {
 			fmt.Println("pattern[i]: ", string(pattern[i]), " = ", string(line[j]))
