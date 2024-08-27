@@ -185,7 +185,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					if okay {
 						j = jPose
 						fmt.Println("i 1:", i)
-						i += 2
+						i++
 					}
 
 				} else {
@@ -265,7 +265,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 
 			}
 		} else if i+1 < n && pattern[i+1] == '$' {
-			return false, j
+			return j+1 == len(line), j
 
 		} else if pattern[i] == '+' && i != 0 {
 			letterPlus := pattern[i-1]
