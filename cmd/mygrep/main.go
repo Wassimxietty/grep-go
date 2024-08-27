@@ -249,26 +249,27 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			fmt.Println("j: ", j)
 			if j != 0 {
 				return false, j
-			} else {
-				i++
-				// if pattern[i+1] == '(' {
-				// 	endPos := i + 1
-				// 	for endPos < n && pattern[endPos] != ')' {
-				// 		endPos++
-				// 	}
-				// 	patternMatch := pattern[i+2 : endPos+1]
-				// 	fmt.Println("patternMatch: ", patternMatch)
-				// 	okay, jj := matchPattern(line, patternMatch, 0)
-				// 	if !okay {
-				// 		return false, jj
-				// 	}
-				// 	j = jj
-				// 	i = endPos + 1
-				// } else {
-				// 	i++
-				// }
-
 			}
+			// } else {
+			// 	i++
+			// 	// if pattern[i+1] == '(' {
+			// 	// 	endPos := i + 1
+			// 	// 	for endPos < n && pattern[endPos] != ')' {
+			// 	// 		endPos++
+			// 	// 	}
+			// 	// 	patternMatch := pattern[i+2 : endPos+1]
+			// 	// 	fmt.Println("patternMatch: ", patternMatch)
+			// 	// 	okay, jj := matchPattern(line, patternMatch, 0)
+			// 	// 	if !okay {
+			// 	// 		return false, jj
+			// 	// 	}
+			// 	// 	j = jj
+			// 	// 	i = endPos + 1
+			// 	// } else {
+			// 	// 	i++
+			// 	// }
+
+			// }
 		} else if i+1 < n && pattern[i+1] == '$' {
 			return j+1 == len(line), j
 
