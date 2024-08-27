@@ -250,8 +250,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			if j != 0 {
 				return false, j
 			}
-			fmt.Println("j: ", j)
-
 			// else {
 			// i++
 			// if pattern[i+1] == '(' {
@@ -338,6 +336,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			fmt.Println("pattern[i]: ", string(pattern[i]), " = ", string(line[j]))
 			return false, j
 		}
+		fmt.Println("j: ", j)
+
 		i++
 		j++
 	}
