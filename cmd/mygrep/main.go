@@ -156,20 +156,24 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			case 'w':
 				fmt.Println("entered \\w: ")
 
-				if strings.Contains(pattern, "+") {
-					if pattern[i+2] == '+' {
-						for j < len(line) && (unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
-							fmt.Println("j: ", j)
-							j++
-						}
-						fmt.Println("j: ", j)
-						i++
+				if pattern[i+2] == '+' {
+					// Ensure to match one or more word characters
+					if !unicode.IsLetter(rune(line[j])) && !unicode.IsDigit(rune(line[j])) && line[j] != '_' {
+						return false, j
 					}
-				} else if !(unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
-					return false, j
+					for j < len(line) && (unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
+						fmt.Println("j: ", j)
+						j++
+					}
+					i++ // Move past the 'w'
+				} else {
+					// Single word character match
+					if !(unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
+						return false, j
+					}
+					i++ // Move past the 'w'
+					j++ // Move to the next character in the line
 				}
-
-				i++
 			default:
 				if unicode.IsDigit(rune(pattern[i+1])) {
 					if pattern[len(pattern)-1] == '$' && strings.Contains(line, "pies") {
@@ -325,11 +329,9 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 			}
 			//handling lineArray
-			if strings.Contains(pattern, "\\1") {
-				word := line[j:jj]
-				lineArray = append(lineArray, word)
-				fmt.Println("lineArray: ", lineArray)
-			}
+			word := line[j:jj]
+			lineArray = append(lineArray, word)
+			fmt.Println("lineArray: ", lineArray)
 			i = endIndex
 			j = jj - 1
 
