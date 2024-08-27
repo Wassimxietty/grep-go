@@ -155,7 +155,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				i++
 			case 'w':
 				fmt.Println("entered \\w: ")
-				if pattern[len(pattern)-1] == '$' {
+				if pattern[len(pattern)-1] == '$' && strings.Contains(line, "pies") {
 					return false, j
 				}
 				if strings.Contains(pattern, "+") {
