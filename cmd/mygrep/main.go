@@ -283,6 +283,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if pattern[i] == '(' {
 			endIndex := strings.Index(pattern, ")")
 			index := strings.Index(pattern[i:], "|")
+			i++
 			if index == -1 {
 				index = endIndex
 			}
@@ -317,7 +318,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		// }
 		i++
 		j++
-		fmt.Println("j outside (): ", j)
+		// fmt.Println("j outside (): ", j)
 
 	}
 	return true, j
