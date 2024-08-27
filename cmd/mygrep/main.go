@@ -246,10 +246,12 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			}
 			i = endPos
 		} else if pattern[i] == '^' && i == 0 {
-			fmt.Println("hello")
+			fmt.Println("j: ", j)
 			if j != 0 {
 				return false, j
 			}
+			fmt.Println("j: ", j)
+
 			// else {
 			// i++
 			// if pattern[i+1] == '(' {
