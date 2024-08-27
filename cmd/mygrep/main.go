@@ -97,7 +97,6 @@ func matchLine(line string, pattern string) (bool, error) {
 }
 func matchPattern(line string, pattern string, pos int) (bool, int) {
 	var patternArray []string
-	var lineArray []string
 
 	n := len(pattern)
 	for i := 0; i < n; i++ {
@@ -319,12 +318,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					}
 				}
 			}
-			//handling lineArray
-			word := line[j:jj]
-			fmt.Println("word: ", word)
-			lineArray = append(lineArray, word)
-			fmt.Println("lineArray: ", lineArray)
-
 			i = endIndex
 			j = jj - 1
 
