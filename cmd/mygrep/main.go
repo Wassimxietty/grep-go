@@ -244,6 +244,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			}
 			i = endPos
 		} else if pattern[i] == '^' && i == 0 {
+			fmt.Println("hello")
 			if j != 0 {
 				return false, j
 			} else {
