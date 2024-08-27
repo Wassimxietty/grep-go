@@ -322,7 +322,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			}
 			//handling lineArray
 			word := line[j:jj]
-			fmt.Println("word: ", word)
 			lineArray = append(lineArray, word)
 			fmt.Println("lineArray: ", lineArray)
 			i = endIndex
@@ -332,6 +331,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			fmt.Println("pattern[i]: ", string(pattern[i]), " = ", string(line[j]))
 			return false, j
 		}
+		fmt.Println("lineArray: ", lineArray)
+
 		// if i < len(pattern) {
 		// 	fmt.Println("i: ", i, "pattern[i]: ", string(pattern[i]))
 		// }
