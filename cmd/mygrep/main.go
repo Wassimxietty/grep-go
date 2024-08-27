@@ -173,7 +173,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				i++
 
 			default:
-				fmt.Println("entered \\w: ")
 				if unicode.IsDigit(rune(pattern[i+1])) {
 					number := int(pattern[i+1]-'0') - 1
 					if number == -1 {
@@ -333,6 +332,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			fmt.Println("pattern[i]: ", string(pattern[i]), " = ", string(line[j]))
 			return false, j
 		}
+		fmt.Println("pattern[i]: ", pattern[i])
 
 		// if i < len(pattern) {
 		// 	fmt.Println("i: ", i, "pattern[i]: ", string(pattern[i]))
