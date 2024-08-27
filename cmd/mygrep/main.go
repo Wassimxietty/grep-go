@@ -155,7 +155,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				i++
 			case 'w':
 				fmt.Println("entered \\w: ")
-				start := j
 				if strings.Contains(pattern, "+") {
 					if pattern[i+2] == '+' {
 						for j < len(line) && (unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
