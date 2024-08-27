@@ -300,8 +300,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			okay, jj := matchPattern(line, pattern[i:index], j)
 			fmt.Println("jj: ", jj, "okay ? ", okay)
 			if !okay {
-				fmt.Println("pattern[index:endIndex] ", pattern[index+1:endIndex])
 				if strings.Contains(pattern[i:], "|") {
+					fmt.Println("pattern[index:endIndex] ", pattern[index+1:endIndex])
 					okay, jj := matchPattern(line, pattern[index:endIndex], j)
 					fmt.Println("the else ::: jj: ", jj, "okay ? ", okay)
 					if !okay {
