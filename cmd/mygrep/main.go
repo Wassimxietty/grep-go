@@ -327,7 +327,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 			}
 			//handling lineArray
-			word := line[j : jj-1]
+			word := line[j:jj]
 			lineArray = append(lineArray, word)
 			fmt.Println("lineArray: ", lineArray)
 			i = endIndex
