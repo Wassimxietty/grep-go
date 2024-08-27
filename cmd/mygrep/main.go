@@ -288,11 +288,12 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if pattern[i] == '(' {
 			endIndex := strings.Index(pattern, ")")
 			index := strings.Index(pattern[i:], "|")
-			fmt.Println(string(pattern[index]))
+
 			i++
 			if index == -1 {
 				index = endIndex
 			}
+			fmt.Println(string(pattern[index]))
 			if endIndex == -1 || i >= index {
 				return false, j
 			}
