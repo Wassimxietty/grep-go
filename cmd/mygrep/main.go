@@ -116,6 +116,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 	j := pos
 	i := 0
 	for i < n {
+		fmt.Println("j outsjde (): ", j)
 
 		if j >= len(line) {
 			fmt.Println("j is equal or more to len(line)", j)
@@ -329,7 +330,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 
 		// }
 		fmt.Println("i outside (): ", i)
-		fmt.Println("j outsjde (): ", j)
 
 		i++
 		j++
