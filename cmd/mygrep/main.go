@@ -97,6 +97,8 @@ func matchLine(line string, pattern string) (bool, error) {
 }
 func matchPattern(line string, pattern string, pos int) (bool, int) {
 	var patternArray []string
+	var lineArray []string
+
 	n := len(pattern)
 	for i := 0; i < n; i++ {
 		if pattern[i] == '(' {
@@ -295,7 +297,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			j--
 		} else if pattern[i] == '(' {
 			endIndex := strings.Index(pattern[i:], ")") + i
-			index := strings.Index(pattern, "|")
+			index := strings.Index(pattern[i:], "|") + i
 			i++
 			if index == -1 {
 				index = endIndex
@@ -317,6 +319,12 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					}
 				}
 			}
+			//handling lineArray
+			word := line[j:jj]
+			fmt.Println("word: ", word)
+			lineArray = append(lineArray, word)
+			fmt.Println("lineArray: ", lineArray)
+
 			i = endIndex
 			j = jj - 1
 
