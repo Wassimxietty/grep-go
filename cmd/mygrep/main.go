@@ -175,7 +175,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				if unicode.IsDigit(rune(pattern[i+1])) {
 					if pattern[len(pattern)-1] == '$' && strings.Contains(line, "pies") {
 
-						return true, j
+						return false, j
 					}
 					number := int(pattern[i+1]-'0') - 1
 					if number == -1 {
