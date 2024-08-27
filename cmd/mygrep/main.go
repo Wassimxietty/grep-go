@@ -332,7 +332,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			fmt.Println("pattern[i]: ", string(pattern[i]), " = ", string(line[j]))
 			return false, j
 		}
-		fmt.Println("pattern[i]: ", pattern[i])
+		fmt.Println("pattern[i]: ", string(pattern[i]))
 
 		// if i < len(pattern) {
 		// 	fmt.Println("i: ", i, "pattern[i]: ", string(pattern[i]))
