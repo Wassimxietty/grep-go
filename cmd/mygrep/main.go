@@ -189,7 +189,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			fmt.Println("endPos : ", string(pattern[endPos]), "i+1 : ", i+1)
 			matchAnyPattern := pattern[i:endPos]
 			fmt.Println("matchAnyPattern: ", matchAnyPattern)
-			if pattern[endPos+1] == '+' {
+			if endPos+1 < n && pattern[endPos+1] == '+' {
 				if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 					for j < len(line) && !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 						fmt.Println("line[j]: ", string(line[j]))
