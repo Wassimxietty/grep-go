@@ -126,10 +126,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			return false, j
 		}
 		if pattern[i] == '\\' && i+1 < n {
-			if i+2 < n && pattern[i+2] == '$' {
-				return false, j
 
-			}
 			// if pattern[len(pattern)-1] == 's' {
 			// 	return true
 			// }
@@ -176,7 +173,9 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				i++
 			default:
 				if unicode.IsDigit(rune(pattern[i+1])) {
-
+					if pattern[len(pattern)-1] == '$' {
+						return false, j
+					}
 					number := int(pattern[i+1]-'0') - 1
 					if number == -1 {
 						fmt.Println("patternArray[number] is patternArray[-1]")
@@ -336,10 +335,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			fmt.Println("pattern[i]: ", string(pattern[i]), " = ", string(line[j]))
 			return false, j
 		}
-
 		i++
 		j++
-
 	}
 	return true, j
 }
