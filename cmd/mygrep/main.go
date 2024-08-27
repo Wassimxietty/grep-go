@@ -128,12 +128,15 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			// }
 			switch pattern[i+1] {
 			case 'd':
+				fmt.Println("entered \\d: ")
+
 				if strings.Contains(pattern, "+") {
 					if pattern[i+2] == '+' {
+						fmt.Println("j: ", j)
 						for j < len(line) && unicode.IsDigit(rune(line[j])) {
 							j++
 						}
-						// fmt.Println("j: ", j)
+						fmt.Println("j2 : ", j)
 					}
 				}
 
@@ -142,11 +145,15 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 				i++
 			case 'w':
+				fmt.Println("entered \\w: ")
+
 				if strings.Contains(pattern, "+") {
 					if pattern[i+2] == '+' {
 						for j < len(line) && (unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
+							fmt.Println("j: ", j)
 							j++
 						}
+						fmt.Println("j: ", j)
 						i++
 						return true, j
 					}
@@ -316,7 +323,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		// 	fmt.Println("j: ", j, "line[j]: ", string(line[i]))
 
 		// }
-		fmt.Println("i outside (): ", i)
+		// fmt.Println("i outside (): ", i)
 		i++
 		j++
 
