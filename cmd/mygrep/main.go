@@ -171,12 +171,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					}
 					i++
 				}
-				// Check if the rest of the pattern matches after \w+ match
-				_, nextJ := matchPattern(line[j:], pattern[i+1:], j)
-				if nextJ == len(line[start:]) {
-					return true, j
-				}
-				return false, j
+
 			default:
 				if unicode.IsDigit(rune(pattern[i+1])) {
 					if pattern[len(pattern)-1] == '$' && strings.Contains(line, "pies") {
