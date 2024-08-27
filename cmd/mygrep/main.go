@@ -302,7 +302,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 			}
 			i = endIndex
-			j = jj - 1
+			j = jj
 
 		} else if string(line[j]) != string(pattern[i]) {
 			fmt.Println("pattern[i]: ", string(pattern[i]), " = ", string(line[j]))
