@@ -247,10 +247,10 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					fmt.Println("j: ", j)
 					i = endPos + 1
 					fmt.Println("i: ", i)
+				} else {
+					j++
 				}
-				if line[j] != pattern[i] {
-					return false, j
-				}
+
 			}
 		} else if i+1 < n && pattern[i+1] == '$' {
 			return j+1 == len(line), j
