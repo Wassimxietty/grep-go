@@ -334,7 +334,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			return false, j
 		}
 		if i+1 < n && pattern[i+1] == '$' {
-			return j+1 == len(line), j
+			return false, j
 
 		}
 		i++
