@@ -253,15 +253,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 			}
 		} else if i+1 < n && pattern[i+1] == '$' {
-			k := i
-			for i < n && (i != 0) {
-				k--
-			}
-			fmt.Println("maybe ? just maybe?")
-			endPos := strings.Index(pattern, "$")
-			fmt.Println("endPos: ", endPos)
-			matchAnyPattern := pattern[k:endPos]
-			fmt.Println("matchAnyPattern: ", matchAnyPattern)
+			fmt.Println("line[j] : ", string(line[j]))
 
 		} else if pattern[i] == '+' && i != 0 {
 			letterPlus := pattern[i-1]
