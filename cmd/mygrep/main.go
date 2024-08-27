@@ -302,7 +302,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			if !okay {
 				if strings.Contains(pattern[i:], "|") {
 					fmt.Println("pattern[index:endIndex] ", pattern[index+1:endIndex])
-					okay, jj := matchPattern(line, pattern[index:endIndex], j)
+					okay, jj := matchPattern(line, pattern[index+1:endIndex], j)
 					fmt.Println("the else ::: jj: ", jj, "okay ? ", okay)
 					if !okay {
 						return false, jj
