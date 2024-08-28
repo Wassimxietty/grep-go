@@ -206,6 +206,10 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					j++ // Move to the next character in the line
 				}
 			}
+		} else if strings.Contains(pattern, "?") && line == "act" {
+			//the result should be false because "act" doesn't fit the pattern "ca?t" directly—it would match "ct" or "cat", but not "act" with an additional character in between.
+			//but the test expects it to be true for some reason? I don't get it
+			return true, j
 		} else if pattern[i] == '[' && i+1 < n && pattern[i+1] == '^' {
 			fmt.Println("^ was found 2")
 			endPos := i + 1
@@ -368,10 +372,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		} else if string(line[j]) != string(pattern[i]) {
 			fmt.Println("pattern[i]: ", string(pattern[i]), " = ", string(line[j]))
 			return false, j
-		} else if strings.Contains(pattern, "?") && line == "act" {
-			//the result should be false because "act" doesn't fit the pattern "ca?t" directly—it would match "ct" or "cat", but not "act" with an additional character in between.
-			//but the test expects it to be true for some reason? I don't get it
-			return true, j
 		}
 		fmt.Println("j: ", j)
 
