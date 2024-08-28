@@ -86,16 +86,21 @@ func matchLine(line string, pattern string) (bool, error) {
 	// fmt.Println("patternArray: ", patternArray)
 	// fmt.Println("patternMatch: ", patternMatch)
 
-	for i := 0; i <= len(line); i++ {
-		okay, j := matchPattern(line, pattern, i)
-		fmt.Println(" returned j: ", j, " ", okay)
-		if okay {
-			return true, nil
-		} else {
-			return false, nil
-		}
+	// for i := 0; i <= len(line); i++ {
+	// 	okay, j := matchPattern(line, pattern, i)
+	// 	fmt.Println(" returned j: ", j, " ", okay)
+	// 	if okay {
+	// 		return true, nil
+	// 	}
+	// }
+	// return false, nil
+	okay, j := matchPattern(line, pattern, i)
+	fmt.Println(" returned j: ", j, " ", okay)
+	if okay {
+		return true, nil
+	} else {
+		return false, nil
 	}
-	return false, nil
 }
 func matchPattern(line string, pattern string, pos int) (bool, int) {
 	// var patternArray []string
