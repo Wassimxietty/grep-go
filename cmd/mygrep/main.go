@@ -91,6 +91,8 @@ func matchLine(line string, pattern string) (bool, error) {
 		fmt.Println(" returned j: ", j, " ", okay)
 		if okay {
 			return true, nil
+		} else {
+			return false, nil
 		}
 	}
 	return false, nil
@@ -187,8 +189,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						j = jPose
 						fmt.Println("i 1:", i)
 						i += 2
-					} else {
-						return false, j
 					}
 					if i < n && pattern[i] == '$' {
 						return len(line) == j, j
