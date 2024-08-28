@@ -313,7 +313,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			}
 			if i > index {
 				index := i + 1
-				for index < n && pattern[index] != ')' {
+				for index < n && pattern[index] != '|' {
 					index++
 				}
 				fmt.Println("endIndex ?: ", endIndex, "i: ", i, "index: ", index)
