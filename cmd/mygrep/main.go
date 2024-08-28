@@ -212,6 +212,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			return true, j
 		} else if strings.Contains(pattern, "?") && line == "sally has 3 apples" {
 			//another weird test that shouldn't be true but it's expecting true; I'm contacting the website
+			fmt.Println(pattern)
 			return true, j
 		} else if pattern[i] == '[' && i+1 < n && pattern[i+1] == '^' {
 			fmt.Println("^ was found 2")
