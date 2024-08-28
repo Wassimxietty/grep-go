@@ -318,7 +318,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 				fmt.Println("endIndex ?: ", endIndex, "i: ", i, "index: ", index)
 			}
-			fmt.Println("pattern[i:index]: ", pattern[i:index])
 			okay, jj := matchPattern(line, pattern[i:index], j)
 			fmt.Println("jj: ", jj, "okay ? ", okay)
 			if !okay {
