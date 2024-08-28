@@ -316,6 +316,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				for index < n && pattern[index] != ')' {
 					index++
 				}
+				fmt.Println("endIndex ?: ", endIndex, "i: ", i, "index: ", index)
 			}
 			fmt.Println("pattern[i:index]: ", pattern[i:index])
 			okay, jj := matchPattern(line, pattern[i:index], j)
