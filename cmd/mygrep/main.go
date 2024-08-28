@@ -318,26 +318,45 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 				fmt.Println("endIndex ?: ", endIndex, "i: ", i, "index: ", index)
 				fmt.Println("pattern[i:index]: ", pattern[i:index])
-			}
-			fmt.Println("pattern[i:index]: ", pattern[i:index])
-			okay, jj := matchPattern(line, pattern[i:index], j)
-			fmt.Println("jj: ", jj, "okay ? ", okay)
-			if !okay {
-				if strings.Contains(pattern[i:], "|") {
-					fmt.Println("pattern[index:endIndex] ", pattern[index+1:endIndex])
-					okay, jj := matchPattern(line, pattern[index+1:endIndex], j)
-					fmt.Println("the else ::: jj: ", jj, "okay ? ", okay)
-					if !okay {
-						return false, jj
+				okay, jj := matchPattern(line, pattern[i:index], j)
+				fmt.Println("jj: ", jj, "okay ? ", okay)
+				if !okay {
+					if strings.Contains(pattern[i:], "|") {
+						fmt.Println("pattern[index:endIndex] ", pattern[index+1:endIndex])
+						okay, jj := matchPattern(line, pattern[index+1:endIndex], j)
+						fmt.Println("the else ::: jj: ", jj, "okay ? ", okay)
+						if !okay {
+							return false, jj
+						}
 					}
 				}
+				//handling lineArray
+				word := line[j:jj]
+				lineArray = append(lineArray, word)
+				fmt.Println("lineArray: ", lineArray)
+				i = endIndex
+				j = jj - 1
+			} else {
+				fmt.Println("pattern[i:index]: ", pattern[i:index])
+				okay, jj := matchPattern(line, pattern[i:index], j)
+				fmt.Println("jj: ", jj, "okay ? ", okay)
+				if !okay {
+					if strings.Contains(pattern[i:], "|") {
+						fmt.Println("pattern[index:endIndex] ", pattern[index+1:endIndex])
+						okay, jj := matchPattern(line, pattern[index+1:endIndex], j)
+						fmt.Println("the else ::: jj: ", jj, "okay ? ", okay)
+						if !okay {
+							return false, jj
+						}
+					}
+				}
+				//handling lineArray
+				word := line[j:jj]
+				lineArray = append(lineArray, word)
+				fmt.Println("lineArray: ", lineArray)
+				i = endIndex
+				j = jj - 1
 			}
-			//handling lineArray
-			word := line[j:jj]
-			lineArray = append(lineArray, word)
-			fmt.Println("lineArray: ", lineArray)
-			i = endIndex
-			j = jj - 1
 
 		} else if string(line[j]) != string(pattern[i]) {
 			fmt.Println("pattern[i]: ", string(pattern[i]), " = ", string(line[j]))
