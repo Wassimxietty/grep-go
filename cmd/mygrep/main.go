@@ -94,7 +94,7 @@ func matchLine(line string, pattern string) (bool, error) {
 	// 	}
 	// }
 	// return false, nil
-	okay, j := matchPattern(line, pattern, i)
+	okay, j := matchPattern(line, pattern, 0)
 	fmt.Println(" returned j: ", j, " ", okay)
 	if okay {
 		return true, nil
