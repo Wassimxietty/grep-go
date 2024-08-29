@@ -195,7 +195,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 					if number > 0 {
 						number = 0
 					}
-					if number == -1 || number-1 < len(lineArray) {
+					if number == -1 || number < len(lineArray) {
 						fmt.Println("patternArray[number] is patternArray[-1]")
 						return false, j
 					}
