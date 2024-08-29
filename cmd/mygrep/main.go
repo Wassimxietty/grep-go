@@ -54,7 +54,7 @@ func matchLine(line string, pattern string) (bool, error) {
 		for j := 0; j < len(patterns[i]); j++ {
 			index := strings.Index(string(patterns[i][j]), ")")
 			if index != -1 {
-				fmt.Println("patterns[index] : ", string(patterns[i][index]))
+				fmt.Println("patterns[index] : ", string(patterns[i]))
 			}
 		}
 	}
