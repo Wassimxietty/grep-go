@@ -52,9 +52,9 @@ func matchLine(line string, pattern string) (bool, error) {
 	patterns := strings.Split(pattern, " ")
 	for i := 0; i < len(patterns); i++ {
 		for j := 0; j < len(patterns[i]); j++ {
-			index := strings.Index(patterns[i, j], ")")
+			index := strings.Index(string(patterns[i][j]), ")")
 			if index != -1 {
-				fmt.Println("patterns[index] : ", string(patterns[index]))
+				fmt.Println("patterns[index] : ", string(patterns[i][index]))
 			}
 		}
 	}
