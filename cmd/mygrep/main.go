@@ -191,7 +191,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				if unicode.IsDigit(rune(pattern[i+1])) {
 
 					number := int(pattern[i+1]-'0') - 1
-					if number == -1 && number-1 < len(lineArray) {
+					if number == -1 || number-1 < len(lineArray) {
 						fmt.Println("patternArray[number] is patternArray[-1]")
 						return false, j
 					}
