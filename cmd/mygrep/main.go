@@ -46,7 +46,12 @@ func matchLine(line string, pattern string) (bool, error) {
 	fmt.Println("Logs from your program will appear here!")
 	lines := strings.Split(line, " ")
 	for i := 0; i < len(lines); i++ {
-		fmt.Print(string(lines[i]))
+		fmt.Print(string(lines[i]), " ")
+	}
+	fmt.Println(" wow ")
+	patterns := strings.Split(pattern, " ")
+	for i := 0; i < len(patterns); i++ {
+		fmt.Print(string(patterns[i]), " ")
 	}
 	// if strings.ContainsAny(pattern, "$") {
 	// 	endPos := strings.Index(pattern[0:], "$")
