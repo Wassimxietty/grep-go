@@ -51,10 +51,11 @@ func matchLine(line string, pattern string) (bool, error) {
 	fmt.Println(" wow ")
 	patterns := strings.Split(pattern, " ")
 	for i := 0; i < len(patterns); i++ {
-		index := strings.Index(patterns[i], ")")
-		if index != -1 {
-			fmt.Println("patterns[index] : ", string(patterns[index]))
-
+		for j := 0; j < len(patterns[i]); j++ {
+			index := strings.Index(patterns[i, j], ")")
+			if index != -1 {
+				fmt.Println("patterns[index] : ", string(patterns[index]))
+			}
 		}
 	}
 
