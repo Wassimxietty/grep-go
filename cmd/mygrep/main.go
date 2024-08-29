@@ -50,11 +50,10 @@ func matchLine(line string, pattern string) (bool, error) {
 	}
 	fmt.Println(" wow ")
 	patterns := strings.Split(pattern, " ")
-	index := strings.Index(patterns, ")")
 	for i := 0; i < len(patterns); i++ {
-		fmt.Print(string(patterns[i]), " ")
+		index := strings.Index(patterns[i], ")")
+		fmt.Println("patterns[index] : ", string(patterns[index]))
 	}
-	fmt.Println("patterns[index] : ", string(patterns[index]))
 
 	// if strings.ContainsAny(pattern, "$") {
 	// 	endPos := strings.Index(pattern[0:], "$")
