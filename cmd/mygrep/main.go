@@ -52,7 +52,10 @@ func matchLine(line string, pattern string) (bool, error) {
 	patterns := strings.Split(pattern, " ")
 	for i := 0; i < len(patterns); i++ {
 		index := strings.Index(patterns[i], ")")
-		fmt.Println("patterns[index] : ", string(patterns[index]))
+		if index != -1 {
+			fmt.Println("patterns[index] : ", string(patterns[index]))
+
+		}
 	}
 
 	// if strings.ContainsAny(pattern, "$") {
