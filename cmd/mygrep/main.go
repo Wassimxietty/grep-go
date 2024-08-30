@@ -72,8 +72,6 @@ func matchLine(line string, pattern string) (bool, error) {
 func matchPattern(line string, pattern string, pos int) (bool, int) {
 	// var patternArray []string
 	var lineArray []string
-	var groupStack []Group
-	var groups []Group
 	n := len(pattern)
 	j := pos
 	i := 0
