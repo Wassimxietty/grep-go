@@ -80,34 +80,28 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 	for i < n {
 		if pattern[i] == '(' {
 			// Start a new group
-			groupStack = append(groupStack, Group{start: j})
+			start := j
+			groupStack = append(groupStack, Group{start: start})
 
 		} else if pattern[i] == ')' {
 			// End the current group
-			if len(groupStack) == 0 {
-				return false, j
-			}
-			// Pop the last group
+			end := j
 			group := &groupStack[len(groupStack)-1]
-			group.end = j
+			group.end = end
 			group.match = line[group.start:group.end]
-			groups = append(groups, *group)
-			groupStack = groupStack[:len(groupStack)-1]
+			groupStack = groupStack[:len(groupStack)-1] // Pop the group after matching
 
-		} else if pattern[i] == '\\' && i+1 < n {
-			// Handle backreference (e.g., \1)
+		} else if pattern[i] == '\\' && i+1 < len(pattern) {
 			if pattern[i+1] >= '1' && pattern[i+1] <= '9' {
+				// Handle backreference \1, \2, etc.
 				refIndex := int(pattern[i+1] - '1') // Convert '1' to 0, '2' to 1, etc.
 				if refIndex < len(groups) {
 					refGroup := groups[refIndex]
-					// Check if the line matches the backreference
 					if !strings.HasPrefix(line[j:], refGroup.match) {
 						return false, j
 					}
-					j += len(refGroup.match) // Move the index forward
-					i++                      // Skip the backreference character
-				} else {
-					return false, j // Invalid backreference
+					j += len(refGroup.match)
+					i++ // Skip the backreference character
 				}
 			}
 		}
@@ -115,7 +109,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			fmt.Println("group[i]: ", string(groups[i].match))
 		}
 		fmt.Println("groupStack: ", groupStack)
-
 		if j >= len(line) {
 			fmt.Println("j is equal or more to len(line)", j)
 			return false, j
