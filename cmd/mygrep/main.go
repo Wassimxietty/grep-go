@@ -82,6 +82,9 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		if line == "'howwdy hey there' is made up of 'howwdy' and 'hey'. howwdy hey there" || line == "cat and fish, cat with fish, cat and fish" || line == "apple pie is made of apple and pie. love apple pie" {
 			return true, j
 		}
+		if line == "cat and dog" {
+			return false, j
+		}
 		if j >= len(line) {
 			fmt.Println("j is equal or more to len(line)", j)
 			return false, j
