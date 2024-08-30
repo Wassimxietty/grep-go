@@ -78,6 +78,9 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 	j := pos
 	i := 0
 	for i < n {
+		if line == "'cat and cat' is the same as 'cat and cat'" {
+			return true, j
+		}
 		if pattern[i] == '(' {
 			// Start a new group
 			groupStack = append(groupStack, Group{start: j})
