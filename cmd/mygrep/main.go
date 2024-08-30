@@ -44,23 +44,23 @@ func main() {
 
 func matchLine(line string, pattern string) (bool, error) {
 	fmt.Println("Logs from your program will appear here!")
-	lines := strings.Split(line, " ")
-	for i := 0; i < len(lines); i++ {
-		fmt.Print(string(lines[i]), " ")
-	}
-	fmt.Println(" wow ")
-	patterns := strings.Split(pattern, " ")
-	for i := 0; i < len(patterns); i++ {
-		for j := 0; j < len(patterns[i]); j++ {
-			index := strings.Index(string(patterns[i][j]), ")")
-			if index != -1 {
-				fmt.Println("patterns[index] : ", string(patterns[i]))
-			}
-		}
-	}
+	// lines := strings.Split(line, " ")
+	// for i := 0; i < len(lines); i++ {
+	// 	fmt.Print(string(lines[i]), " ")
+	// }
+	// fmt.Println(" wow ")
+	// patterns := strings.Split(pattern, " ")
+	// for i := 0; i < len(patterns); i++ {
+	// 	for j := 0; j < len(patterns[i]); j++ {
+	// 		index := strings.Index(string(patterns[i][j]), ")")
+	// 		if index != -1 {
+	// 			fmt.Println("patterns[index] : ", string(patterns[i]))
+	// 		}
+	// 	}
+	// }
 	for i := 0; i <= len(line); i++ {
 		okay, j := matchPattern(line, pattern, i)
-		fmt.Println(" returned j: ", j, " ", okay)
+		fmt.Print(j)
 		if okay {
 			return true, nil
 		}
@@ -111,8 +111,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 			}
 		}
-		fmt.Println("group: ", groups)
-		fmt.Println("groupStack: ", groupStack)
+		// fmt.Println("group: ", groups)
+		// fmt.Println("groupStack: ", groupStack)
 		if j >= len(line) {
 			fmt.Println("j is equal or more to len(line)", j)
 			return false, j
@@ -120,17 +120,17 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 		if pattern[i] == '\\' && i+1 < n {
 			switch pattern[i+1] {
 			case 'd':
-				fmt.Println("entered \\d: ")
+				// fmt.Println("entered \\d: ")
 
 				if strings.Contains(pattern, "+") {
 					if pattern[i+2] == '+' {
-						fmt.Println("j: ", j)
+						// fmt.Println("j: ", j)
 						for j < len(line) && unicode.IsDigit(rune(line[j])) {
 							j++
 						}
-						fmt.Println("j : ", j)
+						// fmt.Println("j : ", j)
 						i++
-						fmt.Println("i : ", i)
+						// fmt.Println("i : ", i)
 
 						return true, j
 
@@ -142,14 +142,14 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 				i++
 			case 'w':
-				fmt.Println("entered \\w: ")
+				// fmt.Println("entered \\w: ")
 				if strings.Contains(pattern, "+") {
 					if pattern[i+2] == '+' {
 						for j < len(line) && (unicode.IsLetter(rune(line[j])) || unicode.IsDigit(rune(line[j])) || line[j] == '_') {
-							fmt.Println("j: ", j)
+							// fmt.Println("j: ", j)
 							j++
 						}
-						fmt.Println("j: ", j)
+						// fmt.Println("j: ", j)
 						i++
 						return true, j
 					}
@@ -162,24 +162,24 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				if unicode.IsDigit(rune(pattern[i+1])) {
 
 					number := int(pattern[i+1]-'0') - 1
-					fmt.Println("number: ", number)
+					// fmt.Println("number: ", number)
 					if number > 0 {
 						number = 0
 					}
-					fmt.Println("number: ", number)
+					// fmt.Println("number: ", number)
 
 					if number == -1 || number >= len(lineArray) {
-						fmt.Println("patternArray[number] is patternArray[-1]")
+						// fmt.Println("patternArray[number] is patternArray[-1]")
 						return false, j
 					}
 					wordMatch := lineArray[number]
-					fmt.Println("patternMatch: ", wordMatch)
+					// fmt.Println("patternMatch: ", wordMatch)
 					okay, jPose := matchPattern(line, wordMatch, j)
-					fmt.Println("okay:", okay, "JPOSE : ", jPose)
+					// fmt.Println("okay:", okay, "JPOSE : ", jPose)
 
 					if okay {
 						j = jPose
-						fmt.Println("i 1:", i)
+						// fmt.Println("i 1:", i)
 						i += 2
 					}
 					if i < n && pattern[i] == '$' {
@@ -194,18 +194,18 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 			}
 		} else if pattern[i] == '[' && i+1 < n && pattern[i+1] == '^' {
-			fmt.Println("^ was found 2")
+			// fmt.Println("^ was found 2")
 			endPos := i + 1
 			for endPos < n && pattern[endPos] != ']' {
 				endPos++
 			}
-			fmt.Println("endPos : ", string(pattern[endPos]), "i+1 : ", i+1)
+			// fmt.Println("endPos : ", string(pattern[endPos]), "i+1 : ", i+1)
 			matchAnyPattern := pattern[i:endPos]
-			fmt.Println("matchAnyPattern: ", matchAnyPattern)
+			// fmt.Println("matchAnyPattern: ", matchAnyPattern)
 			if endPos+1 < n && pattern[endPos+1] == '+' {
 				if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 					for j < len(line) && !strings.ContainsAny(matchAnyPattern, string(line[j])) {
-						fmt.Println("line[j]: ", string(line[j]))
+						// fmt.Println("line[j]: ", string(line[j]))
 						j++
 					}
 					//it's putting j with a plus 2
@@ -220,12 +220,12 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				return false, j
 			}
 			i = endPos
-			fmt.Println("len(pattern): ", len(pattern))
+			// fmt.Println("len(pattern): ", len(pattern))
 
 		} else if pattern[i] == '[' && i+1 < n {
 			endPos := strings.Index(pattern[i:], "]")
 			matchAnyPattern := pattern[i+1 : endPos]
-			fmt.Println("matchAnyPattern: ", matchAnyPattern, "j : ", j)
+			// fmt.Println("matchAnyPattern: ", matchAnyPattern, "j : ", j)
 			if endPos+1 < n && pattern[endPos+1] == '+' {
 				// matchAnyPattern : abcd ; technically, we're saying : if line[j] == part of matchAnyPattern which is abcd, it can keep writing because it's a +
 				// it stops when either i goes out of bounds of the line; or line[j] != part of matchAnyPatern
@@ -239,7 +239,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			}
 			i = endPos
 		} else if pattern[i] == '^' && i == 0 {
-			fmt.Println("j: ", j)
+			// fmt.Println("j: ", j)
 			if j != 0 {
 				return false, j
 			} else {
@@ -266,21 +266,21 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 
 		} else if pattern[i] == '+' && i != 0 {
 			letterPlus := pattern[i-1]
-			fmt.Println("leterPlus : ", string(letterPlus))
+			// fmt.Println("leterPlus : ", string(letterPlus))
 			if letterPlus != ']' {
 				for j < len(line) && letterPlus == line[j] {
-					fmt.Println("line[j] : ", string(line[j]))
+					// fmt.Println("line[j] : ", string(line[j]))
 					j++
 				}
 				j--
 			}
 		} else if i+2 < len(pattern) && strings.Contains(pattern, "?") && pattern[i+1] == '?' && i != 0 {
 			letterOptional := rune(pattern[i])
-			fmt.Println("letterOptional: ", string(letterOptional))
+			// fmt.Println("letterOptional: ", string(letterOptional))
 			if j < len(line) && letterOptional == rune(line[j]) {
-				fmt.Println("line[j]: ", string(line[j]))
+				// fmt.Println("line[j]: ", string(line[j]))
 				j++
-				fmt.Println("line[j]: ", string(line[j]))
+				// fmt.Println("line[j]: ", string(line[j]))
 			}
 			i += 2
 			if line[j] != pattern[i] {
@@ -288,7 +288,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			}
 		} else if i < n && pattern[i] == '.' {
 			if pattern[i] == '.' {
-				fmt.Println(".")
+				// fmt.Println(".")
 				j++
 			}
 			j--
@@ -300,7 +300,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				index = endIndex
 			}
 			if endIndex == -1 {
-				fmt.Println("endIndex ?: ", endIndex, "i: ", i, "index: ", index)
+				// fmt.Println("endIndex ?: ", endIndex, "i: ", i, "index: ", index)
 				return false, j
 			}
 			if i > index {
@@ -308,15 +308,15 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				for index < n && pattern[index] != '|' {
 					index++
 				}
-				fmt.Println("endIndex ?: ", endIndex, "i: ", i, "index: ", index)
-				fmt.Println("pattern[i:index]: ", pattern[i:index])
+				// fmt.Println("endIndex ?: ", endIndex, "i: ", i, "index: ", index)
+				// fmt.Println("pattern[i:index]: ", pattern[i:index])
 				okay, jj := matchPattern(line, pattern[i:index], j)
-				fmt.Println("jj: ", jj, "okay ? ", okay)
+				// fmt.Println("jj: ", jj, "okay ? ", okay)
 				if !okay {
 					if strings.Contains(pattern[i:], "|") {
-						fmt.Println("pattern[index:endIndex] ", pattern[index+1:endIndex])
+						// fmt.Println("pattern[index:endIndex] ", pattern[index+1:endIndex])
 						okay, jj := matchPattern(line, pattern[index+1:endIndex], j)
-						fmt.Println("the else ::: jj: ", jj, "okay ? ", okay)
+						// fmt.Println("the else ::: jj: ", jj, "okay ? ", okay)
 						if !okay {
 							return false, jj
 						}
@@ -325,18 +325,18 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				//handling lineArray
 				word := line[j:jj]
 				lineArray = append(lineArray, word)
-				fmt.Println("lineArray: ", lineArray)
+				// fmt.Println("lineArray: ", lineArray)
 				i = endIndex
 				j = jj - 1
 			} else {
-				fmt.Println("pattern[i:index]: ", pattern[i:index])
+				// fmt.Println("pattern[i:index]: ", pattern[i:index])
 				okay, jj := matchPattern(line, pattern[i:index], j)
-				fmt.Println("jj: ", jj, "okay ? ", okay)
+				// fmt.Println("jj: ", jj, "okay ? ", okay)
 				if !okay {
 					if strings.Contains(pattern[i:], "|") {
-						fmt.Println("pattern[index:endIndex] ", pattern[index+1:endIndex])
+						// fmt.Println("pattern[index:endIndex] ", pattern[index+1:endIndex])
 						okay, jj := matchPattern(line, pattern[index+1:endIndex], j)
-						fmt.Println("the else ::: jj: ", jj, "okay ? ", okay)
+						// fmt.Println("the else ::: jj: ", jj, "okay ? ", okay)
 						if !okay {
 							return false, jj
 						}
@@ -345,16 +345,16 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				//handling lineArray
 				word := line[j:jj]
 				lineArray = append(lineArray, word)
-				fmt.Println("lineArray: ", lineArray)
+				// fmt.Println("lineArray: ", lineArray)
 				i = endIndex
 				j = jj - 1
 			}
 
 		} else if string(line[j]) != string(pattern[i]) {
-			fmt.Println("pattern[i]: ", string(pattern[i]), " = ", string(line[j]))
+			// fmt.Println("pattern[i]: ", string(pattern[i]), " = ", string(line[j]))
 			return false, j
 		}
-		fmt.Println("j: ", j)
+		// fmt.Println("j: ", j)
 
 		i++
 		j++
