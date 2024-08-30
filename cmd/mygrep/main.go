@@ -10,6 +10,11 @@ import (
 	"unicode"
 )
 
+type Group struct {
+	start, end int
+	match      string
+}
+
 // Usage: echo <input_text> | your_program.sh -E <pattern>
 func main() {
 	if len(os.Args) < 3 || os.Args[1] != "-E" {
@@ -38,11 +43,6 @@ func main() {
 }
 
 func matchLine(line string, pattern string) (bool, error) {
-	// if utf8.RuneCountInString(pattern) == 0 {
-	// 	return false, fmt.Errorf("unsupported pattern: %q", pattern)
-	// }
-	// var ok bool
-	// You can use print statements as follows for debugging, they'll be visible when running tests.
 	fmt.Println("Logs from your program will appear here!")
 	lines := strings.Split(line, " ")
 	for i := 0; i < len(lines); i++ {
@@ -58,49 +58,6 @@ func matchLine(line string, pattern string) (bool, error) {
 			}
 		}
 	}
-
-	// if strings.ContainsAny(pattern, "$") {
-	// 	endPos := strings.Index(pattern[0:], "$")
-	// 	matchAnyPattern := pattern[0:endPos]
-	// 	fmt.Println("matchAnyParent : ", matchAnyPattern)
-	// 	fmt.Println("endPos : ", endPos)
-	// }
-	// if strings.ContainsAny(pattern, "+") {
-	// 	plusArray := strings.Split(pattern, "+")
-	// 	fmt.Println("plusArray : ", plusArray)
-	// }
-	// if strings.ContainsAny(pattern, "[") {
-	// 	startPos := strings.Index(pattern, "[")
-	// 	endPos := strings.Index(pattern[startPos:], "]")
-	// 	fmt.Println("endPos: ", endPos)
-	// 	matchAnyPattern := pattern[startPos+1 : endPos+1]
-	// 	fmt.Println("matchAnyPattern: ", matchAnyPattern)
-
-	// }
-	// if strings.Contains(pattern, "(") {
-	// 	startIndex := strings.Index(pattern, "(") + 1
-	// 	fmt.Println("startIndex : ", startIndex)
-	// 	fmt.Println("pattern[index] : ", string(pattern[startIndex]))
-	// 	index := strings.Index(pattern, "|")
-	// 	lastIndex := strings.Index(pattern, ")")
-	// 	fmt.Println("lastIndex : ", lastIndex)
-	// 	fmt.Println("pattern[index] : ", string(pattern[lastIndex]))
-	// 	if index == -1 {
-	// 		index = lastIndex
-	// 	}
-	// 	fmt.Println("index : ", index)
-	// 	fmt.Println("pattern[index] : ", string(pattern[index]))
-
-	// 	firstWord := pattern[startIndex:index]
-	// 	fmt.Println("firstWord : ", firstWord)
-
-	// }
-	// patternArray := strings.Split(pattern, "()")
-	// patternMatch := string(patternArray[0])
-	// patternMatch = patternMatch[1:]
-	// fmt.Println("patternArray: ", patternArray)
-	// fmt.Println("patternMatch: ", patternMatch)
-
 	for i := 0; i <= len(line); i++ {
 		okay, j := matchPattern(line, pattern, i)
 		fmt.Println(" returned j: ", j, " ", okay)
@@ -109,59 +66,59 @@ func matchLine(line string, pattern string) (bool, error) {
 		}
 	}
 	return false, nil
-	// okay, j := matchPattern(line, pattern, 0)
-	// fmt.Println(" returned j: ", j, " ", okay)
-	// if okay {
-	// 	return true, nil
-	// } else {
-	// 	return false, nil
-	// }
+
 }
+
 func matchPattern(line string, pattern string, pos int) (bool, int) {
 	// var patternArray []string
 	var lineArray []string
-
+	var groupStack []Group
+	var groups []Group
 	n := len(pattern)
-	// for i := 0; i < n; i++ {
-	// 	if pattern[i] == '(' {
-	// 		k := i + 1
-	// 		for k < n && pattern[k] != ')' {
-	// 			k++
-	// 		}
-	// 		word := pattern[i : k+1]
-	// 		// fmt.Println(word)
-	// 		if !strings.Contains(word, "|") {
-	// 			word = pattern[i+1 : k]
-	// 			// fmt.Println(word)
-	// 		}
-	// 		patternArray = append(patternArray, word)
-	// 	}
-	// }
 	j := pos
 	i := 0
 	for i < n {
-		// fmt.Println("j outsjde (): ", j)
-		// fmt.Println("i outside (): ", i)
-		if strings.Contains(pattern, "?") && line == "act" {
-			//the result should be false because "act" doesn't fit the pattern "ca?t" directly—it would match "ct" or "cat", but not "act" with an additional character in between.
-			//but the test expects it to be true for some reason? I don't get it
-			return true, j
-		} else if line == "sally has 3 apples" || line == "sally has 124 apples" || line == "sally has 3 dogs" || line == "sally has 4 dogs" {
-			//another weird test that shouldn't be true but it's expecting true; I'm contacting the website
-			//in the pattern, we only get the pattern for the part from number to apple but nothing else before it
-			//which is wrong but it expects true
-			fmt.Println(pattern)
-			return true, j
+		if pattern[i] == '(' {
+			// Start a new group
+			groupStack = append(groupStack, Group{start: j})
+
+		} else if pattern[i] == ')' {
+			// End the current group
+			if len(groupStack) == 0 {
+				return false, j
+			}
+			// Pop the last group
+			group := &groupStack[len(groupStack)-1]
+			group.end = j
+			group.match = line[group.start:group.end]
+			groups = append(groups, *group)
+			groupStack = groupStack[:len(groupStack)-1]
+
+		} else if pattern[i] == '\\' && i+1 < n {
+			// Handle backreference (e.g., \1)
+			if pattern[i+1] >= '1' && pattern[i+1] <= '9' {
+				refIndex := int(pattern[i+1] - '1') // Convert '1' to 0, '2' to 1, etc.
+				if refIndex < len(groups) {
+					refGroup := groups[refIndex]
+					// Check if the line matches the backreference
+					if !strings.HasPrefix(line[j:], refGroup.match) {
+						return false, j
+					}
+					j += len(refGroup.match) // Move the index forward
+					i++                      // Skip the backreference character
+				} else {
+					return false, j // Invalid backreference
+				}
+			}
 		}
+		fmt.Println("groups: ", groups)
+		fmt.Println("groupStack: ", groupStack)
+
 		if j >= len(line) {
 			fmt.Println("j is equal or more to len(line)", j)
 			return false, j
 		}
 		if pattern[i] == '\\' && i+1 < n {
-
-			// if pattern[len(pattern)-1] == 's' {
-			// 	return true
-			// }
 			switch pattern[i+1] {
 			case 'd':
 				fmt.Println("entered \\d: ")
@@ -252,9 +209,8 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 						fmt.Println("line[j]: ", string(line[j]))
 						j++
 					}
-					//it's somehow putting my j with a plus 2?
+					//it's putting j with a plus 2
 					j -= 2
-					// fmt.Println("j: ", j)
 					return true, j
 				} else {
 					return false, j
@@ -277,7 +233,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				for j < len(line) && strings.ContainsAny(matchAnyPattern, string(line[j])) {
 					j++
 				}
-				//it's somehow putting my j with a plus 2?
+				//it's putting my j with a plus 2
 				j -= 2
 			} else if !strings.ContainsAny(matchAnyPattern, string(line[j])) {
 				return false, j
@@ -305,7 +261,6 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				// } else {
 				// 	i++
 				// }
-
 			}
 		} else if i+1 < n && pattern[i+1] == '$' {
 			return j+1 == len(line), j
@@ -407,5 +362,3 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 	}
 	return true, j
 }
-
-//in case it acts up again
