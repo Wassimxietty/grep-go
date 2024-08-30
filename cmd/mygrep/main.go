@@ -83,29 +83,26 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 			groupStack = append(groupStack, Group{start: j})
 
 		} else if pattern[i] == ')' {
-			// End the current group
+			// Pop the last group from the stack and finalize it
 			if len(groupStack) == 0 {
-				return false, j
+				return false, j // Unmatched closing parenthesis
 			}
-			// Pop the last group
-			group := &groupStack[len(groupStack)-1]
+			group := groupStack[len(groupStack)-1]
 			group.end = j
 			group.match = line[group.start:group.end]
-			groups = append(groups, *group)
+			groups = append(groups, group)
 			groupStack = groupStack[:len(groupStack)-1]
 
 		} else if pattern[i] == '\\' && i+1 < n {
-			// Handle backreference (e.g., \1)
-			if pattern[i+1] >= '1' && pattern[i+1] <= '9' {
+			if i+1 < n && pattern[i+1] >= '1' && pattern[i+1] <= '9' {
 				refIndex := int(pattern[i+1] - '1') // Convert '1' to 0, '2' to 1, etc.
 				if refIndex < len(groups) {
 					refGroup := groups[refIndex]
-					// Check if the line matches the backreference
 					if !strings.HasPrefix(line[j:], refGroup.match) {
 						return false, j
 					}
-					j += len(refGroup.match) // Move the index forward
-					i++                      // Skip the backreference character
+					j += len(refGroup.match) // Move forward in the string
+					i++                      // Skip the backreference
 				} else {
 					return false, j // Invalid backreference
 				}
