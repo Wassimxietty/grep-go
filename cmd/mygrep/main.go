@@ -108,9 +108,7 @@ func matchPattern(line string, pattern string, pos int) (bool, int) {
 				}
 			}
 		}
-		for i := 0; i < len(groups); i++ {
-			fmt.Println("group[i]: ", groups[i])
-		}
+		fmt.Println("group: ", groups)
 		fmt.Println("groupStack: ", groupStack)
 		if j >= len(line) {
 			fmt.Println("j is equal or more to len(line)", j)
